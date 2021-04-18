@@ -23,7 +23,7 @@
 
 <div>
 	<div class="card border-primary">
-	<div class="card-header text-center">BDDCoronavirus</div>
+	<div class="card-header text-center">ContagPLUS</div>
 	<div class="card-body">
 	<br><h1 class="text-center">OOPPS, parece que la página a la que intentas acceder no esta disponible</h1><br><br>
 <h5 class="card-title text-center"> Es posible que no exista o no tengas permisos para acceder</h5><br><br>

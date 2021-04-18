@@ -13,6 +13,6 @@
 
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/css/general.css'>
 
-<title>BddCoronavirus</title>
+<title>ContagPLUS</title>
 
 

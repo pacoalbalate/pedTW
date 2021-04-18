@@ -2,7 +2,7 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/index">BddCoronavirus</a>
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/index">ContagPLUS</a>
 			<button class="navbar-toggler" type="button"
 				data-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
