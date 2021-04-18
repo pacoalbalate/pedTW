@@ -50,9 +50,7 @@
 									Graficos</a></li>
 						</ul></li>
 				</sec:authorize>
-					<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
-					<li class="nav-item"><a class="nav-link disabled" href="#"
-						tabindex="-1" aria-disabled="true">Disabled</a></li>
+					
 				</ul>
 				<ul class="navbar-nav navbar-right d-flex">
 					<sec:authorize access="!isAuthenticated()">
@@ -79,6 +77,9 @@
 							</div>
 						</li>
 					</sec:authorize>
+				
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/BorradorMemoria.pdf">Memoria</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/doc/index.html">Javadoc</a></li>
 				</ul>
 			</div>
 		</div>
