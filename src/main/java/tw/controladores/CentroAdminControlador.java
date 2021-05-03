@@ -32,6 +32,7 @@ import tw.modelo.entidades.AuxOpciones;
 import tw.modelo.servicios.IAuxOpcionesService;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IDatosPerfilService;
+import tw.modelo.servicios.IEstadisticasService;
 
 @Controller 
 @SessionAttributes({"centro", "criterios"})
@@ -46,7 +47,10 @@ public class CentroAdminControlador {
 	
 	@Autowired
 	private IDatosPerfilService datosperfilService;
-
+	
+	@Autowired
+	private IEstadisticasService estadisticasService;
+	
 	@GetMapping("admin/centro/list")
 	public String listado(@RequestParam Map<String, Object> params, 
 				Model modelo, RedirectAttributes flash) {
@@ -152,6 +156,18 @@ public class CentroAdminControlador {
 		return "redirect:/admin/centro/list";
 	}
 	
+	@GetMapping("admin/grafica/datos")
+	public String obtenerGraficas(Model modelo, RedirectAttributes flash) {
+		
+		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorCentroyPacientes();
+		String diagramaSectores=estadisticasService.obtenerDiagramaSectoresPorRegionyCentros();
+		
+		modelo.addAttribute("diagramaBarras", diagramaBarras);
+		modelo.addAttribute("diagramaSectores", diagramaSectores);
+
+
+		return "/grafica/list";
+	}
 	
 }
 
