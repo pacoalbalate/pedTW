@@ -11,8 +11,10 @@
 <script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
+
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/css/general.css'>
 
 <title>ContagPLUS</title>
+
 
 
