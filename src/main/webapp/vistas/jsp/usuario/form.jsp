@@ -22,7 +22,6 @@
 				</jsp:include>
 
 
-
 <div>
 
 <form:form action="${pageContext.request.contextPath}/usuario/${regId}/admin/save" modelAttribute="usuario" method="POST">

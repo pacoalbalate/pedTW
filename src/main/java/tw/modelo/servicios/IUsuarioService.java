@@ -15,7 +15,7 @@ import tw.modelo.entidades.Usuario;
 
 
 /** 
- * @author Portatil
+ * @author 
  *
  */
 public interface IUsuarioService {

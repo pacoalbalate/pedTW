@@ -35,7 +35,6 @@ import tw.modelo.servicios.impl.UsuarioServiceImpl;
 
 
 
-
 @EnableGlobalMethodSecurity(securedEnabled=true, prePostEnabled=true)
 @Configuration
 public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {

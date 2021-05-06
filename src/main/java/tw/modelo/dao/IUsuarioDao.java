@@ -11,7 +11,6 @@ import tw.modelo.entidades.Usuario;
 
 
 
-
 public interface IUsuarioDao extends JpaRepository<Usuario, Long>{
 
 	public Usuario findByNombreusuario(String nombreusuario);

@@ -19,7 +19,7 @@ import tw.modelo.dao.IUsuarioDao;
 import tw.modelo.entidades.Usuario;
 import tw.modelo.entidades.Rol;
 import tw.modelo.servicios.IUsuarioService;
-
+ 
 @Service("UsuarioServiceImpl")
 public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 
