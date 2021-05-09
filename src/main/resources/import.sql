@@ -89,7 +89,7 @@ INSERT INTO aux_opciones (opcion, tipo) VALUES('No', 'OPC_LOGICA');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('Vírica', 'OPC_TIPO_PRUEBA');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('Antígenos', 'OPC_TIPO_PRUEBA');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('Varón', 'OPC_SEXO');
-INSERT INTO aux_opciones (opcion, tipo) VALUES('Hembra', 'OPC_SEXO');
+INSERT INTO aux_opciones (opcion, tipo) VALUES('Mujer', 'OPC_SEXO');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('< 2', 'OPC_RANGO_EDAD');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('2-4', 'OPC_RANGO_EDAD');
 INSERT INTO aux_opciones (opcion, tipo) VALUES('5-14', 'OPC_RANGO_EDAD');
@@ -184,7 +184,7 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('10', 1, 6);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Felipe', 1, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2017-08-19', 1, 8);
 
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Hembra', 2, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 2, 1);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 2, 2);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 2, 3);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 2, 4);
@@ -202,7 +202,7 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('10', 3, 6);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Felipe', 3, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2017-08-19', 3, 8);
 
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Hembra', 4, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 4, 1);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 4, 2);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 4, 3);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 4, 4);
@@ -220,7 +220,7 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('10', 5, 6);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Felipe', 5, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2017-08-19', 5, 8);
 
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Hembra', 6, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('M', 6, 1);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 6, 2);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 6, 3);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 6, 4);

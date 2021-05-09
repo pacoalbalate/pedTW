@@ -1,5 +1,7 @@
 package tw.controladores;
-
+/**
+ * Clase controladora para la administración de los centros
+ */
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,6 +53,13 @@ public class CentroAdminControlador {
 	@Autowired
 	private IEstadisticasService estadisticasService;
 	
+	/**
+	 * Presenta los centros existentes
+	 * @param params 
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/centro/list")
 	public String listado(@RequestParam Map<String, Object> params, 
 				Model modelo, RedirectAttributes flash) {
@@ -85,7 +94,12 @@ public class CentroAdminControlador {
 
 		return "centro/list";
 	}
-
+	
+	/**
+	 * Alta de centros
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("admin/centro/new")
 	public String formulario_new(Model modelo) {
 		Centro centro = new Centro();
@@ -97,7 +111,14 @@ public class CentroAdminControlador {
 		modelo.addAttribute("numdatoscentro", 0);
 		return "centro/form";
 	}
-
+	
+	/** 
+	 * Edición de centros
+	 * @param Id
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/centro/edit/{regId}/")
 	public String formulario_edita(@PathVariable("regId") Long Id,
 				Model modelo, RedirectAttributes flash) {
@@ -117,7 +138,14 @@ public class CentroAdminControlador {
 		return "centro/form";
 	}
 	
-	
+	/**
+	 * Método que grnba el centro modificado o nuevo
+	 * @param centro
+	 * @param resultado
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping({"admin/centro/save"})
 	public String guarda(@Valid @ModelAttribute("centro") Centro centro, BindingResult resultado, 
 				Map<String, Object> modelo, RedirectAttributes flash) {
@@ -143,6 +171,13 @@ public class CentroAdminControlador {
 		return "redirect:/admin/centro/list";
 	}
 
+	/**
+	 * Borrado de un centro
+	 * 
+	 * @param Id
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("admin/centro/del")
 	public String borra(@RequestParam("regId") Long Id,
 				RedirectAttributes flash) {
@@ -156,6 +191,13 @@ public class CentroAdminControlador {
 		return "redirect:/admin/centro/list";
 	}
 	
+	/**
+	 * Obtiene los datos de un centro en forma de gráficos
+	 * 
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/grafica/datos")
 	public String obtenerGraficas(Model modelo, RedirectAttributes flash) {
 		

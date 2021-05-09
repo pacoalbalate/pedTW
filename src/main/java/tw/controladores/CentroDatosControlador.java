@@ -1,4 +1,8 @@
 package tw.controladores;
+/**
+ * Clase controladora encargada de llas altas de pruebas y perfiles en 
+ * un centro
+ */
 
 
 import java.text.SimpleDateFormat;
@@ -69,7 +73,11 @@ public class CentroDatosControlador {
 	@Autowired
 	private IRolService rolService;
 
-	
+	/** 
+	 * Busca el centro asegurando que el usuario tiene 
+	 * permisos sobre el mismo
+	 * @return
+	 */
 	@GetMapping("centro/")
 	public String busca_centro() {
 		Long ctoId = getIdInRole("ROLE_CENTRO");
@@ -81,6 +89,14 @@ public class CentroDatosControlador {
 		}
 	}
 
+	/**
+	 * Presenta los datos ya existentes en el centro
+	 * @param ctoId
+	 * @param params
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("centro/{ctoId}/datos/list")
 	public String listado(@PathVariable("ctoId") Long ctoId, @RequestParam Map<String, Object> params, 
 				Model modelo, RedirectAttributes flash) {
@@ -120,7 +136,12 @@ public class CentroDatosControlador {
 		return "datos/list";
 	}
 	
-
+	/**
+	 * De de alta nuevo grupo de pruebas 
+	 * @param ctoId
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("centro/{ctoId}/datos/new")
 	public String formulario_new(@PathVariable("ctoId") Long ctoId, Model modelo) {
 
@@ -142,6 +163,17 @@ public class CentroDatosControlador {
 		return "datos/form";
 	}
 
+	/**
+	 * Crea el formulario para la edición o alta 
+	 * de perfiles a una prueba existente
+	 * 
+	 * @param ctoId
+	 * @param Id
+	 * @param perfilId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("centro/{ctoId}/datos/edit/{regId}/")
 	public String formulario_edita(@PathVariable("ctoId") Long ctoId, @PathVariable("regId") Long Id,
 			@RequestParam(value = "perfil", required = false) Long perfilId, Model modelo, RedirectAttributes flash) {
@@ -191,7 +223,16 @@ public class CentroDatosControlador {
 		return "datos/form";
 	}
 	
-	
+	/**
+	 * Grabación de la prueba editada o creada
+	 * 
+	 * @param datosfecha
+	 * @param resultado
+	 * @param ctoId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping({"centro/{ctoId}/datos/save"})
 	public String guarda(@Valid @ModelAttribute("datosfecha") DatosFecha datosfecha, BindingResult resultado, 
 			@PathVariable("ctoId") Long ctoId, Map<String, Object> modelo, RedirectAttributes flash) {
@@ -237,7 +278,17 @@ public class CentroDatosControlador {
 		//return "/centro/"+ctoId+"/datos/list"; 
 	}
 
-	
+	/**
+	 * Grabación del perfil creado o editado
+	 * @param datosperfil
+	 * @param resultado
+	 * @param ctoId
+	 * @param regId
+	 * @param params
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("centro/{ctoId}/datos/{regId}/perfil/save")
 	public String guarda_perfil(@Valid @ModelAttribute("datosperfil") DatosPerfil datosperfil, BindingResult resultado, 
 			//@ModelAttribute("datosfecha") DatosFecha datosfecha,
@@ -311,6 +362,13 @@ public class CentroDatosControlador {
 		//return "/centro/"+ctoId+"/datos/list"; 
 	}
 	
+	/**
+	 * Borra una prueba con sus perfiles
+	 * @param Id
+	 * @param ctoId
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("centro/{ctoId}/datos/del")
 	public String borra(@RequestParam("regId") Long Id, @PathVariable("ctoId") Long ctoId,
 				RedirectAttributes flash) {
@@ -327,6 +385,15 @@ public class CentroDatosControlador {
 		return "redirect:/centro/"+ctoId+"/datos/list";
 	}
 	
+	/**
+	 * Borra un perfil 
+	 * 
+	 * @param ctoId
+	 * @param dfId
+	 * @param Id
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("centro/{ctoId}/datos/edit/{dfId}/del")
 	public String borra_Perfil(@PathVariable("ctoId") Long ctoId, @PathVariable("dfId") Long dfId, @RequestParam("regId") Long Id,
 				RedirectAttributes flash) {
@@ -344,6 +411,11 @@ public class CentroDatosControlador {
 	}
 	
 	
+	/**
+	 * validadción de datos numéricos
+	 * @param cadena
+	 * @return
+	 */
     private static boolean isNumeric(String cadena) {
         boolean esNumerico;
 
@@ -362,7 +434,8 @@ public class CentroDatosControlador {
     
     
 	/**
-	 * @return the Id in Role
+	 * Autenticación del usuario en el centro
+	 * @return indiceRol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		

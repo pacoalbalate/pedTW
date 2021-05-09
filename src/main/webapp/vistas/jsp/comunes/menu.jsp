@@ -2,7 +2,7 @@
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="${pageContext.request.contextPath}/index"><img src="${pageContext.request.contextPath}/img/logoContagPlus.gif" alt="ContagPLUS logo" />
+			<a class="navbar-brand" href="${pageContext.request.contextPath}/index"><img src="${pageContext.request.contextPath}/img/elipse.gif" alt="ContagPLUS logo" />
 		 </a>
 			<button class="navbar-toggler" type="button"
 				data-toggle="collapse" data-bs-target="#navbarSupportedContent"

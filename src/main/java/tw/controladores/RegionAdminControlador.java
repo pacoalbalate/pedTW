@@ -1,5 +1,9 @@
 package tw.controladores;
-
+/**
+ * Clase del controlador.
+ * Encargada de la gestión de regiones por 
+ * parte del usuario gestor
+ */
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,6 +49,14 @@ public class RegionAdminControlador {
 	@Autowired
 	private ICentroService centroService;
 	
+	/**
+	 * Listado de las regiones existentes
+	 * 
+	 * @param params
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/region/list")
 	public String listado(@RequestParam Map<String, Object> params, 
 				Model modelo, RedirectAttributes flash) {
@@ -80,6 +92,12 @@ public class RegionAdminControlador {
 		return "region/list";
 	}
 
+	/**
+	 * Creación nueva región
+	 * 
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("admin/region/new")
 	public String formulario_new(Model modelo) {
 		Region region = new Region();
@@ -92,6 +110,14 @@ public class RegionAdminControlador {
 		return "region/form";
 	}
 
+	/**
+	 * Edición de región existente
+	 * 
+	 * @param Id
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/region/edit/{regId}/")
 	public String formulario_edita(@PathVariable("regId") Long Id,
 				Model modelo, RedirectAttributes flash) {
@@ -110,6 +136,14 @@ public class RegionAdminControlador {
 		return "region/form";
 	}
 
+	/**
+	 * Método encargado de asociar un centro a una región
+	 * @param Id
+	 * @param centroId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("admin/region/edit/{regId}/asoc")
 	public String asocia_centro(@PathVariable("regId") Long Id,
 				@RequestParam(value = "centro", required = true) Long centroId,
@@ -127,7 +161,14 @@ public class RegionAdminControlador {
 		return "redirect:/admin/region/edit/"+Id+"/";
 	}
 
-
+	/**
+	 * Método encargado de deshacer la asociación entre un centro y una región
+	 * @param Id
+	 * @param centroId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/region/edit/{regId}/desa/{centroId}/")
 	public String desasocia_centro(@PathVariable("regId") Long Id,
 				@PathVariable("centroId") Long centroId, Model modelo,
@@ -144,6 +185,15 @@ public class RegionAdminControlador {
 		return "redirect:/admin/region/edit/"+Id+"/";
 	}
 	
+	/**
+	 * Guarda en BD la región editada o creada
+	 * 
+	 * @param region
+	 * @param resultado
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping({"admin/region/save"})
 	public String guarda(@Valid @ModelAttribute("region") Region region, BindingResult resultado, 
 				Map<String, Object> modelo, RedirectAttributes flash) {
@@ -164,6 +214,13 @@ public class RegionAdminControlador {
 		//return "redirect:/admin/region/list";
 	}
 
+	/**
+	 * Borra una región
+	 * 
+	 * @param Id
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("admin/region/del")
 	public String borra(@RequestParam("regId") Long Id,
 				RedirectAttributes flash) {

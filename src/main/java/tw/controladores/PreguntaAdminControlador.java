@@ -1,5 +1,9 @@
 package tw.controladores;
-
+/**
+ * Clase del controlador.
+ * Encargada de gestionar las preguntas que el usuario 
+ * Gestor puede crear para el perfil de datos.
+ */
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +50,15 @@ public class PreguntaAdminControlador {
 	
 	@Autowired
 	private IDatosPerfilService datosperfilService;
-
+	
+	/** 
+	 * Genera el listado de las preguntas existentes
+	 * 
+	 * @param params
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/pregunta/list")
 	public String listado(@RequestParam Map<String, Object> params, 
 				Model modelo, RedirectAttributes flash) {
@@ -82,6 +94,12 @@ public class PreguntaAdminControlador {
 		return "pregunta/list";
 	}
 
+	/**
+	 * Creación de una nueva pregunta
+	 * 
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("admin/pregunta/new")
 	public String formulario_new(Model modelo) {
 		Pregunta pregunta = new Pregunta();
@@ -94,6 +112,14 @@ public class PreguntaAdminControlador {
 		return "pregunta/form";
 	}
 
+	/**
+	 * Modificación de una pregunta ya existente
+	 * 
+	 * @param Id
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("admin/pregunta/edit/{regId}/")
 	public String formulario_edita(@PathVariable("regId") Long Id,
 				Model modelo, RedirectAttributes flash) {
@@ -113,7 +139,15 @@ public class PreguntaAdminControlador {
 		return "pregunta/form";
 	}
 	
-	
+	/**
+	 * grabación de pregunta editada o cread
+	 * a
+	 * @param pregunta
+	 * @param resultado
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping({"admin/pregunta/save"})
 	public String guarda(@Valid @ModelAttribute("pregunta") Pregunta pregunta, BindingResult resultado, 
 				Map<String, Object> modelo, RedirectAttributes flash) {
@@ -139,6 +173,13 @@ public class PreguntaAdminControlador {
 		return "redirect:/admin/pregunta/list";
 	}
 
+	/**
+	 * Borrado de una pregunta
+	 * 
+	 * @param Id
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("admin/pregunta/del")
 	public String borra(@RequestParam("regId") Long Id,
 				RedirectAttributes flash) {

@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href='${pageContext.request.contextPath}/css/general.css'>
 
 <title>ContagPLUS</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/favicon.gif" type="image/gif" />
+<link rel="icon" href="${pageContext.request.contextPath}/img/favelipse.gif" type="image/gif" />
 
 
 

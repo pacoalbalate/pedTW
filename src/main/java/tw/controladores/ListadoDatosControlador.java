@@ -1,5 +1,7 @@
 package tw.controladores;
-
+/**
+ * Clase controladora. Encargada de generar los listados por perfiles
+ */
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -72,7 +74,10 @@ public class ListadoDatosControlador {
 	@Autowired
 	private IRolService rolService;
 
-	
+	/**
+	 * Busca el centro asegurando que el usuario tiene permisos
+	 * @return
+	 */
 	@GetMapping("listado/")
 	public String busca_centro() {
 		Long regId = getIdInRole("ROLE_REGION", "ROLE_GESTOR", "ROLE_CENTRO");
@@ -83,7 +88,16 @@ public class ListadoDatosControlador {
 			return "redirect:/listado/"+regId+"/datos/view";
 		}
 	}
-
+	
+	/** Construye el listado y los filtros
+	 * 
+	 * @param params
+	 * @param regId
+	 * @param modelo
+	 * @param request
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("listado/{regId}/datos/view")
 	public String ver_datos(@RequestParam Map<String, Object> params, 
 				@PathVariable("regId") Long regId,
@@ -180,7 +194,15 @@ public class ListadoDatosControlador {
 		return "listado/list_datos";
 	}
 
-
+	/**
+	 * Realiza el filtrado por región
+	 * 
+	 * @param regionesId
+	 * @param regId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("listado/{regId}/datos/view/filter/region")
 	public String ver_datos_filtraRegiones(@RequestParam(value = "regionesfiltrar", required = false) long[] regionesId,
 			@PathVariable("regId") Long regId,
@@ -213,7 +235,15 @@ public class ListadoDatosControlador {
 		return "redirect:/listado/"+regId+"/datos/view";
 	}
 
-
+	/**
+	 * Realiza el filtrado por centro
+	 * 
+	 * @param centrosId
+	 * @param regId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("listado/{regId}/datos/view/filter/centro")
 	public String ver_datos_filtraCentros(@RequestParam(value = "centrosfiltrar", required = false) long[] centrosId,
 			@PathVariable("regId") Long regId,
@@ -245,7 +275,16 @@ public class ListadoDatosControlador {
 		return "redirect:/listado/"+regId+"/datos/view";
 	}
 
-
+	/**
+	 * Realiza el filtrado por fechas
+	 * 
+	 * @param datedesde
+	 * @param datehasta
+	 * @param regId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("listado/{regId}/datos/view/filter/date")
 	public String ver_datos_filtraFecha(
 			@RequestParam(value = "datedesde", required = false) String datedesde,
@@ -278,7 +317,15 @@ public class ListadoDatosControlador {
 	}
 	
     
-
+	/**
+	 * Realiza el filtrado por los datos del perfil 
+	 * 
+	 * @param datosId
+	 * @param regId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("listado/{regId}/datos/view/filter/dato")
 	public String ver_datos_filtraDatos(@RequestParam(value = "datosfiltrar", required = false) String[] datosId,
 			@PathVariable("regId") Long regId,
@@ -310,7 +357,16 @@ public class ListadoDatosControlador {
 		return "redirect:/listado/"+regId+"/datos/view";
 	}
 	
-    
+    /**
+     * Método encargado de generar un fichero para 
+     * exportar el listado a CSV y escribirlo
+     * @param response
+     * @param regId
+     * @param modelo
+     * @param request
+     * @param flash
+     * @throws IOException
+     */
    @GetMapping("listado/{regId}/datos/export/csv")
    public void exportaCSV(HttpServletResponse response,
 			@PathVariable("regId") Long regId,
@@ -405,11 +461,11 @@ public class ListadoDatosControlador {
 	
 
 
+ 
    
-   
-   
-	/**
-	 * @return the Id in Role
+   /**
+	 * Autenticación del usuario en el centro
+	 * @return indiceRol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		

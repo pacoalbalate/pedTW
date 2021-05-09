@@ -1,13 +1,7 @@
-/**
- *
- * Spring Framework security configuration
- *
- * @author Francisco Marquina
- * @autor Ignacio Corral
- * @autor Jesús Arroyo
- */
 package tw;
-
+/**
+ * Clase con la configuración de seguridad de la aplicación
+ */
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -49,7 +43,7 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
 	private BCryptPasswordEncoder passwordEncoder;
 
     /**
-     * B encrypt password encoder.
+     * Encriptador de password
      *
      * @return the b encrypt password encoder
      */
@@ -61,6 +55,9 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /* (non-Javadoc)
      * @see org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter#configure(org.springframework.security.config.annotation.web.builders.HttpSecurity)
+     */
+    /**
+     * Configura los accesos permitidos en función del rol del usuario
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -88,10 +85,10 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configure global.
+     * Configuración global.
      *
-     * @param builder the authentication
-     * @throws Exception the exception
+     * @param build 
+     * @throws Exception Excepción de seguridad
      */
 	@Autowired
 	public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception
@@ -108,7 +105,10 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
 
     
     
-    
+    /**
+     * Clase para retornar el acceso con éxito
+     * 
+     */
 	
 	@Component
     public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
@@ -126,15 +126,15 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     
+    /**
+     * Clase para retornar el acceso denegado
+     * 	configura pagina de retorno de acceso denegado.
+     */
     
     
     @Configuration
     public class PedTwWebMvcConfig implements WebMvcConfigurer {
-        /**
-         * Configuracion pagina de retorno de acceso denegado.
-         *
-         */
-        public void addViewControllers(ViewControllerRegistry registro) {
+       public void addViewControllers(ViewControllerRegistry registro) {
         	registro.addViewController("/acceso_denegado").setViewName("/login/error_permisos");
          }
     }   

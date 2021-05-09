@@ -1,4 +1,10 @@
 package tw.controladores;
+/**
+ * Clase del controlador
+ * Encargada de la gestión de usuarios por perfiles:
+ * 		Gestor --> Región y Centro
+ *      Región --> Centro
+ */
 
  
 import java.util.ArrayList;
@@ -66,6 +72,11 @@ public class UsuarioAdminControlador {
 	@Autowired
 	BCryptPasswordEncoder passwordEncoder;
 
+	/**
+	 * Búsqueda de los centros a los que el usuario tiene acceso
+	 * 
+	 * @return
+	 */
 	@GetMapping("usuario/")
 	public String busca_centro() {
 		Long regId = getIdInRole("ROLE_REGION", "ROLE_GESTOR");
@@ -77,7 +88,16 @@ public class UsuarioAdminControlador {
 		}
 	}
 
-
+	/**
+	 * Listado de los usuarios
+	 * 
+	 * @param params
+	 * @param regId
+	 * @param modelo
+	 * @param request
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("usuario/{regId}/admin/list")
 	public String listado(@RequestParam Map<String, Object> params, 
 				@PathVariable("regId") Long regId,
@@ -131,6 +151,14 @@ public class UsuarioAdminControlador {
 		return "usuario/list";
 	}
 
+	/** 
+	 * Creación de nuevo usuario
+	 * 
+	 * @param regId
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("usuario/{regId}/admin/new")
 	public String formulario_new(
 		@PathVariable("regId") Long regId,
@@ -155,6 +183,16 @@ public class UsuarioAdminControlador {
 		return "usuario/form";
 	}
 
+	/**
+	 * Modificación de datos de usuario
+	 * 
+	 * @param regId
+	 * @param Id
+	 * @param modelo
+	 * @param request
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("usuario/{regId}/admin/edit/{userId}/")
 	public String formulario_edita(
 			@PathVariable("regId") Long regId,
@@ -232,7 +270,18 @@ public class UsuarioAdminControlador {
 		return "usuario/form";
 	}
 	
-	
+	/**
+	 * Grabación en BD del usuario creado o editado
+	 * 
+	 * @param usuario
+	 * @param resultado
+	 * @param tipo_rol
+	 * @param regId
+	 * @param modelo
+	 * @param request
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping({"usuario/{regId}/admin/save"})
 	public String guarda(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult resultado,
 				@RequestParam(value = "tipo_rol") String tipo_rol,  
@@ -365,7 +414,16 @@ public class UsuarioAdminControlador {
 		//return "redirect:/usuario/{regId}/admin/list";
 	}
 
-
+	/**
+	 * Asociación de un rol a un usuario
+	 * 
+	 * @param userRol
+	 * @param regId
+	 * @param Id
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("usuario/{regId}/admin/edit/{userId}/asocrol")
 	public String asocia_rol(
 			@RequestParam(value = "userrol", required = true) String userRol,
@@ -395,7 +453,16 @@ public class UsuarioAdminControlador {
 	} 
 
 
-	
+	/**
+	 * Asociación de un centro en concreto a un usuario de perfil centro
+	 * 
+	 * @param centroId
+	 * @param regId
+	 * @param Id
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("usuario/{regId}/admin/edit/{userId}/asoc")
 	public String asocia_centro(
 				@RequestParam(value = "centro", required = true) Long centroId,
@@ -425,7 +492,14 @@ public class UsuarioAdminControlador {
 	} 
 
 
-	
+	/**
+	 * Borrado de un usuario
+	 * 
+	 * @param Id
+	 * @param regId
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("usuario/{regId}/admin/del")
 	public String borra(@RequestParam("regId") Long Id,
 				@PathVariable("regId") Long regId,
@@ -460,7 +534,8 @@ public class UsuarioAdminControlador {
 	   
 	   
 	/**
-	 * @return the Id in Role
+	 * Autenticación del rol del usuario
+	 * @return indiceRol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		

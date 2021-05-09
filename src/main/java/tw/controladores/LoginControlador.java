@@ -1,4 +1,7 @@
 package tw.controladores;
+/**
+ * Clase del controlador para el Login
+ */
 
 import java.security.Principal;
 
@@ -34,7 +37,15 @@ public class LoginControlador {
 		return "index";
 	}
 
-	
+	/**
+	 * Método principal de acceso y desconexión de un usuario
+	 * @param error
+	 * @param logout
+	 * @param principal
+	 * @param modelo
+	 * @param flash
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String acceso_desconexion(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout,
@@ -58,12 +69,27 @@ public class LoginControlador {
 		return "login/login";
 	}
 
-	
+	/**
+	 * Cambio de contraseña
+	 * solicitud
+	 * @return
+	 */
 	@RequestMapping({"/login/change"})
 	public String solicitud_cambio_clave() {
 		return "login/change";
 	}
-
+	
+	/**
+	 * Cambio de contraseña
+	 * Validación y modificación de la contraseña
+	 * @param password_old
+	 * @param password_new1
+	 * @param password_new2
+	 * @param modelo
+	 * @param principal
+	 * @param flash
+	 * @return
+	 */
 	@PostMapping("/login/change")
 	public String cambio_clave(@RequestParam(value = "password_old", required = true) String password_old,
 			@RequestParam(value = "password_new1", required = true) String password_new1,
