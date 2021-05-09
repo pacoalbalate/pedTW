@@ -1,7 +1,5 @@
 package tw;
-/**
- * Clase con la configuración de seguridad de la aplicación
- */
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -25,7 +23,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.support.SessionFlashMapManager;
 
 import tw.modelo.servicios.impl.UsuarioServiceImpl;
-
+/**
+ * Clase con la configuración de seguridad de la aplicación
+ */
 
 
 

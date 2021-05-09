@@ -1,7 +1,5 @@
 package tw.controladores;
-/**
- * Clase controladora. Encargada de generar los listados por perfiles
- */
+
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -49,7 +47,9 @@ import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
-
+/**
+ * Clase controladora. Encargada de generar los listados por perfiles
+ */
 @Controller 
 @SessionAttributes({"criterios"})
 @RequestMapping("/")

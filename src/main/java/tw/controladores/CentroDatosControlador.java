@@ -1,8 +1,5 @@
 package tw.controladores;
-/**
- * Clase controladora encargada de llas altas de pruebas y perfiles en 
- * un centro
- */
+
 
 
 import java.text.SimpleDateFormat;
@@ -49,7 +46,10 @@ import tw.modelo.servicios.IDatosFechaService;
 import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRolService;
-
+/**
+ * Clase controladora encargada de llas altas de pruebas y perfiles en 
+ * un centro
+ */
 @Controller 
 @SessionAttributes({"datosfecha", "datosperfil", "criterios"})
 @RequestMapping("/")

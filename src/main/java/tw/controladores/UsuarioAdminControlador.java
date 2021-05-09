@@ -1,10 +1,5 @@
 package tw.controladores;
-/**
- * Clase del controlador
- * Encargada de la gestión de usuarios por perfiles:
- * 		Gestor --> Región y Centro
- *      Región --> Centro
- */
+
 
  
 import java.util.ArrayList;
@@ -48,7 +43,12 @@ import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
 import tw.modelo.servicios.IUsuarioService;
-
+/**
+ * Clase del controlador
+ * Encargada de la gestión de usuarios por perfiles:
+ * 		Gestor --> Región y Centro
+ *      Región --> Centro
+ */
 @Controller 
 @SessionAttributes({"usuario", "criterios"})
 @RequestMapping("/")

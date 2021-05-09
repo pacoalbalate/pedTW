@@ -1,9 +1,5 @@
 package tw.controladores;
-/**
- * Clase del controlador.
- * Encargada de la gestión de regiones por 
- * parte del usuario gestor
- */
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +32,11 @@ import tw.modelo.entidades.Centro;
 import tw.modelo.entidades.Region;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IRegionService;
-
+/**
+ * Clase del controlador.
+ * Encargada de la gestión de regiones por 
+ * parte del usuario gestor
+ */
 @Controller 
 @SessionAttributes({"region", "criterios"})
 @RequestMapping("/")

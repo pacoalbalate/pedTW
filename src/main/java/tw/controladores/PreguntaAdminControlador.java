@@ -1,9 +1,5 @@
 package tw.controladores;
-/**
- * Clase del controlador.
- * Encargada de gestionar las preguntas que el usuario 
- * Gestor puede crear para el perfil de datos.
- */
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,7 +32,11 @@ import tw.modelo.entidades.AuxOpciones;
 import tw.modelo.servicios.IAuxOpcionesService;
 import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IPreguntaService;
-
+/**
+ * Clase del controlador.
+ * Encargada de gestionar las preguntas que el usuario 
+ * Gestor puede crear para el perfil de datos.
+ */
 @Controller 
 @SessionAttributes({"pregunta", "criterios"})
 @RequestMapping("/")

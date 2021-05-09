@@ -1,7 +1,6 @@
+
 package tw.controladores;
-/**
- * Clase controladora para la administración de los centros
- */
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +34,9 @@ import tw.modelo.servicios.IAuxOpcionesService;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IEstadisticasService;
-
+/**
+ * Clase controladora para la administración de los centros
+ */
 @Controller 
 @SessionAttributes({"centro", "criterios"})
 @RequestMapping("/")

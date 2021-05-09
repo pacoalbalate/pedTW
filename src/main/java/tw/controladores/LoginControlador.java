@@ -1,7 +1,5 @@
 package tw.controladores;
-/**
- * Clase del controlador para el Login
- */
+
 
 import java.security.Principal;
 
@@ -18,7 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tw.modelo.entidades.Usuario;
 import tw.modelo.servicios.IUsuarioService;
-
+/**
+ * Clase del controlador para el Login
+ */
 
 
 @Controller
