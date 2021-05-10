@@ -16,7 +16,8 @@ import tw.modelo.entidades.DatosPerfil;
 
 
 /**
- * @author Portatil
+ * DAO
+ * Interfaz del modelo de datos para la entidad Perfil
  *
  */
 public interface IDatosPerfilDao extends JpaRepository<DatosPerfil, Long> { 

@@ -17,7 +17,8 @@ import tw.modelo.entidades.Centro;
 
 
 /**
- * @author Portatil
+ * DAO
+ * Interfaz del modelo de datos para entidad Centro
  *
  */
 public interface ICentroDao extends JpaRepository<Centro, Long> {

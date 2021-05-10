@@ -13,7 +13,16 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
+/**
+ * Clase de modelo de negocio correspondiente con la entidad Dato 
+ * (Datos concretos de las Preguntas) 
+ * Elemento configurable del perfil
+ * 
+ * Cada perfil contendrá un list con un objeto de esta clase por 
+ * cada pregunta que exista 
+ * 
+ *
+ */
 
 
 @Entity
@@ -41,13 +50,14 @@ public class Dato implements Serializable {
 	private String dato;
 
 	/**
-	 * 
+	 * Constructor vacío
 	 */
 	public Dato() {
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
+	 * Constructor parametrizado
 	 * @param datosperfil
 	 * @param pregunta
 	 * @param dato
@@ -59,56 +69,64 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * @return the id
+	 * Identificador
+	 * @return id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * Identificador
+	 * @param id 
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the datosperfil
+	 * perfil al que corresponde este dato
+	 * @return datosperfil
 	 */
 	public DatosPerfil getDatosperfil() {
 		return datosperfil;
 	}
 
 	/**
-	 * @param datosperfil the datosperfil to set
+	 * perfil al que corresponde este dato
+	 * @param datosperfil
 	 */
 	public void setDatosPerfil(DatosPerfil datosperfil) {
 		this.datosperfil = datosperfil;
 	}
 
 	/**
-	 * @return the Pregunta
+	 * Pregunta concreta de este dato
+	 * @return Pregunta
 	 */
 	public Pregunta getPregunta() {
 		return pregunta;
 	}
 
 	/**
-	 * @param Pregunta the Pregunta to set
+	 * Pregunta concreta de este dato
+	 * @param Pregunta
 	 */
 	public void setPregunta(Pregunta pregunta) {
 		this.pregunta = pregunta;
 	}
 
 	/**
-	 * @return the dato
+	 * Devuelve el dato almacenado
+	 * @return dato
 	 */
 	public String getDato() {
 		return dato;
 	}
 
 	/**
-	 * @param dato the dato to set
+	 * Guarda el dato a almacenar
+	 * @param dato 
 	 */
 	public void setDato(String dato) {
 		this.dato = dato;

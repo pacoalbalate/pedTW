@@ -14,7 +14,8 @@ import tw.modelo.entidades.DatosFecha;
 
 
 /**
- * @author Portatil
+ * DAO
+ * Interfaz del modelo de datos para la entidad DatosFecha (Pruebas) 
  *
  */
 public interface IDatosFechaDao extends JpaRepository<DatosFecha, Long> {

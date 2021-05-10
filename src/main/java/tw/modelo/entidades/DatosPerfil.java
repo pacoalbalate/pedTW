@@ -18,7 +18,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * Clase de modelo de negocio correspondiente con la entidad Perfil 
+ *  
+ * Cada Prueba (DatosFecha) tendrá asociados varios perfiles de resultados
+ *
+ */
 
 @Entity
 @Table(name = "datos_perfiles")
@@ -43,7 +48,7 @@ public class DatosPerfil implements Serializable {
 	private List<Dato> datos;
 
 	/**
-	 * 
+	 * Constructor vacío
 	 */
 	public DatosPerfil() {
 		// TODO Auto-generated constructor stub
@@ -51,14 +56,16 @@ public class DatosPerfil implements Serializable {
 	}
 	
 	/**
-	 * @return the id
+	 * Identificador
+	 * @return id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * Identificador
+	 * @param id 
 	 */
 	public void setId(Long id) { 
 		this.id = id;
@@ -66,49 +73,58 @@ public class DatosPerfil implements Serializable {
 
 
 	/**
-	 * @return the datosfecha
+	 * Devuelve la Rueba a la que corresponde el perfil
+	 * @return datosfecha
 	 */
 	public DatosFecha getDatosfecha() {
 		return datosfecha;
 	}
 
 	/**
-	 * @param datosfecha the datosfecha to set
+	 * Asigna el perfil a una prueba
+	 * @param datosfecha 
 	 */
 	public void setDatosfecha(DatosFecha datosfecha) {
 		this.datosfecha = datosfecha;
 	}
 
 	/**
-	 * @return the datos
+	 * Devuelve un list con los datos de resultados 
+	 * 			Datos fijos de perfil
+	 * @return datos
 	 */
 	public List<Dato> getDatos() {
 		return datos;
 	}
 
 	/**
-	 * @param datos the datos to set
+	 * Almacena un list con los datos de resultados
+	 * 		Datos fijos del perfil
+	 * @param datos t
 	 */
 	public void setDatos(List<Dato> datos) {
 		this.datos = datos;
 	}
 
 	/**
-	 * @param dato the datos to set
+	 * Añade uno de los datos del perfil
+	 * @param dato 
 	 */
 	public void addDato(Dato dato) {
 		this.datos.add(dato);
 	}
 
 	/**
-	 * @return the totalpositivos
+	 * Devuelve el total de positivos del perfil
+	 * @return totalpositivos
 	 */
 	public Long getTotalpositivos() {
 		return totalpositivos;
 	}
 
 	/**
-	 * @param totalpositivos the totalpositivos to set
+	 * Establece el total de positivos del perfil
+	 * @param totalpositivos 
 	 */
 	public void setTotalpositivos(Long totalpositivos) {
 		this.totalpositivos = totalpositivos;

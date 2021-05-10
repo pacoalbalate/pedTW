@@ -1,10 +1,9 @@
-/**
- * 
- */
+
 package tw.controladores.utilidades.paginas;
 
 /**
- * @author Portatil
+ * Clase de acceso a las páginas del listado. 
+ * Para paginar por los listados del sistema
  *
  */
 public class PaginaAccesible {
@@ -12,8 +11,9 @@ public class PaginaAccesible {
 	private boolean actual;
 
 	/**
-	 * @param numeroPagina
-	 * @param actual
+	 * Constructor de una pagina 
+	 * @param numeroPagina El numero de la pagina
+	 * @param actual (si es la que se esta viendo o no)
 	 */
 	public PaginaAccesible(int numeroPagina, boolean actual) {
 		this.numeroPagina = numeroPagina;
@@ -21,28 +21,33 @@ public class PaginaAccesible {
 	}
 
 	/**
-	 * @return the numeroPagina
+	 * Obtiene el numero de la página
+	 * 
+	 * @return  numeroPagina
 	 */
 	public int getNumeroPagina() {
 		return numeroPagina;
 	}
 
 	/**
-	 * @param numero the numeroPagina to set
+	 * Numera la pagina
+	 * @param numero 
 	 */
 	public void setNumero(int numeroPagina) {
 		this.numeroPagina = numeroPagina;
 	}
 
 	/**
-	 * @return the actual
+	 * Devuelve si la pagina es la que se esta visualizando 
+	 * @return  actual
 	 */
 	public boolean isActual() {
 		return actual;
 	}
 
 	/**
-	 * @param actual the actual to set
+	 * Hace que la pagina sea la actual (la que se visualiza)
+	 * @param actual 
 	 */
 	public void setActual(boolean actual) {
 		this.actual = actual;

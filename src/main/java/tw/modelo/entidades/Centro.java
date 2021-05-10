@@ -19,7 +19,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * Clase de modelo de negocio correspondiente con la entidad Centro
+ * 
+ *
+ */
 
 @Entity
 @Table(name = "centros")
@@ -60,7 +64,7 @@ public class Centro implements Serializable {
 	//private ArrayList comentarios; 
 
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Centro() {
 		// TODO Auto-generated constructor stub
@@ -69,77 +73,88 @@ public class Centro implements Serializable {
 
 	
 	/**
-	 * @return the id
+	 * Identificador
+	 * @return  id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * Identificador
+	 * @param id 
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the denominacion
+	 * Nombre del centro
+	 * @return denominacion
 	 */
 	public String getDenominacion() {
 		return denominacion;
 	}
 
 	/**
-	 * @param denominacion the denominacion to set
+	 * Nombre del centro
+	 * @param denominacion
 	 */
 	public void setDenominacion(String denominacion) {
 		this.denominacion = denominacion;
 	}
 
 	/**
-	 * @return the pacientes
+	 * Pacientes del centro
+	 * @return pacientes
 	 */
 	public Long getPacientes() {
 		return pacientes;
 	}
 
 	/**
-	 * @param pacientes the pacientes to set
+	 * Pacientes del centro
+	 * @param pacientes
 	 */
 	public void setPacientes(Long pacientes) {
 		this.pacientes = pacientes;
 	}
 
 	/**
-	 * @return the region
+	 * Región a la que está asociada el centro
+	 * @return region
 	 */
 	public Region getRegion() {
 		return region;
 	}
 
 	/**
-	 * @param region the region to set
+	 * Región a la que está asociada el centro
+	 * @param region 
 	 */
 	public void setRegion(Region region) {
 		this.region = region;
 	}
 
 	/**
-	 * @return the tipocentro
+	 * Tipo de centro (Hospital/Centro de salud/...)
+	 * @return tipocentro
 	 */
 	public AuxOpciones getTipocentro() {
 		return tipocentro;
 	}
 
 	/**
-	 * @param tipocentro the tipocentro to set
+	 * Tipo de centro (Hospital/Centro de salud/...)
+	 * @param tipocentro
 	 */
 	public void setTipocentro(AuxOpciones tipocentro) {
 		this.tipocentro = tipocentro;
 	}
 
 	/**
-	 * @param datosfecha the datosfechas to set
+	 * Añade una prueba (datosfechas) al centro
+	 * @param datosfecha 
 	 */
 	public void addDatoFecha(DatosFecha datosfecha) {
 		this.datosfecha.add(datosfecha);
@@ -147,7 +162,8 @@ public class Centro implements Serializable {
 
 
 	/**
-	 * @return the datosfecha
+	 * Devuelve lista de las pruebas del centro 
+	 * @return datosfecha
 	 */
 	public List<DatosFecha> getDatosfecha() {
 		return datosfecha;
@@ -155,7 +171,8 @@ public class Centro implements Serializable {
 
 
 	/**
-	 * @param datosfecha the datosfecha to set
+	 * añadir lista de pruebas (no usado)
+	 * @param datosfecha 
 	 */
 	public void setDatosfecha(List<DatosFecha> datosfecha) {
 		this.datosfecha = datosfecha;

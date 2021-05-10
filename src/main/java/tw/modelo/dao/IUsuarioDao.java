@@ -9,6 +9,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import tw.modelo.entidades.Usuario;
 
+/**
+  * DAO
+ * Interfaz del modelo de datos para la entidad Usuario
+ *
+ */
 
 
 public interface IUsuarioDao extends JpaRepository<Usuario, Long>{

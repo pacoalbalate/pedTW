@@ -11,7 +11,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-
+/**
+ * Clase del modelo de negocio correspondiente a la entidad Opciones
+ * Opciones parametrizables (roles, tramos de edades, tiposde prueba, etc)
+ * Clase auxiliar
+ *
+ */
 
 @Entity
 @Table(name = "aux_opciones")
@@ -37,56 +42,64 @@ public class AuxOpciones implements Serializable {
 
 	
 	/**
-	 * @return the id
+	 * Identificador
+	 * @return  id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * v
+	 * @param id 
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the tipo
+	 * Tipo de opción. 
+	 * @return tipo
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * Tipo de opción
+	 * @param tipo 
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
 	/**
-	 * @return the opcion
+	 * Descripcion
+	 * @return  opcion
 	 */
 	public String getOpcion() {
 		return opcion;
 	}
 
 	/**
-	 * @param opcion the opcion to set
+	 * Descripcion
+	 * @param opcion 
 	 */
 	public void setOpcion(String opcion) {
 		this.opcion = opcion;
 	}
 
 	/**
-	 * @return the opcionestabla
+	 * Si el tipo es una opcion
+	 * @return opcionestabla
 	 */
 	public String getOpcionestabla() {
 		return opcionestabla;
 	}
 
 	/**
-	 * @param opcionestabla the opcionestabla to set
+	 * Si el tipo es una opcion
+	 * @param opcionestabla
 	 */
 	public void setOpcionestabla(String opcionestabla) {
 		this.opcionestabla = opcionestabla;

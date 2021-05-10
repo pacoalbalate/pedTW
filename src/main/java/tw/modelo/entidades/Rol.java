@@ -13,7 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
-
+/**
+ * Clase de modelo de negocio asociado a la entidad ROL
+ * Representa los roles de los usuarios 
+ *  (CENTRO, REGION, GESTOR)
+ *  Cada usuario solo puede tener un rol
+ *
+ */
 
 @Entity
 @Table(name = "roles", uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "rol"})})
@@ -41,56 +47,66 @@ public class Rol implements Serializable {
 	private Long centro_region;
 
 	/**
-	 * @return the id
+	 * identificador
+	 * @return id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * Identificador
+	 * @param id 
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the rol
+	 * Nomnbre del rol
+	 * @return rol
 	 */
 	public String getRol() {
 		return rol;
 	}
 
 	/**
-	 * @param rol the rol to set
+	 * Nombre del rol
+	 * @param rol 
 	 */
 	public void setRol(String rol) {
 		this.rol = rol;
 	}
 
 	/**
-	 * @return the centro_region
+	 * Centro o region a la que está asigando el usuario
+	 *  (0 si es rol gestor)
+	 * @return centro_region
 	 */
 	public Long getCentro_region() {
 		return centro_region;
 	}
 
 	/**
-	 * @param centro_region the centro_region to set
+	 * Centro o region a la que está asigando el usuario
+	 *  (0 si es rol gestor)
+	 * @param centro_region 
 	 */
 	public void setCentro_region(Long centro_region) {
 		this.centro_region = centro_region;
 	}
 
 	/**
-	 * @return the usuario
+	 * usuario asignado
+	 * @return usuario
 	 */
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
 	/**
-	 * @param usuario the usuario to set
+	 * Usuario asigando
+	 * @param usuario 
 	 */
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;

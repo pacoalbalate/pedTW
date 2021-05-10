@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 /**
- * @author Portatil
+ * Clase para navegar por los listados del sistema
  *
  */
 public class PagNavegador<T> {
@@ -21,8 +21,8 @@ public class PagNavegador<T> {
 	private List<PaginaAccesible> paginas;
 	
 	/**
-	 * @param url
-	 * @param page
+	 * @param url del listado 
+	 * @param page colección de objetos tipo page que componen el listado
 	 */
 	public PagNavegador(String url, Page<T> page) {
 		this.url = url;
@@ -32,6 +32,9 @@ public class PagNavegador<T> {
 
 
 	/**
+	 * Con los datos del listado crea la/s pagina/s 
+	 * para mostrarlas por pantalla
+	 * 
 	 * @param url
 	 * @param page
 	 */
@@ -68,42 +71,48 @@ public class PagNavegador<T> {
 	}
 
 	/**
-	 * @return the url
+	 * Devuelve la url del listado
+	 * @return url
 	 */
 	public String getUrl() {
 		return url;
 	}
 
 	/**
-	 * @return the page
+	 * Devuelve la colección de páginas del listado
+	 * @return page
 	 */
 	public Page<T> getPage() {
 		return page;
 	}
 
 	/**
-	 * @return the totalPaginas
+	 * Obtiene el total de paginas que ocupa el listado
+	 * @return totalPaginas
 	 */
 	public int getTotalPaginas() {
 		return totalPaginas;
 	}
 
 	/**
-	 * @return the elementosPorPagina
+	 * Devuelve el numero de elementos por pagina
+	 * @return  elementosPorPagina
 	 */
 	public int getElementosPorPagina() {
 		return elementosPorPagina;
 	}
 
 	/**
-	 * @return the paginaActual
+	 * Devuelve el numero de la pagina actual 
+	 * @return  paginaActual
 	 */
 	public int getPaginaActual() {
 		return paginaActual;
 	}
 
 	/**
-	 * @return the paginas
+	 * Devuelve todos los numeros de pagina
+	 * @return  paginas
 	 */
 	public List<PaginaAccesible> getPaginas() {
 		return paginas;

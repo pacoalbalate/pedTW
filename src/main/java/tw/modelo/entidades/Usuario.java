@@ -16,7 +16,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+/**
+ * Clase del modelo de negocio asociada a la entidad Usuario
+ * Usuarios de la aplicación
+ * 
+ *
+ */
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -48,70 +53,80 @@ public class Usuario implements Serializable {
 	private List<Rol> roles;
 
 	/**
-	 * @return the id
+	 * Identificador
+	 * @return  id
 	 */
 	public Long getId() {
 		return id;
 	}
 
 	/**
-	 * @param id the id to set
+	 * Identificador
+	 * @param id
 	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
 	/**
-	 * @return the nombreusuario
+	 * Nombre
+	 * @return nombreusuario
 	 */
 	public String getNombreusuario() {
 		return nombreusuario;
 	}
 
 	/**
-	 * @param nombreusuario the nombreusuario to set
+	 * Nombre
+	 * @param nombreusuario 
 	 */
 	public void setNombreusuario(String nombreusuario) {
 		this.nombreusuario = nombreusuario;
 	}
 
 	/**
-	 * @return the clave
+	 * Password
+	 * @return clave
 	 */
 	public String getClave() {
 		return clave;
 	}
 
 	/**
-	 * @param clave the clave to set
+	 * Password
+	 * @param clave 
 	 */
 	public void setClave(String clave) {
 		this.clave = clave;
 	}
 
 	/**
-	 * @return the activo
+	 * Usuario activo (true)
+	 * @return activo
 	 */
 	public Boolean getActivo() {
 		return activo;
 	}
 
 	/**
-	 * @param activo the activo to set
+	 * Usuaroi activo (true)
+	 * @param activo 
 	 */
 	public void setActivo(Boolean activo) {
 		this.activo = activo;
 	}
 
 	/**
-	 * @return the roles
+	 * Roles que posee el usuario
+	 * @return roles
 	 */
 	public List<Rol> getRoles() {
 		return roles;
 	}
 
 	/**
-	 * @param roles the roles to set
+	 * Asigna roles al usuario
+	 * @param roles 
 	 */
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;

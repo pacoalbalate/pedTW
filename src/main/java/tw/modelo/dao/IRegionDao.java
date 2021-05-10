@@ -16,7 +16,8 @@ import org.springframework.data.jpa.repository.Query;
 import tw.modelo.entidades.Region;
 
 /**
- * @author Portatil
+  * DAO
+ * Interfaz del modelo de datos para la entidad Región
  *
  */
 public interface IRegionDao extends JpaRepository<Region, Long> {

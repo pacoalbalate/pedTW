@@ -9,7 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import tw.modelo.entidades.Rol;
 
 
-
+/**
+ * 
+ * DAO
+ * Interfaz del modelo de datos para la entidad Perfil
+ * 
+ */
 
 
 public interface IRolDao extends JpaRepository<Rol, Long>{

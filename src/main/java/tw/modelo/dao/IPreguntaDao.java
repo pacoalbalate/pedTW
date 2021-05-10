@@ -17,7 +17,8 @@ import tw.modelo.entidades.Pregunta;
 
 
 /**
- * @author Portatil
+ * DAO
+ * Interfaz del modelo de datos para la entidad Preguntas (asociadas a perfiles)
  *
  */
 public interface IPreguntaDao extends JpaRepository<Pregunta, Long> {

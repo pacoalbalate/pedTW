@@ -13,7 +13,9 @@ import java.text.SimpleDateFormat;
 
 
 /**
- * @author Portatil
+ * Control de los filtros en los listados a la hora de presentarlos 
+ * por pantalla.
+ * También de la ordenación.
  *
  */
 public class PaginaCriterios  implements Serializable  {
@@ -46,7 +48,9 @@ public class PaginaCriterios  implements Serializable  {
 
 	
 	/**
-	 * @param parametros
+	 * constructor con los criterios establecidos por defecto
+	 * (sin parametrizar)
+	 * 
 	 */
 	public PaginaCriterios() {
 		this.pageNo = pageInit;
@@ -60,7 +64,8 @@ public class PaginaCriterios  implements Serializable  {
 	}
 	
 	/**
-	 * @param parametros
+	 * Constructor parametrizado, 
+	 * modificando criterios fijos
 	 */
 	public PaginaCriterios(Map<String, Object> parametros) {
 		this();
@@ -69,46 +74,56 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the pageNo
+	 * Devuelve el número de página
+	 * @return 
 	 */
 	public Integer getPageNo() {
 		return pageNo;
 	}
 
 	/**
-	 * @return the pageSize
+	 * Tamaño de la página
+	 * @return pageSize
 	 */
 	public Integer getPageSize() {
 		return pageSize;
 	}
 	/**
-	 * @return the sortBy
+	 * Devuelve el campo por el que está ordenado el listado
+	 * @return  sortBy
 	 */
 	public String getSortBy() {
 		return sortBy;
 	}
 	/**
-	 * @return the orderBy
+	 * Devuelve el criterio de ordenación
+	 * @return orderBy
 	 */
 	public String getOrderBy() {
 		return orderBy;
 	}
 	/**
-	 * @return the filtro
+	 * Devuelve el criterio por el que se filtra
+	 * @return filtro
 	 */
 	public String getFiltro() {
 		return filtro;
 	}
 
 	/**
-	 * @return is orderBy is ASC
+	 * Devuelve el tipo de ordenación
+	 * true si es ascendente 
+	 * false si es descendente
+	 * @return orderBy
 	 */
 	public boolean isAsc() {
 		return (this.orderBy.equals("ASC"));
 	}
 
 	/**
-	 * @param parametros the parametros to set
+	 * Inicialización por defecto de parámetros de ordenación y filtado
+	 * 
+	 * @param lista de campos
 	 */
 	public void setParametros(Map<String, Object> params) {
 		//this.orderBy = "ASC";
@@ -137,14 +152,16 @@ public class PaginaCriterios  implements Serializable  {
 	}
 
 	/**
-	 * @return the filtroIdsCentro
+	 * Devuelve el filtro por centros activo
+	 * @return 
 	 */
 	public List<Long> getFiltroIdsCentro() {
 		return filtroIdsCentro;
 	}
 
 	/**
-	 * @param filtroIdsCentro the filtroIdsCentro to set
+	 * Activa el filtro por centros
+	 * @param filtroIdsCentro 
 	 */
 	public void setFiltroIdsCentro(List<Long> filtroIdsCentro) {
 		this.filtroIdsCentro = filtroIdsCentro;
@@ -152,28 +169,32 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the filtroIdsRegion
+	 * Devuelve el filtro por Region
+	 * @return 
 	 */
 	public List<Long> getFiltroIdsRegion() {
 		return filtroIdsRegion;
 	}
 
 	/**
-	 * @param filtroIdsRegion the filtroIdsRegion to set
+	 * Activa el filtrado por regiones
+	 * @param filtroIdsRegion 
 	 */
 	public void setFiltroIdsRegion(List<Long> filtroIdsRegion) {
 		this.filtroIdsRegion = filtroIdsRegion;
 	}
 
 	/**
-	 * @return the pagActual
+	 * Devuelve la pagina actual 
+	 * @return 
 	 */
 	public String getPagActual() {
 		return pagActual;
 	}
 
 	/**
-	 * @param pagActual the pagActual to set
+	 * Actualiza cual es la pagina a mostrar
+	 * @param 
 	 */
 	public void setPagActual(String pagActual) {
 		this.pagActual = pagActual;
@@ -181,7 +202,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the nombreColCampos
+	 * Devuelve los nombres de las columnas
+	 * @return 
 	 */
 	public List<String> getNombreColCampos() {
 		return nombreColCampos;
@@ -189,7 +211,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @param nombreColCampos the nombreColCampos to set
+	 * Actualiza los nombres de las columnas del listado
+	 * @param nombreColCampos 
 	 */
 	public void setNombreColCampos(List<String> nombreColCampos) {
 		this.nombreColCampos = nombreColCampos;
@@ -197,7 +220,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the nombreBddCampos
+	 * Devuelve los nombres de campos de BBDD que se están mostrando
+	 * @return 
 	 */
 	public List<String> getNombreBddCampos() {
 		return nombreBddCampos;
@@ -205,7 +229,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @param nombreBddCampos the nombreBddCampos to set
+	 * Actualiza los nombres de los campos de BBDD que se muestran en el listado
+	 * @param nombreBddCampos 
 	 */
 	public void setNombreBddCampos(List<String> nombreBddCampos) {
 		this.nombreBddCampos = nombreBddCampos;
@@ -213,16 +238,20 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @param nombreColCampo the nombreColCampos to search
-	 * @return the nombreBddCampo
+	 * Devuelve el nombre de campo de base de datos que 
+	 * corresponde a una columna pr el nombre de columna
+	 * @param nombreColCampo 
+	 * @return nombreBddCampo
 	 */
 	public String getNombreBddCampo(String nombreColCampo) {
 		return this.nombreBddCampos.get(this.nombreColCampos.indexOf(nombreColCampo));
 	}
 
 	/**
-	 * @param nombreBddCampo the nombreBddCampos to search
-	 * @return the nombreColCampo
+	 * Devuelve el nombre de columna del listado que corresponde 
+	 * a un campo de la bbdd del listado
+	 * @param nombreBddCampo 
+	 * @return nombreColCampo
 	 */
 	public String getNombreColCampo(String nombreBddCampo) {
 		return this.nombreColCampos.get(this.nombreBddCampos.indexOf(nombreBddCampo));
@@ -230,7 +259,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	
 	/**
-	 * @return the filtroIdsDato
+	 * Devuelve los datos de perfil por los que se ha filtrado
+	 * @return filtroIdsDato
 	 */
 	public List<String> getFiltroIdsDato() {
 		return filtroIdsDato;
@@ -238,14 +268,17 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @param filtroIdsDato the filtroIdsDato to set
+	 * Activa el filtrado por los diferentes datos del perfil posibles
+	 * @param filtroIdsDato 
 	 */
 	public void setFiltroIdsDato(List<String> filtroIdsDato) {
 		this.filtroIdsDato = filtroIdsDato;
 	}
 
 	/**
-	 * @return the filtroDateDesdeString
+	 * Devuelve la fecha desde por la que se filtra
+	 * en formato String
+	 * @return filtroDateDesdeString
 	 *
 	 */
 	public String getFiltroDateDesdeString() {
@@ -254,6 +287,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
+	 *  Devuelve la fecha desde por la que se filtra
+	 * en formato Date
 	 * @return the filtroDateDesde
 	 *
 	 */
@@ -271,7 +306,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	
 	/**
-	 * @param filtroDateDesde the filtroDateDesde to set
+	 * Activa el filtrado por fecha desde
+	 * @param filtroDateDesde 
 	 */
 	public void setFiltroDateDesde(String filtroDateDesde) {
 		this.filtroDateDesde = filtroDateDesde;
@@ -279,7 +315,9 @@ public class PaginaCriterios  implements Serializable  {
 
 	
 	/**
-	 * @return the filtroDateHastaString
+	 * Devuelve la fecha hasta por la que se filtra
+	 * en formato String
+	 * @return filtroDateHastaString
 	 *
 	 */
 	public String getFiltroDateHastaString() {
@@ -288,7 +326,9 @@ public class PaginaCriterios  implements Serializable  {
 
 	
 	/**
-	 * @return the filtroDateHasta
+	 * Devuelve la fecha hasta por la que se filtra
+	 * en formato Date
+	 * @return  filtroDateHasta
 	 *
 	 */
 	public Date getFiltroDateHasta() {
@@ -304,7 +344,8 @@ public class PaginaCriterios  implements Serializable  {
 	}
 
 	/**
-	 * @param filtroDateHasta the filtroDateHasta to set
+	 *  Activa el filtrado por fecha hasta
+	 * @param filtroDateHasta
 	 */
 	public void setFiltroDateHasta(String filtroDateHasta) {
 		this.filtroDateHasta = filtroDateHasta;
@@ -313,7 +354,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the isFiltroFechaIsActive
+	 * Devuelve true si esta activo el filtro por fechas
+	 * @return isFiltroFechaIsActive
 	 */
 	public boolean isFiltroFechaActivo() {
 
@@ -329,7 +371,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * @return the isFiltroIdsIsActive
+	 * Devuelve true si el filtro por datos del perfil está activo
+	 * @return isFiltroIdsIsActive
 	 */
 	public boolean isFiltroIdActivo() {
 
