@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios.impl;
 
 import java.util.Date;
@@ -17,8 +14,10 @@ import tw.modelo.entidades.DatosPerfil;
 import tw.modelo.servicios.IDatosPerfilService;
 
 /**
- * @author Portatil
- * Para implementar el patron Fachada hacia el acceso a datos
+ * Implementa el interfaz Façade - Perfiles
+ * 
+ * Redirige las peticiones a los métodos del DAO
+ * 
  */
 @Service
 public class DatosPerfilServiceImpl implements IDatosPerfilService {
@@ -26,6 +25,10 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 	@Autowired
 	private IDatosPerfilDao  datosperfilDao;
 
+	/**
+	 * Grabación del perfil en base de datos
+	 * @param datosperfil El perfil a grabar
+	 */
 	@Override
 	@Transactional
 	public void save(DatosPerfil datosperfil) {
@@ -33,6 +36,11 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		datosperfilDao.save(datosperfil);
 	}
 
+	/**
+	 * Busca un perfil por identificador
+	 * @param id
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public DatosPerfil findById(Long id) {
@@ -40,6 +48,10 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		return datosperfilDao.findById(id).orElse(null);
 	}
 
+	/**
+	 * Borrado de un perfil
+	 * @param id El perfil a borrar
+	 */
 	@Override
 	@Transactional
 	public void delete(Long id) {
@@ -48,7 +60,16 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 	}
 	
 
-
+	/**
+	 * Busca Perfiles por regiones, fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param regiones lista de regiones
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInRegionWithKeywordDistint(Pageable pageable, List<Long> regiones, String keyword, Date desde, Date hasta) {
@@ -60,6 +81,16 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
+	/**
+	 * Busca Perfiles por centros, fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param centros lista de centros
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInCentroWithKeywordDistint(Pageable pageable, String keyword, List<Long> centros, Date desde, Date hasta) {
@@ -71,6 +102,16 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
+	/**
+	 * Busca Perfiles por Pruebas (DatosFecha), fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param datos lista de Pruebas
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInDatoWithKeywordDistint(Pageable pageable, List<String> datos, String keyword, Date desde, Date hasta) {
@@ -82,7 +123,18 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
-	@Override
+	/**
+	 * Busca Perfiles por Regiones, Pruebas (DatosFecha), fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param regiones lista de regiones
+	 * @param datos lista de Pruebas
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
+		@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInRegionDatoWithKeywordDistint(Pageable pageable, List<Long> regiones,
 			String keyword, List<String> datos, Date desde, Date hasta) {
@@ -96,6 +148,17 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
+		/**
+		 * Busca Perfiles por Centros, Pruebas (DatosFecha), fechas y criterios de selección,
+		 * devolviéndolos en el objeto paginable según el parámetro
+		 * @param pageable El objeto paginable
+		 * @param centros lista de centros
+		 * @param datos lista de Pruebas
+		 * @param keyword criterios de selección
+		 * @param desde Fecha desde
+		 * @param hasta Fecha hasta
+		 * @return El objeto paginable con los perfiles cargados
+		 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInCentroDatoWithKeywordDistint(Pageable pageable, List<Long> centros,
@@ -110,6 +173,17 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 	
+	/**
+	 * Busca Perfiles por Regiones, Centros (DatosFecha), fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param regiones lista de regiones
+	 * @param centros lista de centros
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInRegionCentroWithKeywordDistint(Pageable pageable, List<Long> regiones, String keyword, List<Long> centros, Date desde, Date hasta) {
@@ -123,6 +197,18 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
+	/**
+	 * Busca Perfiles por Regiones, Centros, Pruebas (DatosFecha), fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param regiones lista de regiones
+	 * @param centros lista de centros
+	 * @param datos lista de Pruebas
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findByIdInWithKeywordDistint(Pageable pageable, List<Long> regiones, String keyword,
@@ -141,6 +227,11 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		}
 	}
 
+	/**
+	 * Devuelve la suma de psitivos de los perfiles de una Prueba
+	 * @param datofechaId Identificador de la Prueba (datosfecha)
+	 * @return 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Long sumaPositivosPerfil(Long datofechaId) {
@@ -148,6 +239,11 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		return datosperfilDao.sumaPositivosPerfil(datofechaId);
 	}
 
+	/**
+	 * Cuenta los perfiles de un Centro
+	 * @param centroId Identificador del centro
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Long cuentaDatosCentro(Long centroId) {
@@ -155,6 +251,12 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		return datosperfilDao.cuentaDatosCentro(centroId);
 	}
 
+	/**
+	 * Cuenta los perfiles que contienen una pregunta pasada por parámetro
+	 * @param preguntaId
+	 * @return
+	 * 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Long cuentaDatosPregunta(Long preguntaId) {
@@ -162,6 +264,15 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		return datosperfilDao.cuentaDatosPregunta(preguntaId);
 	}
 
+	/**
+	 * Busca Perfiles por fechas y criterios de selección,
+	 * devolviéndolos en el objeto paginable según el parámetro
+	 * @param pageable El objeto paginable
+	 * @param keyword criterios de selección
+	 * @param desde Fecha desde
+	 * @param hasta Fecha hasta
+	 * @return El objeto paginable con los perfiles cargados 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Object> findAllWithKeywordDistintObject(Pageable pageable, String keyword, Date desde, Date hasta) {
@@ -169,6 +280,11 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 		return datosperfilDao.findAllWithKeywordDistintObject(pageable, keyword, desde, hasta);
 	}
 
+	/**
+	 * Cuenta los perfiles de una Prueba
+	 * @param preguntaId Identificador de la Prueba
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<Long> cuentaPrueba(Long preguntaId) {

@@ -2,6 +2,7 @@ package tw;
 
 import java.io.IOException;
 
+import javax.imageio.IIOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -58,6 +59,8 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     /**
      * Configura los accesos permitidos en función del rol del usuario
+     * @param http 
+     * @throws Exception
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -85,7 +88,7 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * Configuración global.
+     * Configuración global. Seguridad Spring
      *
      * @param build 
      * @throws Exception Excepción de seguridad
@@ -106,13 +109,22 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     
     
     /**
-     * Clase para retornar el acceso con éxito
+     * Clase para retornar el acceso con éxito.
+     * Seguridad Spring
      * 
      */
 	
 	@Component
     public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
 
+		/**
+		 * Crea la sesión de usuario si la autenticación ha sido ok
+		 * @param request 
+		 * @param response
+		 * @param authentication
+		 * @throws IOException, ServletException 
+		 * 
+		 */
     	@Override
     	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
     			Authentication authentication) throws IOException, ServletException {
@@ -130,10 +142,12 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
      * Clase para retornar el acceso denegado
      * 	configura pagina de retorno de acceso denegado.
      */
-    
-    
     @Configuration
     public class PedTwWebMvcConfig implements WebMvcConfigurer {
+    	/**
+    	 * Acceso denegado.
+    	 * @param registro
+    	 */
        public void addViewControllers(ViewControllerRegistry registro) {
         	registro.addViewController("/acceso_denegado").setViewName("/login/error_permisos");
          }

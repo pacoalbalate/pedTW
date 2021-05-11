@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios;
 
 import java.util.List;
@@ -14,7 +11,11 @@ import tw.modelo.entidades.DatosFecha;
 
 
 /** 
- * @author Portatil
+ * Interfaz de servicios de acceso Jquery a DatosFecha
+ * 
+ * Patrón Façade de acceso a datos
+ * 
+ * Define los métodos de acceso a la entidad (Pruebas)
  *
  */
 public interface IDatosFechaService {

@@ -15,7 +15,12 @@ import tw.modelo.entidades.Region;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IEstadisticasService;
 import tw.modelo.servicios.IRegionService;
-
+/**
+ * Implementa el interfaz Façade - Datos Gráficos
+ * 
+ * Redirige las peticiones a los métodos del DAO
+ * 
+ */
 @Service
 public class EstadisticasService implements IEstadisticasService {
 
@@ -25,6 +30,11 @@ public class EstadisticasService implements IEstadisticasService {
 	@Autowired
 	private IRegionService regionService;
 
+	/**
+	 * Devuelve en un String el json resultado para presentar por pantalla
+	 * el diagrama de barras por centro y paciente
+	 * @return   
+	 */
 	@Override
 	public String obtenerDiagramaBarrasPorCentroyPacientes() {
 		Gson gsonObj = new Gson();
@@ -46,6 +56,11 @@ public class EstadisticasService implements IEstadisticasService {
 		return dataPoints;
 	}
 
+	/**
+	 * Devuelve en un String el json resultado para presentar por pantalla
+	 * el diagrama de sectores por regiones y centros
+	 * @return   
+	 */
 	@Override
 	public String obtenerDiagramaSectoresPorRegionyCentros() {
 		Gson gsonObj = new Gson();

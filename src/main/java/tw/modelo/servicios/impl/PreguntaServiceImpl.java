@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios.impl;
 
 import java.util.List;
@@ -16,15 +13,20 @@ import tw.modelo.entidades.Pregunta;
 import tw.modelo.servicios.IPreguntaService;
 
 /**
- * @author Portatil
- * Para implementar el patron Fachada hacia el acceso a datos
- */
-@Service
+ * Implementa el interfaz Façade - Pregunta
+ * 
+ * Redirige las peticiones a los métodos del DAO
+ * 
+ */@Service
 public class PreguntaServiceImpl implements IPreguntaService {
 
 	@Autowired
 	private IPreguntaDao preguntaDao;
 
+	/**
+	 * Guarda la pregunta en bd
+	 * @param pregunta 
+	 */
 	@Override
 	@Transactional
 	public void save(Pregunta pregunta) {
@@ -32,6 +34,11 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		preguntaDao.save(pregunta);
 	}
 
+	/**
+	 * Lee pregunta de BD por Identificador
+	 * @param id
+	 * @return Pregunta
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Pregunta findById(Long id) {
@@ -39,6 +46,11 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		return preguntaDao.findById(id).orElse(null);
 	}
 
+	/**
+	 * Borra pregunta de la BD por identificador
+	 * @param id Identificador a borrar
+	 * 
+	 */
 	@Override
 	@Transactional
 	public void delete(Long id) {
@@ -46,6 +58,10 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		preguntaDao.deleteById(id);
 	}
 	
+	/**
+	 * Devuelve todas las preguntas en un List
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<Pregunta> findAll() {
@@ -53,6 +69,11 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		return (List<Pregunta>) preguntaDao.findAll();
 	}
 
+	/**
+	 * Devuelve todas las preguntas en un objeto de paginación
+	 * @param pageable 
+	 * @return Page<Pregunta>
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Pregunta> findAll(Pageable pageable) {
@@ -60,6 +81,13 @@ public class PreguntaServiceImpl implements IPreguntaService {
 		return preguntaDao.findAll(pageable);
 	}
 
+	/**
+	 * Devuelve todas las preguntas en un objeto de paginación filtrando
+	 * por criterios de selección
+	 * @param pageable
+	 * @param keyword Criterios de Selección
+	 * @return Page<Pregunta>
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Pregunta> findAllWithKeyword(Pageable pageable, String keyword) {

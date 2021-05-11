@@ -16,7 +16,8 @@ import tw.modelo.entidades.AuxOpciones;
 
 /**
  * DAO
- * Interfaz del modelo de datos para la Entidad Opciones (opciones auxiliares de las entidades)
+ * Interfaz del modelo de datos para la Entidad Opciones
+ * (Datos parametrizables de la aplicación)
  *
  */
 public interface IAuxOpcionesDao extends JpaRepository<AuxOpciones, Long> {

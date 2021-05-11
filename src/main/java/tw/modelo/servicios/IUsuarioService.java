@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios;
 
 
@@ -15,7 +12,11 @@ import tw.modelo.entidades.Usuario;
 
 
 /** 
- * @author 
+ * Interfaz de servicios de acceso Jquery a Usuarios
+ * 
+ * Patrón Façade de acceso a datos
+ * 
+ * Define los métodos de acceso a la entidad
  *
  */
 public interface IUsuarioService {

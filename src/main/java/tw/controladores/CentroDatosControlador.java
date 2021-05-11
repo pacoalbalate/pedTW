@@ -47,7 +47,7 @@ import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRolService;
 /**
- * Clase controladora encargada de llas altas de pruebas y perfiles en 
+ * Clase controladora encargada de las altas de pruebas y perfiles en 
  * un centro
  */
 @Controller 

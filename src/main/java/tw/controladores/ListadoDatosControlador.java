@@ -48,7 +48,7 @@ import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
 /**
- * Clase controladora. Encargada de generar los listados por perfiles
+ * Clase controladora. Encargada de generar los listados de perfiles
  */
 @Controller 
 @SessionAttributes({"criterios"})

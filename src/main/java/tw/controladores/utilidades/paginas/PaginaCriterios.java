@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 package tw.controladores.utilidades.paginas;
 
 import java.io.Serializable;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios;
 
 import java.util.List;
@@ -11,7 +8,11 @@ import org.springframework.data.domain.Pageable;
 import tw.modelo.entidades.Region;
 
 /** 
- * @author Portatil
+ * Interfaz de servicios de acceso Jquery a Región
+ * 
+ * Patrón Façade de acceso a datos
+ * 
+ * Define los métodos de acceso a la entidad
  *
  */
 public interface IRegionService {

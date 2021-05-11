@@ -19,14 +19,22 @@ import tw.modelo.dao.IUsuarioDao;
 import tw.modelo.entidades.Usuario;
 import tw.modelo.entidades.Rol;
 import tw.modelo.servicios.IUsuarioService;
- 
+/**
+ * Implementa el interfaz Façade - Usuarios
+ * 
+ * Redirige las peticiones a los métodos del DAO
+ * 
+ */
 @Service("UsuarioServiceImpl")
 public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 
 	@Autowired
 	private IUsuarioDao usuarioDao;
 
-	
+	/**
+	 * Almacena un usuario en la BD
+	 * @param usuario el usuario a almacenar
+	 */
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
@@ -34,6 +42,11 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 		usuarioDao.save(usuario);
 	}
 
+	/** 
+	 * Busca un usuario por identificador
+	 * @param id Identificador del usuario
+	 * @return Usuario o null si no existe
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Usuario findById(Long id) {
@@ -41,6 +54,11 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 		return usuarioDao.findById(id).orElse(null);
 	}
 
+	/**
+	 * Borra un usuario de la bd
+	 * @param id El id del usuario a borrar
+	 * 
+	 */
 	@Override
 	@Transactional
 	public void delete(Long id) {
@@ -48,6 +66,12 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 		usuarioDao.deleteById(id);
 	}
 	
+	/**
+	 * Devuelve todos los usuarios en un objeto de paginación
+	 * @param pageable
+	 * @return Page<Usuario>
+	 * 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Usuario> findAll(Pageable pageable) {
@@ -55,6 +79,13 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 		return usuarioDao.findAll(pageable);
 	}
 
+	/**
+	 * Devuelve todos los usuarios según criterios de selección 
+	 * en un objeto de paginación
+	 * @param pageable
+	 * @param keyword Criterios de selección
+	 * @return Page<Usuario> 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<Usuario> findAllWithKeyword(Pageable pageable, String keyword) {
@@ -63,6 +94,11 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	}
 	
 
+	/** 
+	 * Busca un usuario por el nombre
+	 * @param nombreusuario Nombre del usuario a buscar
+	 * @return Usuario
+	 */
 	@Override
 	public Usuario findByNombreusuario(String nombreusuario) {
 		// TODO Auto-generated method stub
@@ -70,6 +106,14 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	}
 
 
+	/**
+	 * Busca usuarios de un list de centros con criterios de selección
+	 * y los devuelve en un opbjeto de paginación
+	 * @param pageable
+	 * @param keyword Criterios de selección
+	 * @param centros List de los centros
+	 * @return Page<Usuario>
+	 */
 	@Override
 	@Transactional(readOnly=true)
 	public Page<Usuario> findAllWithKeywordIN(Pageable pageable, String keyword, List<Long> centros) {
@@ -79,8 +123,13 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	
 	
 	
-	
-	
+	/**
+	 * Devuelve los detalles de un usuario (Nombre, password y si está o no activo) 
+	 * siempre que el usaurio existe y tenga algún rolo asignado
+	 * Se utiliza par autenticación de usuarios
+	 * @param username Nombre del usuario
+	 * @return Detalles de usuario (Nombre, Password, Activo)	
+	 */
 	@Override
 	@Transactional(readOnly=true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

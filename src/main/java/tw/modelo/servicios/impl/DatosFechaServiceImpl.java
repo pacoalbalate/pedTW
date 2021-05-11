@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios.impl;
 
 import java.util.List;
@@ -16,8 +13,10 @@ import tw.modelo.entidades.DatosFecha;
 import tw.modelo.servicios.IDatosFechaService;
 
 /**
- * @author Portatil
- * Para implementar el patron Fachada hacia el acceso a datos
+ * Implementa el interfaz Façade - DatosFecha (Pruebas)
+ * 
+ * Redirige las peticiones a los métodos del DAO
+ * 
  */
 @Service
 public class DatosFechaServiceImpl implements IDatosFechaService {
@@ -25,6 +24,10 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 	@Autowired
 	private IDatosFechaDao datosfechaDao;
 
+	/**
+	 * graba en bd la prueba
+	 * @param datosfecha la prueba a grabar
+	 */
 	@Override
 	@Transactional
 	public void save(DatosFecha datosfecha) {
@@ -32,6 +35,10 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 		datosfechaDao.save(datosfecha);
 	}
 
+	/**
+	 * borra de bd la prueba
+	 * @param id el identificador de la prueba a borrar
+	 */
 	@Override
 	@Transactional
 	public void delete(Long id) {
@@ -40,6 +47,11 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 	}
 
 
+	/**
+	 * busca la prueba por identificador
+	 * @param id el identificador de la prueba
+	 * @return La prueba
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public DatosFecha findById(Long id) {
@@ -47,6 +59,10 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 		return datosfechaDao.findById(id).orElse(null);
 	}
 
+	/**
+	 * Busca todas las pruebas
+	 * @return Lista de pruebas
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public List<DatosFecha> findAll() {
@@ -54,6 +70,11 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 		return (List<DatosFecha>) datosfechaDao.findAll();
 	}
 
+	/**
+	 * Devuelve las pruebas en objeto paginable
+	 * @param pageable el objeto paginable
+	 * @return 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<DatosFecha> findAll(Pageable pageable) {
@@ -61,6 +82,14 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 		return datosfechaDao.findAll(pageable);
 	}
 
+	/**
+	 * Devuelve las pruebas en objeto paginable por identificador del centro y
+	 * criterios de selección
+	 * @param pageable el objeto paginable
+	 * @param keyword Criterios de selección
+	 * @param centroId identificador del centro
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<DatosFecha> findAllWithKeyword(Pageable pageable, String keyword, Long centroId) {
@@ -68,7 +97,12 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 		return datosfechaDao.findAllWithKeyword(pageable, keyword, centroId);
 	}
 
-
+	/**
+	 * Devuelve las pruebas en objeto paginable por criterios de selección
+	 * @param pageable el objeto paginable
+	 * @param keyword Criterios de selección
+	 * @return
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public Page<DatosFecha> findAllWithKeyword(Pageable pageable, String keyword) {

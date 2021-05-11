@@ -1,6 +1,3 @@
-/**
- * 
- */
 package tw.modelo.servicios;
 
 import java.util.Date;
@@ -14,7 +11,11 @@ import tw.modelo.entidades.DatosPerfil;
 
 
 /** 
- * @author Portatil
+ * Interfaz de servicios de acceso Jquery a Perfiles
+ * 
+ * Patrón Façade de acceso a datos
+ * 
+ * Define los métodos de acceso a la entidad
  *
  */
 public interface IDatosPerfilService {
