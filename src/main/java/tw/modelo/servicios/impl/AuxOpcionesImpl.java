@@ -92,7 +92,14 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 		return auxOpcionesDao.findByTipoContainingOrderById(tipo);
 	}
 
+	/**
+	 * Devuelve lista de opciones sin ordenar por el id excluyendo el ROL
+	 *  que contengan el tipo
+	 * @param tipo de opcion
+	 * @return list de Dao opciones
+	 */
 	@Override
+	@Transactional(readOnly = true)
 	public List<AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo) {
 		// TODO Auto-generated method stub
 		return auxOpcionesDao.findByTipoNotOrderByIdSinRol(tipo);
