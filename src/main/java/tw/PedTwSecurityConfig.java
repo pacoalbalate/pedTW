@@ -26,6 +26,7 @@ import org.springframework.web.servlet.support.SessionFlashMapManager;
 import tw.modelo.servicios.impl.UsuarioServiceImpl;
 /**
  * Clase con la configuración de seguridad de la aplicación
+ * Clase Envolvente
  */
 
 
@@ -111,6 +112,7 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Clase para retornar el acceso con éxito.
      * Seguridad Spring
+     * Clase interna
      * 
      */
 	
@@ -141,6 +143,8 @@ public class PedTwSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Clase para retornar el acceso denegado
      * 	configura pagina de retorno de acceso denegado.
+     * Seguridad Spring
+     * Clase interna
      */
     @Configuration
     public class PedTwWebMvcConfig implements WebMvcConfigurer {

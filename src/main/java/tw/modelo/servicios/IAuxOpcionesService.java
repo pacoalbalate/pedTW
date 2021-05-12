@@ -25,6 +25,8 @@ public interface IAuxOpcionesService {
 	
 	public AuxOpciones findByTipoAndOpcion(String tipo, String opcion);
 
+	public List <AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo); 
+	
 	public List <AuxOpciones> findByTipoNotOrderById(String tipo); 
 	
 	public List <AuxOpciones> findByTipoContainingOrderById(String tipo);

@@ -92,5 +92,11 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 		return auxOpcionesDao.findByTipoContainingOrderById(tipo);
 	}
 
+	@Override
+	public List<AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo) {
+		// TODO Auto-generated method stub
+		return auxOpcionesDao.findByTipoNotOrderByIdSinRol(tipo);
+	}
+
 
 }
