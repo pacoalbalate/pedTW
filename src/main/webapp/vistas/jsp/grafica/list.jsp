@@ -78,7 +78,7 @@ chart1.render();
 	<%@ include file="../comunes/grid//vborrar_modal.jsp"%>
 	<%@ include file="../comunes/pie.jsp"%>
 
-<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/canvas/canvasjs.min.js"></script>
 
 </body>
 </html>

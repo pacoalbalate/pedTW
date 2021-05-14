@@ -44,6 +44,7 @@ import tw.modelo.entidades.Rol;
 import tw.modelo.servicios.IAuxOpcionesService;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IDatosPerfilService;
+import tw.modelo.servicios.IEstadisticasService;
 import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
@@ -54,6 +55,9 @@ import tw.modelo.servicios.IRolService;
 @SessionAttributes({"criterios"})
 @RequestMapping("/")
 public class ListadoDatosControlador {
+	
+	@Autowired
+	private IEstadisticasService estadisticasService;
 	
 	@Autowired
 	//@Qualifier("RegionDaoImplDupl")
@@ -157,7 +161,22 @@ public class ListadoDatosControlador {
 		   //System.out.println("1****" + obj[1]+"---"+ obj[2]);
 		 }
 		modelo.addAttribute("datosperfil_list", datosperfil_list);
+		
+		List<Object> datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
+		List<DatosPerfil> datosperfil_list1 = new ArrayList<DatosPerfil>();
 
+		for (Object cdata:datosperfilGrafica) {
+			
+			   Object[] obj= (Object[]) cdata;
+			   datosperfil_list1.add((DatosPerfil)obj[0]);
+			   //datosperfil_list.add(obj);
+			   //System.out.println("1****" + obj[1]+"---"+ obj[2]);
+			 }
+		
+		modelo.addAttribute("datosperfil_list", datosperfil_list);
+		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorRegionYTotalDePruebas(datosperfil_list1);
+		modelo.addAttribute("diagramaBarras", diagramaBarras);
+		
 		List<String> colcampos = new ArrayList<>(Arrays.asList("Id", "Región", "Centro", "Tipo Centro", "Pruebas", "Fecha", "Tipo Prueba", "Positivos Perfil"));	
 		//List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "", "", "", "", "", "", "totalpositivos"));
 		List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "r.denominacion", "c.denominacion", "tc.opcion", "df.totalpruebas", "df.fecha", "tp.opcion", "totalpositivos"));

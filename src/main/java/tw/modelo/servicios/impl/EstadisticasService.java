@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import tw.modelo.entidades.Centro;
+import tw.modelo.entidades.DatosPerfil;
 import tw.modelo.entidades.Region;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IEstadisticasService;
@@ -81,5 +83,40 @@ public class EstadisticasService implements IEstadisticasService {
 		dataPoints = gsonObj.toJson(list);
 		return dataPoints;
 	}
+	
+	@Override
+	public String obtenerDiagramaBarrasPorRegionYTotalDePruebas(List<DatosPerfil> lista) {
+		Gson gsonObj = new Gson();
+		Map<Object, Object> map = null;
+		String dataPoints=null;
+		List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
 
+		for (Entry<String, Long> datosPerfil : getRegionAndTotalPositives(lista).entrySet()) {
+			map = new HashMap<Object, Object>();
+			map.put("label", datosPerfil.getKey());
+			map.put("y", datosPerfil.getValue());
+			list.add(map);
+			
+		}
+		
+		dataPoints = gsonObj.toJson(list);
+		return dataPoints;
+	}
+	
+	private Map<String,Long> getRegionAndTotalPositives(List<DatosPerfil> lista){
+		Map<String,Long> regions= new HashMap<String, Long>();
+		
+		for (DatosPerfil datosPerfil : lista) {
+			String denominacion=datosPerfil.getDatosfecha().getCentro().getRegion().getDenominacion();
+			Long num=datosPerfil.getDatosfecha().getTotalpruebas();
+			if(regions.containsKey(denominacion)) {
+				 num+=regions.get(denominacion);
+			}
+			regions.put(denominacion,num);
+		}
+		
+		return regions;
+		
+	}
+	
 }

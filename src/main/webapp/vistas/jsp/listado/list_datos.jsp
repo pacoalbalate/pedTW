@@ -5,7 +5,40 @@
 <head>
 
 <%@ include file="../comunes/cabecera.jsp"%> 
+<%
+String diagramData= (String)request.getAttribute("diagramaBarras");
+String sectorData= (String)request.getAttribute("diagramaSectores");
 
+ 
+%>
+
+<script type="text/javascript">
+window.onload = function() { 
+    var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	title: {
+		text: "Nº de pruebas por región."
+	},
+	subtitles: [{
+		text: "",
+		fontSize: 16
+	}],
+	axisY: {
+		scaleBreaks: {
+			type: "wavy",
+			autoCalculate: true
+		}
+	},
+	data: [{
+		type: "column",
+		indexLabel: "{y}",
+		dataPoints: <% out.print(diagramData);%>
+	}]
+}   );
+chart.render(); 
+}
+</script>
 
 </head>
 <body>
@@ -142,6 +175,16 @@ $(".habilit").on('click',function() {
 				</div>
   </div>
 </div>
+  <div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+
+				<jsp:include page='../comunes/barra_titulo.jsp'></jsp:include>
+				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+				<br/>
+			</div>
+		</div>
+	</div>
 
 				<table class="table table-striped table-hover table-responsive">
 				<c:import url="../comunes/grid/cabeceras_filas.jsp"></c:import>
@@ -185,7 +228,6 @@ $(".habilit").on('click',function() {
 	</div>
 
 <%@ include file="../comunes/pie.jsp"%>
-
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/canvas/canvasjs.min.js"></script>
 </body>
 </html>
