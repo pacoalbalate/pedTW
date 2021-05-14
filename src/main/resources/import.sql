@@ -133,8 +133,8 @@ INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Edad', 8);
 INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Enfermedades Previas', 6);
 INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Presenta Sintomas', 6);
 INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Prueba de Contraste', 9);
-INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Total Pruebas del Perfil', 4);
-INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Responsable Grupo', 3);
+INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Personas Perfil Citadas', 4);
+INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Responsable Grupo Pruebas', 3);
 INSERT INTO preguntas_perfil (denominacion, tipopregunta_id) VALUES('Fecha Comprobación', 5);
 
 /* Datos de los totales de pruebas por fecha */
