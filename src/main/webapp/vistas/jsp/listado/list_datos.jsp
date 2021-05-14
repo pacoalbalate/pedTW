@@ -18,7 +18,7 @@ window.onload = function() {
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
-		text: "Nº de pruebas por región."
+		text: "Nº de positivos por ${datospor}."
 	},
 	subtitles: [{
 		text: "",
@@ -179,7 +179,15 @@ $(".habilit").on('click',function() {
 		<div class="table-responsive">
 			<div class="table-wrapper">
 
-				<jsp:include page='../comunes/barra_titulo.jsp'></jsp:include>
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-6">
+							<h2>
+								Datos Acumulados de la Selección
+							</h2>
+						</div>
+					</div>
+				</div>
 				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
 				<br/>
 			</div>

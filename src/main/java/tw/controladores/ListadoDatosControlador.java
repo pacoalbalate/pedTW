@@ -193,11 +193,16 @@ public class ListadoDatosControlador {
 		criterios.setNombreColCampos(colcampos);
 		criterios.setNombreBddCampos(bddcampos);
 		
-		modelo.addAttribute("titulo", "Gestión de <b>Datos por Regiones</b>");
+		modelo.addAttribute("titulo", "Listado de <b>Datos</b>");
 		modelo.addAttribute("criterios", criterios);
 		modelo.addAttribute("pagina", pageSelect);
 		//modelo.addAttribute("srvaux", auxopcionesService);
 		modelo.addAttribute("regId", regId);
+		if (request.isUserInRole("ROLE_CENTRO")) { 
+			modelo.addAttribute("datospor", "de la Región por Centro");
+		} else {
+			modelo.addAttribute("datospor", "Región");
+		}
 
 		//Mostramos solo los centros con datos y a los que tiene acceso
 		List<Region> regionesselfiltro = null;

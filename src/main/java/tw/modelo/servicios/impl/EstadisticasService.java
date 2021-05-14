@@ -108,11 +108,12 @@ public class EstadisticasService implements IEstadisticasService {
 		
 		for (DatosPerfil datosPerfil : lista) {
 			String denominacion=datosPerfil.getDatosfecha().getCentro().getRegion().getDenominacion();
-			Long num=datosPerfil.getDatosfecha().getTotalpruebas();
+			//Long num=datosPerfil.getDatosfecha().getTotalpruebas();
+			Long numPositivos = datosPerfil.getTotalpositivos();
 			if(regions.containsKey(denominacion)) {
-				 num+=regions.get(denominacion);
+				 numPositivos+=regions.get(denominacion);
 			}
-			regions.put(denominacion,num);
+			regions.put(denominacion,numPositivos);
 		}
 		
 		return regions;

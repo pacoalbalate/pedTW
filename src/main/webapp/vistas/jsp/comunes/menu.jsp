@@ -47,7 +47,7 @@
 							Datos </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/listado/">
-									Regiones</a></li>
+									Listado</a></li>
 							<li><hr class="dropdown-divider"></li>
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/grafica/datos">Datos
 									Graficos</a></li>
