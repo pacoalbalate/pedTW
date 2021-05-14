@@ -140,13 +140,18 @@ public class ListadoDatosControlador {
 	
 		//La extracción de datos Controlada para cada uno de los tres roles existentes
 		Page<Object> datosperfil = null;
+		List<Object> datosperfilGrafica = null;
 //		Page<DatosPerfil> datosperfil = null;
 		if (request.isUserInRole("ROLE_CENTRO")) { 
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, criterios.getFiltroIdsRegion(), criterios.getFiltro(), regionesIn, criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
+			datosperfilGrafica=datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), regionesIn, criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		} else if (request.isUserInRole("ROLE_REGION")) {
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, regionesIn, criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
+			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, regionesIn, criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		} else if (request.isUserInRole("ROLE_GESTOR")) {
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
+			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
+
 		}
 		PagNavegador<Object> pageSelect = new PagNavegador<>(Pag_actual, datosperfil);
 
@@ -162,9 +167,8 @@ public class ListadoDatosControlador {
 		 }
 		modelo.addAttribute("datosperfil_list", datosperfil_list);
 		
-		List<Object> datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		List<DatosPerfil> datosperfil_list1 = new ArrayList<DatosPerfil>();
-
+		
 		for (Object cdata:datosperfilGrafica) {
 			
 			   Object[] obj= (Object[]) cdata;
@@ -172,8 +176,9 @@ public class ListadoDatosControlador {
 			   //datosperfil_list.add(obj);
 			   //System.out.println("1****" + obj[1]+"---"+ obj[2]);
 			 }
-		
-		modelo.addAttribute("datosperfil_list", datosperfil_list);
+		if (!criterios.isFiltroIdActivo()) {
+			datosperfil_list=datosperfil_list1;
+		}
 		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorRegionYTotalDePruebas(datosperfil_list1);
 		modelo.addAttribute("diagramaBarras", diagramaBarras);
 		
