@@ -179,7 +179,7 @@ $(".habilit").on('click',function() {
 <hr>
 <div class="container">
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Graficos </button>
-  <div id="divgraficos" class="collapse">
+  <div id="divgraficos" class="collapse show">
 
 
   <div class="container-xl">
