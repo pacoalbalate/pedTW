@@ -175,6 +175,13 @@ $(".habilit").on('click',function() {
 				</div>
   </div>
 </div>
+
+<hr>
+<div class="container">
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Graficos </button>
+  <div id="divgraficos" class="collapse show">
+
+
   <div class="container-xl">
 		<div class="table-responsive">
 			<div class="table-wrapper">
@@ -193,6 +200,9 @@ $(".habilit").on('click',function() {
 			</div>
 		</div>
 	</div>
+
+  </div>
+</div>
 
 				<table class="table table-striped table-hover table-responsive">
 				<c:import url="../comunes/grid/cabeceras_filas.jsp"></c:import>
