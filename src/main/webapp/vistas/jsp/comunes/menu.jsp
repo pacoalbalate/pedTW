@@ -56,7 +56,7 @@
 				</sec:authorize>
 
 					
-					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/BorradorMemoria.pdf">Memoria</a></li>
+					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/MemoriaContagPlus.pdf">Memoria</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/doc/index.html">Javadoc</a></li>
 				</ul>
 
