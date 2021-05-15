@@ -11,6 +11,36 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+				<ul class="navbar-nav navbar-right d-flex">
+					<sec:authorize access="!isAuthenticated()">
+						<li><a class="btn btn-outline-info" href="${pageContext.request.contextPath}/login">Acceder</a>
+						</li>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<li class="dropdown"><a
+							class="btn btn-outline-success dropdown-toggle" href="#"
+							role="button" id="dropdownMenuLink" data-toggle="dropdown"
+							aria-expanded="false"> <span><sec:authentication
+										property="principal.username" /></span>
+						</a>
+
+							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+							<a class="dropdown-item" href="${pageContext.request.contextPath}/login/change">
+									Cambiar Contraseña</a>
+							<hr class="dropdown-divider">
+								<form id="lgoutForm" action="${pageContext.request.contextPath}/logout" method="POST">
+									<button class="dropdown-item" type="submit"
+										onclick="document.getElementById('logoutForm')"> Desconectar <i class="material-icons">power_settings_new</i> </button>
+									<sec:csrfInput />
+								</form>
+							</div>
+						</li>
+					</sec:authorize>
+				
+				</ul>
+
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<sec:authorize access="hasRole('ROLE_CENTRO')">  
 					<li class="nav-item"><a class="nav-link active"
@@ -53,37 +83,12 @@
 									Graficos</a></li>
 						</ul></li>
 				</sec:authorize>
-					
-				</ul>
-				<ul class="navbar-nav navbar-right d-flex">
-					<sec:authorize access="!isAuthenticated()">
-						<li><a class="btn btn-outline-info" href="${pageContext.request.contextPath}/login">Acceder</a>
-						</li>
-					</sec:authorize>
-					<sec:authorize access="isAuthenticated()">
-						<li class="dropdown"><a
-							class="btn btn-outline-success dropdown-toggle" href="#"
-							role="button" id="dropdownMenuLink" data-toggle="dropdown"
-							aria-expanded="false"> <span><sec:authentication
-										property="principal.username" /></span>
-						</a>
 
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-							<a class="dropdown-item" href="${pageContext.request.contextPath}/login/change">
-									Cambiar Contraseña</a>
-							<hr class="dropdown-divider">
-								<form id="lgoutForm" action="${pageContext.request.contextPath}/logout" method="POST">
-									<button class="dropdown-item" type="submit"
-										onclick="document.getElementById('logoutForm')"> Desconectar <i class="material-icons">power_settings_new</i> </button>
-									<sec:csrfInput />
-								</form>
-							</div>
-						</li>
-					</sec:authorize>
-				
+					
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/BorradorMemoria.pdf">Memoria</a></li>
 					<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/doc/index.html">Javadoc</a></li>
 				</ul>
+
 			</div>
 		</div>
 	</nav>
