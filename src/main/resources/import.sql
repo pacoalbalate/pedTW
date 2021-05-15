@@ -1,4 +1,4 @@
-/* Creamos los usuarios*/
+/* Creamos los usuarios*/ 
 INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('gestor','$2a$10$O9wxmH/AeyZZzIS09Wp8YOEMvFnbRVJ8B4dmAMVSGloR62lj.yqXG',1);
 INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('region1','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
 INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('centro1','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
@@ -220,7 +220,7 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('10', 5, 6);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Felipe', 5, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2017-08-19', 5, 8);
 
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('M', 6, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 6, 1);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 6, 2);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 6, 3);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 6, 4);
