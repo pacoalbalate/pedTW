@@ -19,7 +19,7 @@ window.onload = function() {
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
-		text: "Nº de pacientes por centro."
+		text: "Nº de positivos por centro."
 	},
 	subtitles: [{
 		text: "",
@@ -44,7 +44,7 @@ var chart1 = new CanvasJS.Chart("chartContainer1", {
 	exportEnabled: true,
 	animationEnabled: true,
 	title: {
-		text: "% de centros por región"
+		text: "% de contagios por región"
 	},
 	data: [{
 		type: "pie",

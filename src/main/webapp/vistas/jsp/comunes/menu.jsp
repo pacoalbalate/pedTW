@@ -15,15 +15,15 @@
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<sec:authorize access="hasRole('ROLE_CENTRO')">  
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="${pageContext.request.contextPath}/centro/">Centro</a></li>
+						aria-current="page" href="${pageContext.request.contextPath}/centro/">Pruebas</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="${pageContext.request.contextPath}/listado/">Listado</a></li>
+						aria-current="page" href="${pageContext.request.contextPath}/listado/">Consultas</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_REGION')">  
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="${pageContext.request.contextPath}/usuario/">Usuarios</a></li>
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="${pageContext.request.contextPath}/listado/">Listado</a></li>
+						aria-current="page" href="${pageContext.request.contextPath}/listado/">Consultas</a></li>
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_GESTOR')">  
 					<li class="nav-item dropdown"><a
@@ -45,7 +45,7 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-toggle="dropdown" aria-expanded="false">
-							Datos </a>
+							Consultas </a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/listado/">
 									Listado</a></li>

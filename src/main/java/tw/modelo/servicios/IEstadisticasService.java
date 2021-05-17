@@ -14,7 +14,7 @@ import tw.modelo.entidades.DatosPerfil;
  */
 public interface IEstadisticasService {
 	
-	String obtenerDiagramaBarrasPorCentroyPacientes();
+	String obtenerDiagramaBarrasPorCentroyTotalPositivos();
 	
 	String obtenerDiagramaSectoresPorRegionyCentros();
 	

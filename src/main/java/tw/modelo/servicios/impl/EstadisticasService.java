@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import tw.modelo.entidades.Centro;
+import tw.modelo.entidades.DatosFecha;
 import tw.modelo.entidades.DatosPerfil;
 import tw.modelo.entidades.Region;
 import tw.modelo.servicios.ICentroService;
@@ -34,22 +35,31 @@ public class EstadisticasService implements IEstadisticasService {
 
 	/**
 	 * Devuelve en un String el json resultado para presentar por pantalla
-	 * el diagrama de barras por centro y paciente
+	 * el diagrama de barras del total de positivos por Centro
 	 * @return   
 	 */
 	@Override
-	public String obtenerDiagramaBarrasPorCentroyPacientes() {
+	public String obtenerDiagramaBarrasPorCentroyTotalPositivos() {
 		Gson gsonObj = new Gson();
 		Map<Object, Object> map = null;
 		String dataPoints=null;
+	
 		List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
 
 		List<Centro> centros = centroService.findAll();
 
 		for (Centro centro : centros) {
+			long tp = 0;
+			for (DatosFecha datosFecha :  centro.getDatosfecha()) {
+				for (DatosPerfil datosPerfil : datosFecha.getDatosperfiles()) {
+					tp+=datosPerfil.getTotalpositivos();
+				}
+			}
+		
 			map = new HashMap<Object, Object>();
 			map.put("label", centro.getDenominacion());
-			map.put("y", centro.getPacientes());
+		// 	map.put("y", centro.getPacientes());
+			map.put("y", tp);
 			list.add(map);
 			
 		}
@@ -60,7 +70,7 @@ public class EstadisticasService implements IEstadisticasService {
 
 	/**
 	 * Devuelve en un String el json resultado para presentar por pantalla
-	 * el diagrama de sectores por regiones y centros
+	 * el diagrama de sectores de porcentaje de positivos por región
 	 * @return   
 	 */
 	@Override
@@ -69,13 +79,43 @@ public class EstadisticasService implements IEstadisticasService {
 		Map<Object, Object> map = null;
 		String dataPoints=null;
 		List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
-		int nCentros=centroService.findAll().size();
+		// int nCentros=centroService.findAll().size();
+		
+		
 		List<Region> regiones = regionService.findAll();
-
+// Calcular el total de positivos general
+		long npTotal=0;
+		for (Region regionT : regiones) {
+			
+			map = new HashMap<Object, Object>();
+			map.put("label", regionT.getDenominacion());
+			for (Centro centroT : regionT.getCentros()) {
+				
+				for (DatosFecha datosFechaT :  centroT.getDatosfecha()) {
+					for (DatosPerfil datosPerfilT : datosFechaT.getDatosperfiles()) {
+						npTotal+=datosPerfilT.getTotalpositivos();
+					}
+				}
+			}
+		}
+			
+		
+		
 		for (Region region : regiones) {
+			long tp = 0;
 			map = new HashMap<Object, Object>();
 			map.put("label", region.getDenominacion());
-			map.put("y", (region.getCentros().size()*100/nCentros));
+			for (Centro centro : region.getCentros()) {
+				
+				for (DatosFecha datosFecha :  centro.getDatosfecha()) {
+					for (DatosPerfil datosPerfil : datosFecha.getDatosperfiles()) {
+						tp+=datosPerfil.getTotalpositivos();
+					}
+				}
+			}
+			
+				//map.put("y", tp);
+			map.put("y", (tp*100/npTotal));
 			list.add(map);
 			
 		}

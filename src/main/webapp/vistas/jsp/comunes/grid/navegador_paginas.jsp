@@ -2,7 +2,7 @@
 <nav>
 	<div class="clearfix">
 		<div class="hint-text">
-			Mostrando <b>${pagina.paginaActual}</b> de <b>${pagina.totalPaginas}</b> pagínas
+			Mostrando <b>${pagina.paginaActual}</b> de <b>${pagina.totalPaginas}</b> páginas
 		</div>
 		<ul class="pagination">
 			<li

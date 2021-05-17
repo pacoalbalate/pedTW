@@ -202,7 +202,7 @@ public class CentroAdminControlador {
 	@GetMapping("admin/grafica/datos")
 	public String obtenerGraficas(Model modelo, RedirectAttributes flash) {
 		
-		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorCentroyPacientes();
+		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorCentroyTotalPositivos();
 		String diagramaSectores=estadisticasService.obtenerDiagramaSectoresPorRegionyCentros();
 		
 		modelo.addAttribute("diagramaBarras", diagramaBarras);
