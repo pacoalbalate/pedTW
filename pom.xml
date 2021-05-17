@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tw</groupId>
-	<artifactId>pedTW</artifactId>
+	<artifactId>ContagPlus</artifactId>
 	<version>9.0.1</version>
 	<packaging>war</packaging>
-	<name>pedTW</name>
+	<name>ContagPlus</name>
 	<description>Practica de Tecnologias Web</description>
 
 	<properties>
@@ -127,8 +127,13 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+          <warName>50121516P_52295930W_51400472A.war</warName>
+        </configuration>
  			</plugin>
 		</plugins>
+       <finalName>ContagPlus</finalName>
+		
 	</build>
 
 </project>

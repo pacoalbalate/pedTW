@@ -8,7 +8,7 @@
 </p>
 </sec:authorize>  
 <p>
-	<span><b>Realizado por:</b> Francisco Cobos </span> 
+	<span><b>Realizado por:</b>  Francisco Cobos - Cecilia Crespo - Francisco J. Albalate</span> 
 </p>
 	<p align="right">
 	<span><img src="${pageContext.request.contextPath}/img/logo_uned.gif" alt="Uned logo" />

@@ -21,7 +21,7 @@
 				</sec:authorize>
 				<sec:authorize access="hasRole('ROLE_REGION')">  
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" href="${pageContext.request.contextPath}/usuario/">Region</a></li>
+						aria-current="page" href="${pageContext.request.contextPath}/usuario/">Usuarios</a></li>
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="${pageContext.request.contextPath}/listado/">Listado</a></li>
 				</sec:authorize>
@@ -39,7 +39,7 @@
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/pregunta/list">
 									Perfil</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/usuario/list">
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/usuario/">
 									Usuarios</a></li>
 						</ul></li>
 					<li class="nav-item dropdown"><a

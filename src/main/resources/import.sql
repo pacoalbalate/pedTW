@@ -1,78 +1,37 @@
 /* Creamos los usuarios*/  
 INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('gestor','$2a$10$O9wxmH/AeyZZzIS09Wp8YOEMvFnbRVJ8B4dmAMVSGloR62lj.yqXG',1);
-INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('region1','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
-INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('centro1','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
-INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('region2','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
-INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('centro2','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
+INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('reg_madrid','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
+INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('cen_lapaz','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
+INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('reg_cataluña','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
+INSERT INTO `usuarios` (nombreusuario, clave, activo) VALUES ('cen_clinic','$2a$10$DOMDxjYyfZ/e7RcBfUpzqeaCs8pLgcizuiQWXPkU35nOhZlFcE9MS',1);
 
 /* Creamos los roles */
 INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (1,'ROLE_GESTOR', 0);
-INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (2,'ROLE_REGION', 1);
+INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (2,'ROLE_REGION', 3);
 INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (3,'ROLE_CENTRO', 1);
 INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (4,'ROLE_REGION', 2);
 INSERT INTO `roles` (usuario_id, rol, centro_region) VALUES (5,'ROLE_CENTRO', 2);
 
-/* Datos de las regiones */ 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100); 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400); 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500); 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600); 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300); 
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region uno', 100);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region dos', 200);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region tres', 300);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cuatro', 400);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region cinco', 500);
-INSERT INTO regiones (denominacion, habitantes) VALUES('region seis', 600);
+/* Datos de las regiones */
+INSERT INTO regiones (denominacion, habitantes) VALUES('Andalucía',8464411);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Cataluña',7780479);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Comunidad de Madrid',6779888);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Comunidad Valenciana',5057353);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Galicia',2701819);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Castilla y León',2394918);
+INSERT INTO regiones (denominacion, habitantes) VALUES('País Vasco',2220504);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Canarias',2175952);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Castilla-La Mancha',2045221);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Región de Murcia',1511251);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Aragón',1329391);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Islas Baleares',1171543);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Extremadura',1063987);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Principado de Asturias',1018784);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Navarra',661197);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Cantabria',582905);
+INSERT INTO regiones (denominacion, habitantes) VALUES('La Rioja',319914);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Melilla',87076);
+INSERT INTO regiones (denominacion, habitantes) VALUES('Ceuta',84202);
 
 /* Datos de las opciones disponibles */
 INSERT INTO aux_opciones (opcion, tipo) VALUES('Centro de Salud', 'TIPO_CENTRO');
@@ -105,11 +64,11 @@ INSERT INTO aux_opciones (opcion, tipo, opcionestabla) VALUES('REGION', 'TIPO_RO
 INSERT INTO aux_opciones (opcion, tipo, opcionestabla) VALUES('CENTRO', 'TIPO_ROL', 'ROLE_CENTRO');
 
 /* Datos de los centros */
-INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('centro uno', 100, 1, 1);
-INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('centro dos', 200, 1, 2);
-INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('centro tres', 300, 1, 1);
-INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('centro cuatro', 400, 2, 2);
-INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('centro cinco', 500, 2, 1);
+INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('Hospital La Paz', 1000000, 3, 2);
+INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('Centro de Salud Moralzarzal', 12000, 3, 1);
+INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('Hospital C.Villalba', 500000, 3, 2);
+INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('Hospital Clinic', 1000000, 2, 2);
+INSERT INTO centros (denominacion, pacientes, region_id, tipocentro_id) VALUES('Centro de Salud Las Ramblas', 500000, 2, 1);
 INSERT INTO centros (denominacion, pacientes, tipocentro_id) VALUES('centro cinco', 500, 1);
 INSERT INTO centros (denominacion, pacientes, tipocentro_id) VALUES('centro seis', 600, 2);
 INSERT INTO centros (denominacion, pacientes, tipocentro_id) VALUES('centro cinco', 500, 1);
