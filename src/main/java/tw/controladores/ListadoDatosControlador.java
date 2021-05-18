@@ -217,7 +217,7 @@ public class ListadoDatosControlador {
 			centrosselfiltro = centroService.findAllJoinDatosInRegionesId(regionesIn); 
 		} 
 		modelo.addAttribute("centrosselfiltro", centrosselfiltro);
-		List<AuxOpciones> datosselfiltro = auxopcionesService.findByTipoNotOrderByIdSinRol("TIPO_PREGUNTA");
+		List<AuxOpciones> datosselfiltro = auxopcionesService.findByTipoNotOrderByIdSinRol("OPC_");
 		modelo.addAttribute("datosselfiltro", datosselfiltro);
 
 		return "listado/list_datos";

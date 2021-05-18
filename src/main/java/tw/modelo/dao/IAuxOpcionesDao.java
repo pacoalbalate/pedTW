@@ -27,7 +27,7 @@ public List <AuxOpciones> findByTipoOrderById(String tipo);
 
 public AuxOpciones findByTipoAndOpcion(String tipo, String opcion);
 	
-@Query ("SELECT a FROM AuxOpciones a where tipo != 'TIPO_ROL' and tipo != 'TIPO_CENTRO'")
+@Query ("SELECT a FROM AuxOpciones a where tipo like %?1%")
 public List <AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo); 
 
 public List <AuxOpciones> findByTipoNotOrderById(String tipo); 
