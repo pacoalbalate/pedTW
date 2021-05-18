@@ -53,7 +53,7 @@
 <div class="col-sm-6">
 <div class="container">
 <input type="submit" value="Guardar" class="btn btn-primary"/>
-<label class="col-sm-10 col-form-label text-right">Datos Asociados a la Pregunta: ${numdatospregunta} </label>
+<label class="col-sm-10 col-form-label text-right">Perfiles de Contagios Asociados a la Pregunta: ${numdatospregunta} </label>
 </div>
 </div>
 </div>

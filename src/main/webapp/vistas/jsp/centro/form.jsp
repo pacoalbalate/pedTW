@@ -76,7 +76,7 @@
 <c:if test="${centro.region ==null}">
 <label class="form-control">Pendiente. Sin región asociada...</label>
 </c:if>
-<label class="col-form-label text-right">Datos Asociados al Centro: ${numdatoscentro} </label>
+<label class="col-form-label text-right">Perfiles de Contagios Asociados al Centro: ${numdatoscentro} </label>
 </div>
 </div>
 

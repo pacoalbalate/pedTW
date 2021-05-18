@@ -50,8 +50,7 @@
 							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/listado/">
 									Listado</a></li>
 							<li><hr class="dropdown-divider"></li>
-							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/grafica/datos">Datos
-									Graficos</a></li>
+							<li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin/grafica/datos">Gráficos</a></li>
 						</ul></li>
 				</sec:authorize>
 
