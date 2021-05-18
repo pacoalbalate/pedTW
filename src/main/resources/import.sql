@@ -114,6 +114,10 @@ INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('
 INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-05-15', 1200, 4, 13); 
 INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-05-02', 1000, 5, 12);
 INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-05-02', 500, 5, 13); 
+INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-05-13', 100, 7, 12);
+INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-05-13', 200, 7, 13); 
+INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-04-20', 500, 8, 12);
+INSERT INTO datos_fecha (fecha, totalpruebas, centro_id, tipoprueba_id) VALUES('2021-04-20', 400, 8, 13); 
 
 /* Datos de los totales de positivos por perfil */
 INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(1, 10);
@@ -139,6 +143,14 @@ INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(9, 60);
 INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(9, 70);
 INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(10, 60);
 INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(10, 70);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(11, 70);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(11, 10);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(12, 20);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(12, 30);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(13, 40);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(13, 50);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(14, 60);
+INSERT INTO datos_perfiles (datosfecha_id, totalpositivos) VALUES(14, 70);
 
 /* Datos de las preguntas */
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 1, 1);
@@ -208,9 +220,9 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 8, 1);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('60-69', 8, 2);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 8, 3);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 8, 4);
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Rodríguez', 8, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Vírica', 8, 5);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 8, 6);
-INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Felipe', 8, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Rodríguez', 8, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 8, 8);
 
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 9, 1);
@@ -348,7 +360,75 @@ INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 23, 6);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('García', 23, 7);
 INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 23, 8);
 
- 
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 24, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('30-39', 24, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 24, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 24, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Vírica', 24, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 24, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Pérez', 24, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 24, 8);
 
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 25, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 25, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 25, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 25, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Antígenos', 25, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('200', 25, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('López', 25, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 25, 8);
 
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 26, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('30-39', 26, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 26, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 26, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Vírica', 26, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 26, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('González', 26, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 26, 8);
+
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 27, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 27, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 27, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 27, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Antígenos', 27, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('200', 27, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Hernández', 27, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 27, 8);
+
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 28, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('60-69', 28, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 28, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 28, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Vírica', 28, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 28, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('García', 28, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 28, 8);
+
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Mujer', 29, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('40-49', 29, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 29, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 29, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Antígenos', 29, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('200', 29, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Gómez', 29, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 29, 8);
+
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 30, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('30-39', 30, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 30, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 30, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Vírica', 30, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 30, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Fernández', 30, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 30, 8);
+
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Varón', 31, 1);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('60-69', 31, 2);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Si', 31, 3);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('No', 31, 4);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Antígenos', 31, 5);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('100', 31, 6);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('Velázquez', 31, 7);
+INSERT INTO datos (dato, datosperfil_id, pregunta_id) VALUES('2021-05-31', 31, 8);
 
