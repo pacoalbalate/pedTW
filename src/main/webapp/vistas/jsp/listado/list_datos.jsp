@@ -123,13 +123,13 @@ chart.render();
 								<tr>
 									<th></th>
 									<th><label class="col col-form-label">Seleccione las fechas entre las que desea mostrar:</label></th>
-									<th>Desde: (01/01/2000)<input type="date"  name="datedesde" id="datedesde" class="form-control dat1" value="${criterios.getFiltroDateDesdeString()}"   />
+									<th>Desde: <input type="date"  name="datedesde" id="datedesde" class="form-control dat1" value="${criterios.getFiltroDateDesdeString()}"   />
 									</th>
-									<th>Hasta: (31/12/2999)<input type="date" name="datehasta" id="datehasta"  class="form-control dat2" value="${criterios.getFiltroDateHastaString()}"   />
+									<th>Hasta: <input type="date" name="datehasta" id="datehasta"  class="form-control dat2" value="${criterios.getFiltroDateHastaString()}"   />
 									</th>
-									<th>Deshabilitar: <input type="checkbox" class="form-control habilit"    />
+									<th>Desactivar: <input type="checkbox" class="form-control habilit"  ${criterios.filtroFechaActivo ? '' : 'checked="checked"'}  />
 									</th>
-									<th><button class="btn btn-outline-success" type="submit">Seleccionar</button></th>
+									<th><button class="btn btn-outline-success" type="submit" id="boton-fecha">Seleccionar</button></th>
 								</tr>
 							</form:form>
 
@@ -139,11 +139,17 @@ chart.render();
 <script type="text/javascript">
 $(".habilit").on('click',function() {
     var $dat1 = $(".dat1");
-    if ($dat1.attr('disabled') === 'false') {
-        $dat1.val('01/01/2010');
-        $dat1.attr('disabled', 'true');
+    var $dat2 = $(".dat2");
+    var d1 = (new Date).getFullYear()+"-01-01";
+    var d2 = (new Date).getFullYear()+"-12-31";
+
+    if ($dat1.val()=='2000-01-01') {
+        $dat1.val(d1);
+        $dat2.val(d2);
     } else {
-        $dat1.attr('disabled', 'false');
+        $dat1.val('2000-01-01');
+        $dat2.val('2999-12-31');
+        $("#boton-fecha").click();
     }
 });
 </script>
