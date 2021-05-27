@@ -6,37 +6,132 @@
 
 <%@ include file="../comunes/cabecera.jsp"%> 
 <%
-String diagramData= (String)request.getAttribute("diagramaBarras");
-String sectorData= (String)request.getAttribute("diagramaSectores");
-
- 
+String grafDataPru= (String)request.getAttribute("datosGraficaPruebas");
+String grafDataPos= (String)request.getAttribute("datosGraficaPositivos");
+String grafDataPor= (String)request.getAttribute("datosGraficaPorcentaje");
 %>
 
 <script type="text/javascript">
 window.onload = function() { 
-    var chart = new CanvasJS.Chart("chartContainer", {
+    var chart = new CanvasJS.Chart("grafPositivosDePruebas", {
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
-		text: "Nº de positivos por ${datospor}."
+		text: "Positivos de pruebas por ${datospor}."
 	},
 	subtitles: [{
 		text: "",
 		fontSize: 16
 	}],
 	axisY: {
+		title: "Cantidad",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
 		scaleBreaks: {
 			type: "wavy",
 			autoCalculate: true
 		}
+	},	
+	axisY2: {
+		title: "Porcentaje",
+		suffix: "%",
+		gridThickness: 0,
+		lineColor: "#C0504E",
+		tickColor: "#C0504E",
+		labelFontColor: "#C0504E"
 	},
-	data: [{
+	toolTip: {
+		shared: true
+	},
+	
+	data: [
+	{
 		type: "column",
 		indexLabel: "{y}",
-		dataPoints: <% out.print(diagramData);%>
+		name: "Pruebas",
+		showInLegend: true,
+		dataPoints: <% out.print(grafDataPru);%>
+	},
+	{
+		type: "area",
+		name: "Positivos",
+		markerBorderColor: "white",
+		markerBorderThickness: 2,
+		showInLegend: true,		
+		indexLabel: "{y}",
+		dataPoints: <% out.print(grafDataPos);%>
 	}]
 }   );
 chart.render(); 
+creaPorcentaje();
+
+function creaPorcentaje(){
+	var dps = [];
+	var yValue, yTotal = 0, yPercent = 0;
+
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
+		yValue1 = chart.data[0].dataPoints[i].y;
+		yValue2 = chart.data[1].dataPoints[i].y;
+		yPercent = ((yValue2 * 100) / yValue1);
+		dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent });
+	}
+	chart.addTo("data", {type:"line", name:"Porcentaje", axisYType: "secondary", 
+		yValueFormatString: "0.##\"%\"", indexLabel: "{y}", markerBorderColor: "white",
+		markerBorderThickness: 2, indexLabelFontColor: "#C24642", dataPoints: dps});
+	chart.axisY2[0].set("maximum", 105, false )
+}
+
+
+
+    var chart2 = new CanvasJS.Chart("grafPruebasYPositivos", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	title: {
+		text: "Pruebas y positivos por ${datospor}."
+	},
+	axisY: {
+		title: "Pruebas",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		scaleBreaks: {
+			type: "wavy",
+			autoCalculate: true
+		}
+	},	
+	axisY2: {
+		title: "Positivos",
+		gridThickness: 0,
+		scaleBreaks: {
+			type: "wavy",
+			autoCalculate: true
+		}
+	},	
+	toolTip: {
+		shared: true
+	},
+	
+	data: [
+	{
+		type: "column",
+		indexLabel: "{y}",
+		name: "Pruebas",
+		showInLegend: true,
+		dataPoints: <% out.print(grafDataPru);%>
+	},
+	{
+		type: "column",
+		name: "Positivos",
+		axisYType: "secondary",
+		showInLegend: true,		
+		indexLabel: "{y}",
+		dataPoints: <% out.print(grafDataPos);%>
+	}]
+}   );
+chart2.render(); 
+
+
 }
 </script>
 
@@ -201,7 +296,9 @@ $(".habilit").on('click',function() {
 						</div>
 					</div>
 				</div>
-				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+				<div id="grafPositivosDePruebas" style="height: 370px; width: 100%;"></div>
+				<br/>
+				<div id="grafPruebasYPositivos" style="height: 370px; width: 100%;"></div>
 				<br/>
 			</div>
 		</div>

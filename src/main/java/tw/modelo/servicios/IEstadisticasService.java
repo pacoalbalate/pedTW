@@ -18,6 +18,6 @@ public interface IEstadisticasService {
 	
 	String obtenerDiagramaSectoresPorRegionyCentros();
 	
-	String obtenerDiagramaBarrasPorRegionYTotalDePruebas(List<DatosPerfil> lista);
+	String obtenerDatosGrafica(List<DatosPerfil> lista, String tipo, String grupo);
 
 }

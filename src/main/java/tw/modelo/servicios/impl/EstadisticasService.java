@@ -124,14 +124,19 @@ public class EstadisticasService implements IEstadisticasService {
 		return dataPoints;
 	}
 	
+	/**
+	 * Devuelve en un String el json resultado de los datos para presentar
+	 * por pantallael grafico que se le solicita segun el tipo y grupo indicados
+	 * @return   
+	 */
 	@Override
-	public String obtenerDiagramaBarrasPorRegionYTotalDePruebas(List<DatosPerfil> lista) {
+	public String obtenerDatosGrafica(List<DatosPerfil> lista, String tipo, String grupo) {
 		Gson gsonObj = new Gson();
 		Map<Object, Object> map = null;
 		String dataPoints=null;
 		List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
 
-		for (Entry<String, Long> datosPerfil : getRegionAndTotalPositives(lista).entrySet()) {
+		for (Entry<String, Long> datosPerfil : getGrupoAndTotal(lista, tipo, grupo).entrySet()) {
 			map = new HashMap<Object, Object>();
 			map.put("label", datosPerfil.getKey());
 			map.put("y", datosPerfil.getValue());
@@ -143,20 +148,42 @@ public class EstadisticasService implements IEstadisticasService {
 		return dataPoints;
 	}
 	
-	private Map<String,Long> getRegionAndTotalPositives(List<DatosPerfil> lista){
-		Map<String,Long> regions= new HashMap<String, Long>();
+	private Map<String,Long> getGrupoAndTotal(List<DatosPerfil> lista, String tipo, String grupo){
+		Map<String,Long> grupos= new HashMap<String, Long>();
 		
 		for (DatosPerfil datosPerfil : lista) {
-			String denominacion=datosPerfil.getDatosfecha().getCentro().getRegion().getDenominacion();
-			//Long num=datosPerfil.getDatosfecha().getTotalpruebas();
-			Long numPositivos = datosPerfil.getTotalpositivos();
-			if(regions.containsKey(denominacion)) {
-				 numPositivos+=regions.get(denominacion);
+			String denominacion="";
+			switch(grupo) {
+			  case "centro":
+				  denominacion=datosPerfil.getDatosfecha().getCentro().getDenominacion();
+			    break;
+			  case "region":
+				  denominacion=datosPerfil.getDatosfecha().getCentro().getRegion().getDenominacion();
+			    break;
+			  	//default:
+			    // code block
 			}
-			regions.put(denominacion,numPositivos);
+			
+			Long num=0L;
+			switch(tipo) {
+			  case "pruebas":
+					num=datosPerfil.getDatosfecha().getTotalpruebas();
+			    break;
+			  case "positivos":
+					num = datosPerfil.getTotalpositivos();
+			    break;
+			  	//default:
+			    // code block
+			}
+			
+			
+			if(grupos.containsKey(denominacion)) {
+				 num+=grupos.get(denominacion);
+			}
+			grupos.put(denominacion,num);
 		}
 		
-		return regions;
+		return grupos;
 		
 	}
 	
