@@ -132,6 +132,11 @@ function creaPorcentaje(){
 chart2.render(); 
 
 
+function creaGraficos(){
+};
+
+
+
 }
 </script>
 
@@ -280,7 +285,7 @@ $(".habilit").on('click',function() {
 <hr>
 <div class="container">
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Graficos </button>
-  <div id="divgraficos" class="collapse show">
+  <div id="divgraficos" class="collapse " onclick="javascript:my_function();">
 
 				<div>
 					<table class="table table-striped table-hover ">
