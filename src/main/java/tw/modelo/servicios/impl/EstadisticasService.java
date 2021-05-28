@@ -154,13 +154,23 @@ public class EstadisticasService implements IEstadisticasService {
 		for (DatosPerfil datosPerfil : lista) {
 			String denominacion="";
 			switch(grupo) {
-			  case "centro":
+			  case "Centro":
 				  denominacion=datosPerfil.getDatosfecha().getCentro().getDenominacion();
 			    break;
-			  case "region":
+			  case "Fecha":
+				  denominacion=datosPerfil.getDatosfecha().getFecha().toString();
+			    break;
+			  case "Tipo de Prueba":
+				  denominacion=datosPerfil.getDatosfecha().getTipoprueba().getOpcion();
+			    break;
+			  case "Región":
 				  denominacion=datosPerfil.getDatosfecha().getCentro().getRegion().getDenominacion();
 			    break;
-			  	//default:
+			  case "Tipo de Centro":
+				  denominacion=datosPerfil.getDatosfecha().getCentro().getTipocentro().getOpcion();
+			    break;
+			  default:
+				  denominacion=datosPerfil.getDatos().get(Integer.parseInt(grupo)).getDato();
 			    // code block
 			}
 			

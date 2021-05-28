@@ -282,6 +282,31 @@ $(".habilit").on('click',function() {
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Graficos </button>
   <div id="divgraficos" class="collapse show">
 
+				<div>
+					<table class="table table-striped table-hover ">
+						<tbody>
+							<form:form action="${pageContext.request.contextPath}/${criterios.pagActual}/filter/dato" method="POST"  >
+
+								<tr>
+									<th></th>
+									<th><label class="col col-form-label">Seleccione los datos del grafico que desea mostrar:</label></th>
+									<th><c:if test="${centrosselfiltro.isEmpty()}">
+											<div class="alert alert-info my-4">No existen
+												datos...</div>
+										</c:if> <select name="datosfiltrar" id="datosfiltrar"  class="form-control" >
+											<c:forEach var="cto" items="${xgrafica}">
+												<option value="${cto}"
+													Label="${cto}"
+													${criterios.getFiltroIdsDato().contains(cto) ? 'selected' : ''} />
+											</c:forEach>
+									</select></th>
+									<th><button class="btn btn-outline-success" type="submit">Seleccionar</button></th>
+								</tr>
+							</form:form>
+
+						</tbody>
+					</table>
+				</div>
 
   <div class="container-xl">
 		<div class="table-responsive">
