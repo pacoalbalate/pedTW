@@ -17,7 +17,7 @@ window.onload = function() {
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
-		text: "Positivos de pruebas por ${datospor}."
+		text: "Ralación de Positivos con pruebas por ${datospor}."
 	},
 	subtitles: [{
 		text: "",
