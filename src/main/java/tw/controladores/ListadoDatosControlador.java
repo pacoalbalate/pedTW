@@ -151,7 +151,6 @@ public class ListadoDatosControlador {
 		} else if (request.isUserInRole("ROLE_GESTOR")) {
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
 			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
-
 		}
 		PagNavegador<Object> pageSelect = new PagNavegador<>(Pag_actual, datosperfil);
 
@@ -168,9 +167,7 @@ public class ListadoDatosControlador {
 		modelo.addAttribute("datosperfil_list", datosperfil_list);
 		
 		List<DatosPerfil> datosperfil_list1 = new ArrayList<DatosPerfil>();
-		
 		for (Object cdata:datosperfilGrafica) {
-			
 			   Object[] obj= (Object[]) cdata;
 			   datosperfil_list1.add((DatosPerfil)obj[0]);
 			   //datosperfil_list.add(obj);
@@ -179,30 +176,54 @@ public class ListadoDatosControlador {
 		if (!criterios.isFiltroIdActivo()) {
 			datosperfil_list=datosperfil_list1;
 		}
-		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorRegionYTotalDePruebas(datosperfil_list1);
-		modelo.addAttribute("diagramaBarras", diagramaBarras);
+		
+		// Calculo de datos para las graficas
+		String datosGraficaPruebas="";
+		String datosGraficaPositivos="";
+		String tituloGrafica="";
+		if (request.isUserInRole("ROLE_CENTRO")) { 
+			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Tipo de Prueba");
+			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Tipo de Prueba");
+			tituloGrafica="Tipo de Prueba";
+		} else if (request.isUserInRole("ROLE_REGION")) {
+			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Centro");
+			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Centro");
+			tituloGrafica="Centro";
+		} else if (request.isUserInRole("ROLE_GESTOR")) {
+			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Región");
+			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Región");
+			tituloGrafica="Región";
+		}
+		modelo.addAttribute("datosGraficaPruebas", datosGraficaPruebas);
+		modelo.addAttribute("datosGraficaPositivos", datosGraficaPositivos);
+		modelo.addAttribute("datospor", tituloGrafica);  
 		
 		List<String> colcampos = new ArrayList<>(Arrays.asList("Id", "Región", "Centro", "Tipo Centro", "Pruebas", "Fecha", "Tipo Prueba", "Positivos Perfil"));	
 		//List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "", "", "", "", "", "", "totalpositivos"));
 		List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "r.denominacion", "c.denominacion", "tc.opcion", "df.totalpruebas", "df.fecha", "tp.opcion", "totalpositivos"));
+
+		List<String> xGrafica = new ArrayList<>(Arrays.asList("Región", "Centro", "Fecha", "Tipo de Prueba", "Tipo de Centro"));
+		List<String> xGraficaValor = new ArrayList<>(Arrays.asList("Región", "Centro", "Fecha", "Tipo de Prueba", "Tipo de Centro"));
+
 		List<Pregunta> preguntas = preguntaService.findAll();
+		Integer contador = 0;
 		for (Pregunta pregunta: preguntas) {
 			colcampos.add(pregunta.getDenominacion());
 			bddcampos.add("");
+			
+			xGrafica.add(pregunta.getDenominacion());
+			xGraficaValor.add(contador.toString());
+			contador++;
 		}
 		criterios.setNombreColCampos(colcampos);
 		criterios.setNombreBddCampos(bddcampos);
 		
+		modelo.addAttribute("xgrafica", xGrafica);
 		modelo.addAttribute("titulo", "Listado de <b>Datos</b>");
 		modelo.addAttribute("criterios", criterios);
 		modelo.addAttribute("pagina", pageSelect);
 		//modelo.addAttribute("srvaux", auxopcionesService);
 		modelo.addAttribute("regId", regId);
-		if (request.isUserInRole("ROLE_CENTRO")) { 
-			modelo.addAttribute("datospor", "de la Región por Centro");
-		} else {
-			modelo.addAttribute("datospor", "Región");
-		}
 
 		//Mostramos solo los centros con datos y a los que tiene acceso
 		List<Region> regionesselfiltro = null;
@@ -220,7 +241,7 @@ public class ListadoDatosControlador {
 		List<AuxOpciones> datosselfiltro = auxopcionesService.findByTipoNotOrderByIdSinRol("OPC_");
 		modelo.addAttribute("datosselfiltro", datosselfiltro);
 
-		return "listado/list_datos";
+		return "listado/list_datos"; 
 	}
 
 	/**
