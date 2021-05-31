@@ -12,7 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
- * Clase del modelo de negocio correspondiente a la entidad Opciones
+ * Clase del modelo de negocio correspondiente a la entidad de Opciones 
  * Opciones parametrizables (roles, tramos de edades, tiposde prueba, etc)
  * Clase auxiliar
  *
@@ -42,7 +42,7 @@ public class AuxOpciones implements Serializable {
 
 	
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return  id
 	 */
 	public Long getId() {
@@ -50,7 +50,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * v
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -58,7 +58,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Tipo de opción. 
+	 * Devuelve El Tipo de opción. 
 	 * @return tipo
 	 */
 	public String getTipo() {
@@ -66,7 +66,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Tipo de opción
+	 * Establece El Tipo de opción
 	 * @param tipo 
 	 */
 	public void setTipo(String tipo) {
@@ -74,7 +74,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Descripcion
+	 * Devuelve La Descripcion
 	 * @return  opcion
 	 */
 	public String getOpcion() {
@@ -82,7 +82,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Descripcion
+	 * Establece La Descripcion
 	 * @param opcion 
 	 */
 	public void setOpcion(String opcion) {
@@ -90,7 +90,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Si el tipo es una opcion
+	 * Devuelve El tipo de sus opciones en la tabla si la opción es compuesta
 	 * @return opcionestabla
 	 */
 	public String getOpcionestabla() {
@@ -98,7 +98,7 @@ public class AuxOpciones implements Serializable {
 	}
 
 	/**
-	 * Si el tipo es una opcion
+	 * Establece El tipo de sus opciones en la tabla si la opción es compuesta
 	 * @param opcionestabla
 	 */
 	public void setOpcionestabla(String opcionestabla) {

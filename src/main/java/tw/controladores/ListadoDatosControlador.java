@@ -49,7 +49,8 @@ import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
 /**
- * Clase controladora. Encargada de generar los listados de perfiles
+ * Clase controladora. Encargada de generar los listados de perfiles, 
+ * exportación, consulta de datos y graficas
  */
 @Controller 
 @SessionAttributes({"criterios"})
@@ -79,8 +80,9 @@ public class ListadoDatosControlador {
 	private IRolService rolService;
 
 	/**
-	 * Busca el centro asegurando que el usuario tiene permisos
-	 * @return
+	 * Busca el centro o región para el que el usuario tiene permisos
+	 * 
+	 * @return página de la vista con los datos a los que tiene acceso
 	 */
 	@GetMapping("listado/")
 	public String busca_centro() {
@@ -93,14 +95,16 @@ public class ListadoDatosControlador {
 		}
 	}
 	
-	/** Construye el listado y los filtros
+	/** 
+	 * Construye el listado y las graficas 
+	 * con filtrado, paginación y ordenación
 	 * 
 	 * @param params
-	 * @param regId
+	 * @param regId Id de centro o región permitido
 	 * @param modelo
 	 * @param request
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("listado/{regId}/datos/view")
 	public String ver_datos(@RequestParam Map<String, Object> params, 
@@ -111,7 +115,7 @@ public class ListadoDatosControlador {
 			return "/login/error_permisos";
 		}
 
-		String Pag_actual = "listado/"+regId+"/datos/view";
+		String Pag_actual = "listado/"+regId+"/datos/view"; 
 		
 		//Mantener los datos de navegacion existentes
 		PaginaCriterios criterios;
@@ -138,19 +142,15 @@ public class ListadoDatosControlador {
 		}
 
 	
-		//La extracción de datos Controlada para cada uno de los tres roles existentes
+		//La extracción de datos del listado Controlada para cada uno de los tres roles existentes
 		Page<Object> datosperfil = null;
-		List<Object> datosperfilGrafica = null;
 //		Page<DatosPerfil> datosperfil = null;
 		if (request.isUserInRole("ROLE_CENTRO")) { 
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, criterios.getFiltroIdsRegion(), criterios.getFiltro(), regionesIn, criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
-			datosperfilGrafica=datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), regionesIn, criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		} else if (request.isUserInRole("ROLE_REGION")) {
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, regionesIn, criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
-			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, regionesIn, criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		} else if (request.isUserInRole("ROLE_GESTOR")) {
 			datosperfil = datosperfilService.findByIdInWithKeywordDistint(pageable, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
-			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(null, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta()).toList();
 		}
 		PagNavegador<Object> pageSelect = new PagNavegador<>(Pag_actual, datosperfil);
 
@@ -166,59 +166,85 @@ public class ListadoDatosControlador {
 		 }
 		modelo.addAttribute("datosperfil_list", datosperfil_list);
 		
-		List<DatosPerfil> datosperfil_list1 = new ArrayList<DatosPerfil>();
-		for (Object cdata:datosperfilGrafica) {
-			   Object[] obj= (Object[]) cdata;
-			   datosperfil_list1.add((DatosPerfil)obj[0]);
-			   //datosperfil_list.add(obj);
-			   //System.out.println("1****" + obj[1]+"---"+ obj[2]);
-			 }
-		if (!criterios.isFiltroIdActivo()) {
-			datosperfil_list=datosperfil_list1;
+
+
+		//La extracción de datos de las graficas Controlada para cada uno de los tres roles existentes
+		Pageable pageableG = PageRequest.of(0, Integer.MAX_VALUE, Sort.by(Sort.Direction.valueOf(criterios.getOrderBy()),criterios.getSortBy()));
+		Page<Object> datosperfilGrafica = null;
+		//Page<DatosPerfil> datosperfil = null;
+		if (request.isUserInRole("ROLE_CENTRO")) { 
+			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(pageableG, criterios.getFiltroIdsRegion(), criterios.getFiltro(), regionesIn, criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
+		} else if (request.isUserInRole("ROLE_REGION")) {
+			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(pageableG, regionesIn, criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
+		} else if (request.isUserInRole("ROLE_GESTOR")) {
+			datosperfilGrafica = datosperfilService.findByIdInWithKeywordDistint(pageableG, criterios.getFiltroIdsRegion(), criterios.getFiltro(), criterios.getFiltroIdsCentro(), criterios.getFiltroIdsDato(), criterios.getFiltroDateDesde(), criterios.getFiltroDateHasta());
 		}
+
+		List<Object> cdataListG = datosperfilGrafica.toList();
+	    List<DatosPerfil> datosperfil_listG =  new ArrayList<DatosPerfil>();
+		for (Object cdata:cdataListG) {
+		   Object[] obj= (Object[]) cdata;
+		   datosperfil_listG.add((DatosPerfil)obj[0]);
+		 }
 		
 		// Calculo de datos para las graficas
-		String datosGraficaPruebas="";
-		String datosGraficaPositivos="";
-		String tituloGrafica="";
+		String tituloGrafica= criterios.getXGrafica();
+		List<String> xGrafica = new ArrayList<>(Arrays.asList("Tipo de Prueba", "Fecha", "Tipo de Centro"));
+		List<String> xGraficaValor = new ArrayList<>(Arrays.asList("Tipo de Prueba", "Fecha", "Tipo de Centro"));
+
 		if (request.isUserInRole("ROLE_CENTRO")) { 
-			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Tipo de Prueba");
-			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Tipo de Prueba");
-			tituloGrafica="Tipo de Prueba";
+			tituloGrafica=(tituloGrafica=="")?"Tipo de Prueba":tituloGrafica;
 		} else if (request.isUserInRole("ROLE_REGION")) {
-			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Centro");
-			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Centro");
-			tituloGrafica="Centro";
+			tituloGrafica=(tituloGrafica=="")?"Centro":tituloGrafica;
+			xGrafica.add(0, "Centro");
+			xGraficaValor.add(0, "Centro");
 		} else if (request.isUserInRole("ROLE_GESTOR")) {
-			datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "pruebas", "Región");
-			datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_list1, "positivos", "Región");
-			tituloGrafica="Región";
+			tituloGrafica=(tituloGrafica=="")?"Región":tituloGrafica;
+			xGrafica.add(0, "Centro");
+			xGraficaValor.add(0, "Centro");
+			xGrafica.add(0, "Región");
+			xGraficaValor.add(0, "Región");
 		}
+		criterios.setXGrafica(tituloGrafica);
+
+		List<Pregunta> preguntas = preguntaService.findAll();
+
+		Integer contador = 0;
+		for (Pregunta pregunta: preguntas) {
+			xGrafica.add(pregunta.getDenominacion());
+			xGraficaValor.add(contador.toString());
+			contador++;
+		}
+
+		String valorGrafica= xGraficaValor.get(xGrafica.indexOf(tituloGrafica));
+		String datosGraficaPruebas="";
+		String datosGraficaPositivos=""; 
+
+		datosGraficaPruebas=estadisticasService.obtenerDatosGrafica(datosperfil_listG, "pruebas", valorGrafica);
+		datosGraficaPositivos=estadisticasService.obtenerDatosGrafica(datosperfil_listG, "positivos", valorGrafica);
+
 		modelo.addAttribute("datosGraficaPruebas", datosGraficaPruebas);
 		modelo.addAttribute("datosGraficaPositivos", datosGraficaPositivos);
+		modelo.addAttribute("xgrafica", xGrafica);
 		modelo.addAttribute("datospor", tituloGrafica);  
+
+
 		
 		List<String> colcampos = new ArrayList<>(Arrays.asList("Id", "Región", "Centro", "Tipo Centro", "Pruebas", "Fecha", "Tipo Prueba", "Positivos Perfil"));	
 		//List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "", "", "", "", "", "", "totalpositivos"));
 		List<String> bddcampos = new ArrayList<>(Arrays.asList("id", "r.denominacion", "c.denominacion", "tc.opcion", "df.totalpruebas", "df.fecha", "tp.opcion", "totalpositivos"));
 
-		List<String> xGrafica = new ArrayList<>(Arrays.asList("Región", "Centro", "Fecha", "Tipo de Prueba", "Tipo de Centro"));
-		List<String> xGraficaValor = new ArrayList<>(Arrays.asList("Región", "Centro", "Fecha", "Tipo de Prueba", "Tipo de Centro"));
+		//List<Pregunta> preguntas = preguntaService.findAll();
+		//Usamos el mismo que hemos sacado para las graficas 
 
-		List<Pregunta> preguntas = preguntaService.findAll();
-		Integer contador = 0;
 		for (Pregunta pregunta: preguntas) {
 			colcampos.add(pregunta.getDenominacion());
 			bddcampos.add("");
-			
-			xGrafica.add(pregunta.getDenominacion());
-			xGraficaValor.add(contador.toString());
-			contador++;
 		}
 		criterios.setNombreColCampos(colcampos);
 		criterios.setNombreBddCampos(bddcampos);
 		
-		modelo.addAttribute("xgrafica", xGrafica);
+		
 		modelo.addAttribute("titulo", "Listado de <b>Datos</b>");
 		modelo.addAttribute("criterios", criterios);
 		modelo.addAttribute("pagina", pageSelect);
@@ -238,20 +264,20 @@ public class ListadoDatosControlador {
 			centrosselfiltro = centroService.findAllJoinDatosInRegionesId(regionesIn); 
 		} 
 		modelo.addAttribute("centrosselfiltro", centrosselfiltro);
-		List<AuxOpciones> datosselfiltro = auxopcionesService.findByTipoNotOrderByIdSinRol("OPC_");
+		List<AuxOpciones> datosselfiltro = auxopcionesService.findByTipoContainingOrderById("OPC_");
 		modelo.addAttribute("datosselfiltro", datosselfiltro);
 
 		return "listado/list_datos"; 
 	}
 
 	/**
-	 * Realiza el filtrado por región
+	 * Realiza el filtrado por regiones
 	 * 
 	 * @param regionesId
-	 * @param regId
+	 * @param regId Id de centro o región permitido
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("listado/{regId}/datos/view/filter/region")
 	public String ver_datos_filtraRegiones(@RequestParam(value = "regionesfiltrar", required = false) long[] regionesId,
@@ -289,10 +315,10 @@ public class ListadoDatosControlador {
 	 * Realiza el filtrado por centro
 	 * 
 	 * @param centrosId
-	 * @param regId
+	 * @param regId Id de centro o región permitido
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("listado/{regId}/datos/view/filter/centro")
 	public String ver_datos_filtraCentros(@RequestParam(value = "centrosfiltrar", required = false) long[] centrosId,
@@ -330,10 +356,10 @@ public class ListadoDatosControlador {
 	 * 
 	 * @param datedesde
 	 * @param datehasta
-	 * @param regId
+	 * @param regId Id de centro o región permitido
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("listado/{regId}/datos/view/filter/date")
 	public String ver_datos_filtraFecha(
@@ -368,13 +394,13 @@ public class ListadoDatosControlador {
 	
     
 	/**
-	 * Realiza el filtrado por los datos del perfil 
+	 * Realiza el filtrado por los datos seleccionables del perfil 
 	 * 
 	 * @param datosId
-	 * @param regId
+	 * @param regId Id de centro o región permitido
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("listado/{regId}/datos/view/filter/dato")
 	public String ver_datos_filtraDatos(@RequestParam(value = "datosfiltrar", required = false) String[] datosId,
@@ -406,12 +432,50 @@ public class ListadoDatosControlador {
 		
 		return "redirect:/listado/"+regId+"/datos/view";
 	}
+
+	
+	
+	
+	
+	/**
+	 * Realiza la selección del eje x del grafico
+	 * 
+	 * @param datosgrafx
+	 * @param regId Id de centro o región permitido
+	 * @param modelo
+	 * @param flash
+	 * @return página de la vista
+	 */
+	@PostMapping("listado/{regId}/datos/view/grafx")
+	public String ver_datos_graficaX(
+			@RequestParam(value = "datosgrafx", required = false) String datosgrafx,
+			@PathVariable("regId") Long regId,
+			Model modelo, RedirectAttributes flash) {
+
+		if (getIdInRole("ROLE_REGION", "ROLE_GESTOR", "ROLE_CENTRO")!=regId) {
+			return "/login/error_permisos";
+		}
+
+		PaginaCriterios criterios = null;
+		if ((datosgrafx== null) || (datosgrafx== "")) {
+			flash.addFlashAttribute("danger", "El grafico no se puede generar. El dato solicitado no es correcto");
+		} else if (modelo.containsAttribute("criterios")) {
+			criterios = (PaginaCriterios) modelo.getAttribute("criterios");
+			criterios.setXGrafica(datosgrafx);
+			flash.addFlashAttribute("info", "Modificado el dato del eje X de los graficos");
+		}
+
+		return "redirect:/listado/"+regId+"/datos/view";
+	}
+	
+    
 	
     /**
      * Método encargado de generar un fichero para 
      * exportar el listado a CSV y escribirlo
+     * 
      * @param response
-     * @param regId
+	 * @param regId Id de centro o región permitido
      * @param modelo
      * @param request
      * @param flash
@@ -513,9 +577,10 @@ public class ListadoDatosControlador {
 
  
    
-   /**
-	 * Autenticación del usuario en el centro
-	 * @return indiceRol
+	/**
+	 * Comprueba la autenticación del usuario
+	 * 
+	 * @return El indice del centro o región autorizadas en su rol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		
@@ -542,32 +607,31 @@ public class ListadoDatosControlador {
 		return resultado;
 	}
 
-	
-	
-	
-//	@GetMapping("listado/{regId}/")
-//	public String formulario_ver(@PathVariable("regId") Long Id, Model modelo) {
-//	
-//		Region region = (Region) regionService.findById(Id);
-//
-//		modelo.addAttribute("titulo", "Formulario Región");
-//		modelo.addAttribute("region", region);
-//
-//		return "/listado/form";
-//	}
 
 	
-	/*
-	 * @PostMapping({"/segundoPaso"}) public String muestraPagina(HttpServletRequest
-	 * request, Model modelo) { String nombre=request.getParameter("nombreCentro");
-	 * nombre += " fue el capturado"; String mensaje =
-	 * "Podemos pasar lo que quieras";
+	
+	
+	
+	/**
+	 * Obtiene los datos para el apartado exclusivo de gráficos en las consultas
 	 * 
-	 * modelo.addAttribute("nombrePasado", nombre);
-	 * modelo.addAttribute("mensajePasado", mensaje);
-	 * 
-	 * return "pagSegunda"; }
+	 * @param modelo
+	 * @param flash
+	 * @return página de la vista
 	 */
+	@GetMapping("admin/grafica/datos")
+	public String obtenerGraficas(Model modelo, RedirectAttributes flash) {
+		
+		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorCentroyTotalPositivos();
+		String diagramaSectores=estadisticasService.obtenerDiagramaSectoresPorRegionyCentros();
+		
+		modelo.addAttribute("diagramaBarras", diagramaBarras);
+		modelo.addAttribute("diagramaSectores", diagramaSectores);
+
+
+		return "/grafica/list";
+	}
+
 }
 
 

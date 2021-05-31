@@ -19,25 +19,76 @@ import tw.modelo.entidades.Centro;
  */
 public interface ICentroService {
 	
-	public List<Centro> findAll();
+	/**
+	 * Guarda el centro en BD
+	 * @param centro
+	 */
+	void save(Centro centro);
 
-	public Page<Centro> findAll(Pageable pageable);
-	
-	public Page<Centro> findAllWithKeyword(Pageable pageable, String keyword);
+	/**
+	 * Búsqueda de centro por identificador
+	 * @param id
+	 */
+	Centro findById(Long id);
 
-	public Centro findById(Long id);
-	
-	public void save(Centro centro);
+	/**
+	 * Borrado del centro por identificador
+	 * @param id
+	 */
+	void delete(Long id);
 
-	public void delete(Long id);
-	
-	public Page<Centro> findByIdInWithKeyword(Pageable pageable, List<Long> centrosId, String keyword);
+	/**
+	 * Devuelve lista de todos los centros
+	 * @return
+	 */
+	List<Centro> findAll();
 
-	public List<Centro> findAllJoinDatos();  
-	
-	public List<Centro> findAllJoinDatosInRegionesId(List<Long> regionesId);
-	
-	public List<Centro> findByRegion_idIsNullOrderByDenominacionAsc(); 
+	/**
+	 * Devuelve los centros en un objeto paginable para
+	 * presentar por pantalla
+	 * @param pageable el objeto página
+	 * @return 
+	 */
+	Page<Centro> findAll(Pageable pageable);
 
+	/**
+	 * Devuelve los centros en un objeto paginable para
+	 * presentar por pantalla según criterios de seleccion
+	 * @param pageable el objeto página
+	 * @param keyword Criterios de selección
+	 * @return 
+	 */
+	Page<Centro> findAllWithKeyword(Pageable pageable, String keyword);
+
+	/**
+	 * Devuelve los centros en un objeto paginable para
+	 * presentar por pantalla todos o por conjunto de identificadores y criterios de selección
+	 * @param pageable el objeto página
+	 * @param centrosId lista de identificadores
+	 * @param keyword criterios de selección
+	 * @return 
+	 */
+	Page<Centro> findByIdInWithKeyword(Pageable pageable, List<Long> centrosId, String keyword);
+
+	/** 
+	 * Devuelve lista de centros con datosfecha (pruebas) asociadas
+	 * de todos los centros y sus pruebas
+	 * @return 
+	 */
+	List<Centro> findAllJoinDatos();
+
+	/** 
+	 * Devuelve lista de todos los centros con datosfecha (pruebas)
+	 * de los pertenecientes a un conjunto de identificadores de región
+	 * @param regionesId lista de identificadores de región
+	 * @return 
+	 */
+	List<Centro> findAllJoinDatosInRegionesId(List<Long> regionesId);
+
+	/**
+	 * Método que devuelve los centros sin asociar a region
+	 * @return
+	 */
+	List<Centro> findByRegion_idIsNullOrderByDenominacionAsc();
 
 }

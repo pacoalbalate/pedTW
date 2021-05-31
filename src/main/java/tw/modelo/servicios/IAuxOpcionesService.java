@@ -16,19 +16,45 @@ import tw.modelo.entidades.AuxOpciones;
  *
  */
 public interface IAuxOpcionesService {
-	
-	public AuxOpciones findById(Long id);
-	
-	public AuxOpciones findById(String id);
-	
-	public List<AuxOpciones> findByTipoOrderById(String tipo);
-	
-	public AuxOpciones findByTipoAndOpcion(String tipo, String opcion);
+	/**
+	 * Busca por Id de opción
+	 * @param el id
+	 * @return DAO Opciones
+	 * 
+	 */
+	AuxOpciones findById(Long id);
 
-	public List <AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo); 
-	
-	public List <AuxOpciones> findByTipoNotOrderById(String tipo); 
-	
-	public List <AuxOpciones> findByTipoContainingOrderById(String tipo);
+	/**
+	 * Busca por Id de opción
+	 * sobrecarga del metodo en formato String
+	 * @param el id
+	 * @return DAO Opciones
+	 * 
+	 */
+	AuxOpciones findById(String id);
+
+	/**
+	 * Devuelve lista de opciones ordenadas por el id
+	 * @param tipo de opcion
+	 * @return list de Dao opciones
+	 */
+	List<AuxOpciones> findByTipoOrderById(String tipo);
+
+	/**
+	 * Devuelve opcion por tipo y nombre
+	 * @param tipo
+	 * @param opcion
+	 * @return DAO Opciones
+	 * 
+	 */
+	AuxOpciones findByTipoAndOpcion(String tipo, String opcion);
+
+	/**
+	 * Devuelve lista de opciones que contienen el parametro indicado 
+	 * como parte del tipo, ordenadas por el id
+	 * @param tipo de opcion
+	 * @return list de Dao opciones
+	 */
+	List<AuxOpciones> findByTipoContainingOrderById(String tipo);
 
 }

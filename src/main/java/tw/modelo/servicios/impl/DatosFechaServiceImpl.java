@@ -25,7 +25,7 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 	private IDatosFechaDao datosfechaDao;
 
 	/**
-	 * graba en bd la prueba
+	 * Graba en bd la prueba
 	 * @param datosfecha la prueba a grabar
 	 */
 	@Override
@@ -36,7 +36,7 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 	}
 
 	/**
-	 * borra de bd la prueba
+	 * Borra de bd la prueba
 	 * @param id el identificador de la prueba a borrar
 	 */
 	@Override
@@ -48,7 +48,7 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 
 
 	/**
-	 * busca la prueba por identificador
+	 * Busca la prueba por identificador
 	 * @param id el identificador de la prueba
 	 * @return La prueba
 	 */
@@ -98,7 +98,7 @@ public class DatosFechaServiceImpl implements IDatosFechaService {
 	}
 
 	/**
-	 * Devuelve las pruebas en objeto paginable por criterios de selección
+	 * Devuelve las pruebas en objeto paginable por criterios de selección del listado
 	 * @param pageable el objeto paginable
 	 * @param keyword Criterios de selección
 	 * @return

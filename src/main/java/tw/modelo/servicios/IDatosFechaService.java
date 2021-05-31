@@ -21,21 +21,56 @@ import tw.modelo.entidades.DatosFecha;
 public interface IDatosFechaService {
 	
 	
-	public DatosFecha findById(Long id);
+	/**
+	 * Graba en bd la prueba
+	 * @param datosfecha la prueba a grabar
+	 */
+	void save(DatosFecha datosfecha);
 
-	public List<DatosFecha> findAll();
+	/**
+	 * Borra de bd la prueba
+	 * @param id el identificador de la prueba a borrar
+	 */
+	void delete(Long id);
 
-	public Page<DatosFecha> findAll(Pageable pageable);
+	/**
+	 * Busca la prueba por identificador
+	 * @param id el identificador de la prueba
+	 * @return La prueba
+	 */
+	DatosFecha findById(Long id);
 
-	public Page<DatosFecha> findAllWithKeyword(Pageable pageable, String keyword); 
-	
-	public Page <DatosFecha> findAllWithKeyword( Pageable pageable,  String  keyword, Long centroId);
-	
-	//public Page<DatosFecha> findByIdInWithKeyword(Pageable pageable, List<Long> lista, String keyword);
-	
-	public void save(DatosFecha datosfecha);
+	/**
+	 * Busca todas las pruebas
+	 * @return Lista de pruebas
+	 */
+	List<DatosFecha> findAll();
 
-	public void delete(Long id);
+	/**
+	 * Devuelve las pruebas en objeto paginable
+	 * @param pageable el objeto paginable
+	 * @return 
+	 */
+	Page<DatosFecha> findAll(Pageable pageable);
+
+	/**
+	 * Devuelve las pruebas en objeto paginable por identificador del centro y
+	 * criterios de selección
+	 * @param pageable el objeto paginable
+	 * @param keyword Criterios de selección
+	 * @param centroId identificador del centro
+	 * @return
+	 */
+	Page<DatosFecha> findAllWithKeyword(Pageable pageable, String keyword, Long centroId);
+
+	/**
+	 * Devuelve las pruebas en objeto paginable por criterios de selección del listado
+	 * @param pageable el objeto paginable
+	 * @param keyword Criterios de selección
+	 * @return
+	 */
+	Page<DatosFecha> findAllWithKeyword(Pageable pageable, String keyword);
+
 	
 	
 

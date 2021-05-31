@@ -47,7 +47,7 @@ public class Rol implements Serializable {
 	private Long centro_region;
 
 	/**
-	 * identificador
+	 * Devuelve el Identificador
 	 * @return id
 	 */
 	public Long getId() {
@@ -55,7 +55,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -63,7 +63,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Nomnbre del rol
+	 * Devuelve el rol
 	 * @return rol
 	 */
 	public String getRol() {
@@ -71,7 +71,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Nombre del rol
+	 * Establece el rol
 	 * @param rol 
 	 */
 	public void setRol(String rol) {
@@ -79,7 +79,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Centro o region a la que está asigando el usuario
+	 * Devuelve el Centro o region a la que está asigando el usuario
 	 *  (0 si es rol gestor)
 	 * @return centro_region
 	 */
@@ -88,7 +88,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Centro o region a la que está asigando el usuario
+	 * Establece el Centro o region a la que está asigando el usuario
 	 *  (0 si es rol gestor)
 	 * @param centro_region 
 	 */
@@ -97,7 +97,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * usuario asignado
+	 * Devuelve el Usuario asignado
 	 * @return usuario
 	 */
 	public Usuario getUsuario() {
@@ -105,7 +105,7 @@ public class Rol implements Serializable {
 	}
 
 	/**
-	 * Usuario asigando
+	 * Establece el  Usuario asigando
 	 * @param usuario 
 	 */
 	public void setUsuario(Usuario usuario) {

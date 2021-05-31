@@ -73,7 +73,7 @@ public class DatosFecha implements Serializable {
 	}
 	
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return id
 	 */
 	public Long getId() {
@@ -81,7 +81,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -89,7 +89,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Total de pruebas realizadas en la fecha
+	 * Devuelve el Total de pruebas realizadas en la fecha
 	 * @return totalpruebas
 	 */
 	public Long getTotalpruebas() {
@@ -97,7 +97,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Total de pruebas realizadas en la fecha
+	 * Establece el Total de pruebas realizadas en la fecha
 	 * @param totalpruebas
 	 */
 	public void setTotalpruebas(Long totalpruebas) {
@@ -105,7 +105,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Tipo de la prueba (Vírica o Antígenos)
+	 * Devuelve el Tipo de la prueba (Vírica o Antígenos)
 	 * @return tipoprueba
 	 */
 	public AuxOpciones getTipoprueba() {
@@ -113,7 +113,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Tipo de la prueba (Vírica o Antígenos)
+	 * Establece el Tipo de la prueba (Vírica o Antígenos)
 	 * @param tipoprueba 
 	 */
 	public void setTipoprueba(AuxOpciones tipoprueba) {
@@ -121,7 +121,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Fecha en la que se realiza la prueba
+	 * Devuelve la Fecha en la que se realiza la prueba
 	 * @return fecha
 	 */
 	public Date getFecha() {
@@ -129,7 +129,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Fecha en la que se realiza la prueba
+	 * Establece la Fecha en la que se realiza la prueba
 	 * @param fecha 
 	 */
 	public void setFecha(Date fecha) {
@@ -162,7 +162,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Centro en el que se realiza la prueba
+	 * Devuelve el Centro en el que se realiza la prueba
 	 * @return centro
 	 */
 	public Centro getCentro() {
@@ -170,7 +170,7 @@ public class DatosFecha implements Serializable {
 	}
 
 	/**
-	 * Centro en el que se realiza la prueba
+	 * Establece el Centro en el que se realiza la prueba
 	 * @param centro 
 	 */
 	public void setCentro(Centro centro) {

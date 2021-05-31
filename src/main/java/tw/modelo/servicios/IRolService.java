@@ -17,14 +17,39 @@ import tw.modelo.entidades.Rol;
  */
 public interface IRolService {
 	
-	public List<Rol> findAllByIdUser(Long id); 
-	
-	public List<Rol> findAllByNameUser(String nombreusuario);  
+	/**
+	 * Guarda el rol de un usuario en la BD
+	 * @param rol El rol a guardar
+	 * 
+	 */
+	void save(Rol rol);
 
-	public Rol findById(Long id);
-	
-	public void save(Rol rol);
+	/**
+	 * Recupera un Rol por identificador del rol
+	 * @param id Identificador del rol
+	 * @return Rol
+	 */
+	Rol findById(Long id);
 
-	public void delete(Long id);
+	/**
+	 * Borra de la bd el rol de un usuario
+	 * @param id El ide del rol
+	 * 
+	 */
+	void delete(Long id);
+
+	/**
+	 * Busca en la BD los roles de un usuario por id del usuario
+	 * y los devuelve en un List
+	 * @param id Identificador de usuario
+	 */
+	List<Rol> findAllByIdUser(Long id);
+
+	/**
+	 * Busca en la BD los roles de un usuario por nombre del usuario
+	 * y los devuelve en un List
+	 * @param nombreusuario nombre del usuario
+	 */
+	List<Rol> findAllByNameUser(String nombreusuario);
 	
 }

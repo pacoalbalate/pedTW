@@ -58,7 +58,7 @@ public class Dato implements Serializable {
 
 	/**
 	 * Constructor parametrizado
-	 * @param datosperfil
+	 * @param datosperfil 
 	 * @param pregunta
 	 * @param dato
 	 */
@@ -69,7 +69,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return id
 	 */
 	public Long getId() {
@@ -77,7 +77,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -85,7 +85,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * perfil al que corresponde este dato
+	 * Devuelve El perfil al que corresponde este dato
 	 * @return datosperfil
 	 */
 	public DatosPerfil getDatosperfil() {
@@ -93,7 +93,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * perfil al que corresponde este dato
+	 * Establece El perfil al que corresponde este dato
 	 * @param datosperfil
 	 */
 	public void setDatosPerfil(DatosPerfil datosperfil) {
@@ -101,7 +101,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Pregunta concreta de este dato
+	 * Devuelve La Pregunta concreta de este dato
 	 * @return Pregunta
 	 */
 	public Pregunta getPregunta() {
@@ -109,7 +109,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Pregunta concreta de este dato
+	 * Establece La Pregunta concreta de este dato
 	 * @param Pregunta
 	 */
 	public void setPregunta(Pregunta pregunta) {
@@ -117,7 +117,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Devuelve el dato almacenado
+	 * Devuelve El dato almacenado
 	 * @return dato
 	 */
 	public String getDato() {
@@ -125,7 +125,7 @@ public class Dato implements Serializable {
 	}
 
 	/**
-	 * Guarda el dato a almacenar
+	 * Establece El dato a almacenar
 	 * @param dato 
 	 */
 	public void setDato(String dato) {

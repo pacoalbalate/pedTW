@@ -22,6 +22,8 @@ import javax.validation.constraints.NotNull;
  * Clase de modelo de negocio correspondiente con la entidad Perfil 
  *  
  * Cada Prueba (DatosFecha) tendrá asociados varios perfiles de resultados
+ * (DatosPerfil) y estos perfiles a su vez estaran compuestos por los 
+ * (Datos) concretos de las respuestas a las (Preguntas) creadas por el gestor
  *
  */
 
@@ -56,7 +58,7 @@ public class DatosPerfil implements Serializable {
 	}
 	
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return id
 	 */
 	public Long getId() {
@@ -64,7 +66,7 @@ public class DatosPerfil implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) { 
@@ -73,7 +75,7 @@ public class DatosPerfil implements Serializable {
 
 
 	/**
-	 * Devuelve la Rueba a la que corresponde el perfil
+	 * Devuelve la Prueba a la que corresponde el perfil
 	 * @return datosfecha
 	 */
 	public DatosFecha getDatosfecha() {
@@ -90,7 +92,7 @@ public class DatosPerfil implements Serializable {
 
 	/**
 	 * Devuelve un list con los datos de resultados 
-	 * 			Datos fijos de perfil
+	 * 			Datos del perfil
 	 * @return datos
 	 */
 	public List<Dato> getDatos() {
@@ -99,7 +101,7 @@ public class DatosPerfil implements Serializable {
 
 	/**
 	 * Almacena un list con los datos de resultados
-	 * 		Datos fijos del perfil
+	 * 		Datos del perfil
 	 * @param datos t
 	 */
 	public void setDatos(List<Dato> datos) {

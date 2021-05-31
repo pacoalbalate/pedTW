@@ -46,8 +46,8 @@ public class RegionServiceImpl implements IRegionService {
 	}
 
 	/**
-	 * Devuelve la región a la que está asociado un centro
-	 * @param id Identificador del centro
+	 * Devuelve una región por Identificador con todos sus centros asociados o null si no existe
+	 * @param id Identificador de región
 	 * @return Región
 	 */
 	@Override
@@ -95,7 +95,7 @@ public class RegionServiceImpl implements IRegionService {
 	}
 
 	/**
-	 * Obtiene todas las regiones según criterios de selección
+	 * Obtiene todas las regiones según criterios de filtrado para el listado
 	 * pasados por parámetro y las devuelve en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
@@ -110,7 +110,7 @@ public class RegionServiceImpl implements IRegionService {
 	}
 
 	/**
-	 * Devuelve las regiones asociadas a las Pruebas
+	 * Devuelve las regiones ya asociadas a las Pruebas y sus Pruebas (datosfecha)
 	 * @return List<Region>
 	 */
 	@Override
@@ -122,15 +122,4 @@ public class RegionServiceImpl implements IRegionService {
 
 	
 	
-	//@Override
-	//@Transactional(readOnly = true)
-	//public Page<Region> findByIdInWithKeyword(Pageable pageable, List<Long> regiones, String keyword) {
-	//	// TODO Auto-generated method stub
-	//	if (regiones == null) {
-	//		return regionDao.findAllWithKeyword(pageable, keyword);
-	//	} else {
-	//		return regionDao.findByIdInWithKeyword(pageable, regiones, keyword);
-	//	}
-	//}
-
 }

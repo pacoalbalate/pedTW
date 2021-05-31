@@ -34,7 +34,7 @@ import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IRegionService;
 /**
  * Clase del controlador.
- * Encargada de la gestión de regiones por 
+ * Encargada de la administración de regiones por 
  * parte del usuario gestor
  */
 @Controller 
@@ -50,12 +50,13 @@ public class RegionAdminControlador {
 	private ICentroService centroService;
 	
 	/**
-	 * Listado de las regiones existentes
+	 * Presenta las regiones existentes para su mantenimiento y edición
+	 * con filtrado, paginación y ordenación
 	 * 
 	 * @param params
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/region/list")
 	public String listado(@RequestParam Map<String, Object> params, 
@@ -96,7 +97,7 @@ public class RegionAdminControlador {
 	 * Creación nueva región
 	 * 
 	 * @param modelo
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/region/new")
 	public String formulario_new(Model modelo) {
@@ -116,7 +117,7 @@ public class RegionAdminControlador {
 	 * @param Id
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/region/edit/{regId}/")
 	public String formulario_edita(@PathVariable("regId") Long Id,
@@ -138,11 +139,12 @@ public class RegionAdminControlador {
 
 	/**
 	 * Método encargado de asociar un centro a una región
-	 * @param Id
+	 * 
+	 * @param Id de la Región
 	 * @param centroId
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("admin/region/edit/{regId}/asoc")
 	public String asocia_centro(@PathVariable("regId") Long Id,
@@ -163,11 +165,12 @@ public class RegionAdminControlador {
 
 	/**
 	 * Método encargado de deshacer la asociación entre un centro y una región
-	 * @param Id
+	 * 
+	 * @param Id de la Región
 	 * @param centroId
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/region/edit/{regId}/desa/{centroId}/")
 	public String desasocia_centro(@PathVariable("regId") Long Id,
@@ -192,7 +195,7 @@ public class RegionAdminControlador {
 	 * @param resultado
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping({"admin/region/save"})
 	public String guarda(@Valid @ModelAttribute("region") Region region, BindingResult resultado, 
@@ -219,7 +222,7 @@ public class RegionAdminControlador {
 	 * 
 	 * @param Id
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("admin/region/del")
 	public String borra(@RequestParam("regId") Long Id,

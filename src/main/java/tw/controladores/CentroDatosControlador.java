@@ -47,8 +47,8 @@ import tw.modelo.servicios.IDatosPerfilService;
 import tw.modelo.servicios.IPreguntaService;
 import tw.modelo.servicios.IRolService;
 /**
- * Clase controladora encargada de las altas de pruebas y perfiles en 
- * un centro
+ * Clase controladora para la administración y mantenimiento de 
+ * de pruebas y perfiles en un centro
  */
 @Controller 
 @SessionAttributes({"datosfecha", "datosperfil", "criterios"})
@@ -74,9 +74,9 @@ public class CentroDatosControlador {
 	private IRolService rolService;
 
 	/** 
-	 * Busca el centro asegurando que el usuario tiene 
-	 * permisos sobre el mismo
-	 * @return
+	 * Busca el centro para el que el usuario tiene permisos
+	 * 
+	 * @return página de la vista con los datos a los que tiene acceso
 	 */
 	@GetMapping("centro/")
 	public String busca_centro() {
@@ -90,12 +90,14 @@ public class CentroDatosControlador {
 	}
 
 	/**
-	 * Presenta los datos ya existentes en el centro
-	 * @param ctoId
+	 * Presenta los datos de pruebas existentes para su mantenimiento y edición
+	 * con filtrado, paginación y ordenación
+	 * 
+	 * @param centroId
 	 * @param params
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("centro/{ctoId}/datos/list")
 	public String listado(@PathVariable("ctoId") Long ctoId, @RequestParam Map<String, Object> params, 
@@ -137,10 +139,11 @@ public class CentroDatosControlador {
 	}
 	
 	/**
-	 * De de alta nuevo grupo de pruebas 
-	 * @param ctoId
+	 * Da de alta nuevo grupo de pruebas 
+	 * 
+	 * @param centroId
 	 * @param modelo
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("centro/{ctoId}/datos/new")
 	public String formulario_new(@PathVariable("ctoId") Long ctoId, Model modelo) {
@@ -164,15 +167,15 @@ public class CentroDatosControlador {
 	}
 
 	/**
-	 * Crea el formulario para la edición o alta 
-	 * de perfiles a una prueba existente
+	 * Crea el formulario para el mantenimiento
+	 * de perfiles de una prueba existente
 	 * 
-	 * @param ctoId
+	 * @param centroId
 	 * @param Id
 	 * @param perfilId
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("centro/{ctoId}/datos/edit/{regId}/")
 	public String formulario_edita(@PathVariable("ctoId") Long ctoId, @PathVariable("regId") Long Id,
@@ -226,12 +229,12 @@ public class CentroDatosControlador {
 	/**
 	 * Grabación de la prueba editada o creada
 	 * 
-	 * @param datosfecha
+	 * @param datosfecha prueba modificada
 	 * @param resultado
-	 * @param ctoId
+	 * @param centroId
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping({"centro/{ctoId}/datos/save"})
 	public String guarda(@Valid @ModelAttribute("datosfecha") DatosFecha datosfecha, BindingResult resultado, 
@@ -280,14 +283,15 @@ public class CentroDatosControlador {
 
 	/**
 	 * Grabación del perfil creado o editado
+	 * 
 	 * @param datosperfil
 	 * @param resultado
-	 * @param ctoId
-	 * @param regId
+	 * @param centroId
+	 * @param Id
 	 * @param params
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("centro/{ctoId}/datos/{regId}/perfil/save")
 	public String guarda_perfil(@Valid @ModelAttribute("datosperfil") DatosPerfil datosperfil, BindingResult resultado, 
@@ -364,10 +368,11 @@ public class CentroDatosControlador {
 	
 	/**
 	 * Borra una prueba con sus perfiles
+	 * 
 	 * @param Id
-	 * @param ctoId
+	 * @param centroId
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("centro/{ctoId}/datos/del")
 	public String borra(@RequestParam("regId") Long Id, @PathVariable("ctoId") Long ctoId,
@@ -388,11 +393,11 @@ public class CentroDatosControlador {
 	/**
 	 * Borra un perfil 
 	 * 
-	 * @param ctoId
-	 * @param dfId
+	 * @param centroId
+	 * @param pruebaId
 	 * @param Id
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("centro/{ctoId}/datos/edit/{dfId}/del")
 	public String borra_Perfil(@PathVariable("ctoId") Long ctoId, @PathVariable("dfId") Long dfId, @RequestParam("regId") Long Id,
@@ -412,9 +417,10 @@ public class CentroDatosControlador {
 	
 	
 	/**
-	 * validadción de datos numéricos
+	 * validación de datos numéricos
+	 * 
 	 * @param cadena
-	 * @return
+	 * @return Si es numérico o no
 	 */
     private static boolean isNumeric(String cadena) {
         boolean esNumerico;
@@ -434,8 +440,9 @@ public class CentroDatosControlador {
     
     
 	/**
-	 * Autenticación del usuario en el centro
-	 * @return indiceRol
+	 * Comprueba la autenticación del usuario
+	 * 
+	 * @return El indice del centro o región autorizadas en su rol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		

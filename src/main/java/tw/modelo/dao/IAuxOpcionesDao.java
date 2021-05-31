@@ -9,7 +9,7 @@ package tw.modelo.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+
 
 import tw.modelo.entidades.AuxOpciones;
 
@@ -17,22 +17,34 @@ import tw.modelo.entidades.AuxOpciones;
 
 /**
  * DAO
- * Interfaz del modelo de datos para la Entidad Opciones
+ * Interfaz del modelo de datos para la Entidad Auxiliar de Opciones
  * (Datos parametrizables de la aplicación)
  *
  */
 public interface IAuxOpcionesDao extends JpaRepository<AuxOpciones, Long> {
 	
+/**
+ * Devuelve lista de opciones ordenadas por el id
+ * @param tipo de opcion
+ * @return list de Dao opciones
+ */
 public List <AuxOpciones> findByTipoOrderById(String tipo); 
 
+/**
+ * Devuelve opcion por tipo y nombre
+ * @param tipo
+ * @param opcion
+ * @return DAO Opciones
+ * 
+ */
 public AuxOpciones findByTipoAndOpcion(String tipo, String opcion);
-	
-@Query ("SELECT a FROM AuxOpciones a where tipo like %?1%")
-//public List <AuxOpciones> findByTipoLikeOrderById(String tipo); 
-public List <AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo); 
 
-public List <AuxOpciones> findByTipoNotOrderById(String tipo); 
-
+/**
+ * Devuelve lista de opciones que contienen el parametro indicado 
+ * como parte del tipo, ordenadas por el id
+ * @param tipo de opcion
+ * @return list de Dao opciones
+ */
 public List <AuxOpciones> findByTipoContainingOrderById(String tipo);
 
 

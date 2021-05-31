@@ -20,16 +20,46 @@ import tw.modelo.entidades.Pregunta;
  */
 public interface IPreguntaService {
 	
-	public List<Pregunta> findAll();
+	/**
+	 * Guarda la pregunta en bd
+	 * @param pregunta 
+	 */
+	void save(Pregunta pregunta);
 
-	public Page<Pregunta> findAll(Pageable pageable);
-	
-	public Page<Pregunta> findAllWithKeyword(Pageable pageable, String keyword);
+	/**
+	 * Lee pregunta de BD por Identificador
+	 * @param id
+	 * @return Pregunta
+	 */
+	Pregunta findById(Long id);
 
-	public Pregunta findById(Long id);
-	
-	public void save(Pregunta pregunta);
+	/**
+	 * Borra pregunta de la BD por identificador
+	 * @param id Identificador a borrar
+	 * 
+	 */
+	void delete(Long id);
 
-	public void delete(Long id);
+	/**
+	 * Devuelve todas las preguntas en un List
+	 * @return
+	 */
+	List<Pregunta> findAll();
+
+	/**
+	 * Devuelve todas las preguntas en un objeto de paginación
+	 * @param pageable 
+	 * @return Page<Pregunta>
+	 */
+	Page<Pregunta> findAll(Pageable pageable);
+
+	/**
+	 * Devuelve todas las preguntas en un objeto de paginación filtrando
+	 * por criterios de selección
+	 * @param pageable
+	 * @param keyword Criterios de Selección
+	 * @return Page<Pregunta>
+	 */
+	Page<Pregunta> findAllWithKeyword(Pageable pageable, String keyword);
 	
 }

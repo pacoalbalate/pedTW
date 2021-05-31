@@ -52,12 +52,13 @@ public class PreguntaAdminControlador {
 	private IDatosPerfilService datosperfilService;
 	
 	/** 
-	 * Genera el listado de las preguntas existentes
+	 * Presenta las preguntas existentes para su mantenimiento y edición
+	 * con filtrado, paginación y ordenación
 	 * 
 	 * @param params
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/pregunta/list")
 	public String listado(@RequestParam Map<String, Object> params, 
@@ -98,7 +99,7 @@ public class PreguntaAdminControlador {
 	 * Creación de una nueva pregunta
 	 * 
 	 * @param modelo
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/pregunta/new")
 	public String formulario_new(Model modelo) {
@@ -118,7 +119,7 @@ public class PreguntaAdminControlador {
 	 * @param Id
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/pregunta/edit/{regId}/")
 	public String formulario_edita(@PathVariable("regId") Long Id,
@@ -140,13 +141,13 @@ public class PreguntaAdminControlador {
 	}
 	
 	/**
-	 * grabación de pregunta editada o cread
-	 * a
+	 * Grabación de pregunta editada o creada
+	 * 
 	 * @param pregunta
 	 * @param resultado
 	 * @param modelo
 	 * @param flash
-	 * @return
+>	 * @return página de la vista
 	 */
 	@PostMapping({"admin/pregunta/save"})
 	public String guarda(@Valid @ModelAttribute("pregunta") Pregunta pregunta, BindingResult resultado, 
@@ -178,7 +179,7 @@ public class PreguntaAdminControlador {
 	 * 
 	 * @param Id
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("admin/pregunta/del")
 	public String borra(@RequestParam("regId") Long Id,

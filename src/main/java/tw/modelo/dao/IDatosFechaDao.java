@@ -21,9 +21,23 @@ import tw.modelo.entidades.DatosFecha;
 public interface IDatosFechaDao extends JpaRepository<DatosFecha, Long> {
 	
 	
+/**
+ * Devuelve las pruebas en objeto paginable por criterios de selección del listado
+ * @param pageable el objeto paginable
+ * @param keyword Criterios de selección
+ * @return
+ */
 @Query ("SELECT d FROM DatosFecha d LEFT JOIN d.tipoprueba tp WHERE CONCAT(d.totalpruebas, ' ', d.fecha, ' ', tp.opcion) LIKE %?1%") 
 public Page <DatosFecha> findAllWithKeyword( Pageable pageable,  String  keyword);  
 
+/**
+ * Devuelve las pruebas en objeto paginable por identificador del centro y
+ * criterios de selección
+ * @param pageable el objeto paginable
+ * @param keyword Criterios de selección
+ * @param centroId identificador del centro
+ * @return
+ */
 @Query ("SELECT d FROM DatosFecha d LEFT JOIN d.centro c LEFT JOIN d.tipoprueba tp WHERE c.id IN ?2 AND CONCAT(d.totalpruebas, ' ', d.fecha, ' ', tp.opcion) LIKE %?1%") 
 public Page <DatosFecha> findAllWithKeyword( Pageable pageable,  String  keyword, Long centroId);  
 	

@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 /**
- * Clase para navegar por los listados del sistema
+ * Clase para crear el navegador de las paginas en los listados del sistema
  *
  */
 public class PagNavegador<T> {
@@ -21,8 +21,10 @@ public class PagNavegador<T> {
 	private List<PaginaAccesible> paginas;
 	
 	/**
+	 * Constructor del navegador de paginas
+	 * 
 	 * @param url del listado 
-	 * @param page colección de objetos tipo page que componen el listado
+	 * @param page página actual visible en el listado con sus datos
 	 */
 	public PagNavegador(String url, Page<T> page) {
 		this.url = url;
@@ -32,8 +34,9 @@ public class PagNavegador<T> {
 
 
 	/**
-	 * Con los datos del listado crea la/s pagina/s 
-	 * para mostrarlas por pantalla
+	 * Con los datos de la página actual del listado 
+	 * crea la accesibilidd de la/s pagina/s por si no caben todas
+	 * en el espacio asignado de la pantalla para dar su acceso en el listado
 	 * 
 	 * @param url
 	 * @param page
@@ -72,6 +75,7 @@ public class PagNavegador<T> {
 
 	/**
 	 * Devuelve la url del listado
+	 * 
 	 * @return url
 	 */
 	public String getUrl() {
@@ -79,7 +83,8 @@ public class PagNavegador<T> {
 	}
 
 	/**
-	 * Devuelve la colección de páginas del listado
+	 * Devuelve la página actual del listado con sus datos
+	 * 
 	 * @return page
 	 */
 	public Page<T> getPage() {
@@ -88,6 +93,7 @@ public class PagNavegador<T> {
 
 	/**
 	 * Obtiene el total de paginas que ocupa el listado
+	 * 
 	 * @return totalPaginas
 	 */
 	public int getTotalPaginas() {
@@ -96,6 +102,7 @@ public class PagNavegador<T> {
 
 	/**
 	 * Devuelve el numero de elementos por pagina
+	 * 
 	 * @return  elementosPorPagina
 	 */
 	public int getElementosPorPagina() {
@@ -104,6 +111,7 @@ public class PagNavegador<T> {
 
 	/**
 	 * Devuelve el numero de la pagina actual 
+	 * 
 	 * @return  paginaActual
 	 */
 	public int getPaginaActual() {
@@ -111,7 +119,8 @@ public class PagNavegador<T> {
 	}
 
 	/**
-	 * Devuelve todos los numeros de pagina
+	 * Devuelve todos los numeros de pagina con su accesibilidad
+	 * 
 	 * @return  paginas
 	 */
 	public List<PaginaAccesible> getPaginas() {

@@ -2,7 +2,7 @@
 package tw.controladores.utilidades.paginas;
 
 /**
- * Clase de acceso a las páginas del listado. 
+ * Clase con la información de accesibilidad de cada página que puede ser accesible en el listado. 
  * Para paginar por los listados del sistema
  *
  */
@@ -12,6 +12,7 @@ public class PaginaAccesible {
 
 	/**
 	 * Constructor de una pagina 
+	 * 
 	 * @param numeroPagina El numero de la pagina
 	 * @param actual (si es la que se esta viendo o no)
 	 */
@@ -31,6 +32,7 @@ public class PaginaAccesible {
 
 	/**
 	 * Numera la pagina
+	 * 
 	 * @param numero 
 	 */
 	public void setNumero(int numeroPagina) {
@@ -39,6 +41,7 @@ public class PaginaAccesible {
 
 	/**
 	 * Devuelve si la pagina es la que se esta visualizando 
+	 * 
 	 * @return  actual
 	 */
 	public boolean isActual() {
@@ -47,6 +50,7 @@ public class PaginaAccesible {
 
 	/**
 	 * Hace que la pagina sea la actual (la que se visualiza)
+	 * 
 	 * @param actual 
 	 */
 	public void setActual(boolean actual) {

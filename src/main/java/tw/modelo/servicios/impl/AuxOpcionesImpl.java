@@ -22,6 +22,12 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 	@Autowired
 	private IAuxOpcionesDao auxOpcionesDao;
 
+	/**
+	 * Busca por Id de opción
+	 * @param el id
+	 * @return DAO Opciones
+	 * 
+	 */
 	@Override
 	@Transactional(readOnly = true)
 	public AuxOpciones findById(Long id) {
@@ -31,6 +37,7 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 
 	/**
 	 * Busca por Id de opción
+	 * sobrecarga del metodo en formato String
 	 * @param el id
 	 * @return DAO Opciones
 	 * 
@@ -67,21 +74,10 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 		return auxOpcionesDao.findByTipoAndOpcion(tipo, opcion);
 	}
 
-	/**
-	 * Devuelve lista de opciones sin ordenar
-	 * @param tipo de opcion
-	 * @return list de Dao opciones
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<AuxOpciones> findByTipoNotOrderById(String tipo) {
-		// TODO Auto-generated method stub
-		return auxOpcionesDao.findByTipoNotOrderById(tipo); 
-	}
 	
 	/**
-	 * Devuelve lista de opciones ordenadas por el id
-	 *  que contengan el tipo
+	 * Devuelve lista de opciones que contienen el parametro indicado 
+	 * como parte del tipo, ordenadas por el id
 	 * @param tipo de opcion
 	 * @return list de Dao opciones
 	 */
@@ -90,19 +86,6 @@ public class AuxOpcionesImpl implements IAuxOpcionesService {
 	public List<AuxOpciones> findByTipoContainingOrderById(String tipo) {
 		// TODO Auto-generated method stub
 		return auxOpcionesDao.findByTipoContainingOrderById(tipo);
-	}
-
-	/**
-	 * Devuelve lista de opciones sin ordenar por el id excluyendo el ROL
-	 *  que contengan el tipo
-	 * @param tipo de opcion
-	 * @return list de Dao opciones
-	 */
-	@Override
-	@Transactional(readOnly = true)
-	public List<AuxOpciones> findByTipoNotOrderByIdSinRol(String tipo) {
-		// TODO Auto-generated method stub
-		return auxOpcionesDao.findByTipoNotOrderByIdSinRol(tipo);
 	}
 
 

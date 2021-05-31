@@ -23,6 +23,13 @@ import tw.modelo.entidades.Pregunta;
  */
 public interface IPreguntaDao extends JpaRepository<Pregunta, Long> {
 	
+/**
+ * Devuelve todas las preguntas en un objeto de paginación filtrando
+ * por criterios de selección
+ * @param pageable
+ * @param keyword Criterios de Selección
+ * @return Page<Pregunta>
+ */
 @Query ("SELECT p FROM Pregunta p LEFT JOIN p.tipopregunta tp WHERE CONCAT(p.denominacion, ' ', tp.opcion) LIKE %?1%") 
 public Page <Pregunta> findAllWithKeyword( Pageable pageable,  String  keyword);  
 	

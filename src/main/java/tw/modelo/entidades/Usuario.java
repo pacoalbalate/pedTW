@@ -53,7 +53,7 @@ public class Usuario implements Serializable {
 	private List<Rol> roles;
 
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return  id
 	 */
 	public Long getId() {
@@ -61,7 +61,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id
 	 */
 	public void setId(Long id) {
@@ -69,7 +69,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Nombre
+	 * Devuelve el Nombre
 	 * @return nombreusuario
 	 */
 	public String getNombreusuario() {
@@ -77,7 +77,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Nombre
+	 * Establece el Nombre
 	 * @param nombreusuario 
 	 */
 	public void setNombreusuario(String nombreusuario) {
@@ -85,7 +85,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Password
+	 * Devuelve la Password
 	 * @return clave
 	 */
 	public String getClave() {
@@ -93,7 +93,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Password
+	 * Establece la Password
 	 * @param clave 
 	 */
 	public void setClave(String clave) {
@@ -101,7 +101,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Usuario activo (true)
+	 * Devuelve si es Usuario activo (true)
 	 * @return activo
 	 */
 	public Boolean getActivo() {
@@ -109,7 +109,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Usuaroi activo (true)
+	 * Establece si es Usuario activo (true)
 	 * @param activo 
 	 */
 	public void setActivo(Boolean activo) {
@@ -117,7 +117,7 @@ public class Usuario implements Serializable {
 	}
 
 	/**
-	 * Roles que posee el usuario
+	 * Devuelve los Roles que posee el usuario
 	 * @return roles
 	 */
 	public List<Rol> getRoles() {

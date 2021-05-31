@@ -96,7 +96,7 @@ public class CentroServiceImpl implements ICentroService {
 
 	/**
 	 * Devuelve los centros en un objeto paginable para
-	 * presentar por pantalla por identificadores y criterios de selección
+	 * presentar por pantalla todos o por conjunto de identificadores y criterios de selección
 	 * @param pageable el objeto página
 	 * @param centrosId lista de identificadores
 	 * @param keyword criterios de selección
@@ -114,8 +114,8 @@ public class CentroServiceImpl implements ICentroService {
 	}
 
 	/** 
-	 * Devuelve lista con todos los datosfecha (pruebas)
-	 * de todos los centros
+	 * Devuelve lista de centros con datosfecha (pruebas) asociadas
+	 * de todos los centros y sus pruebas
 	 * @return 
 	 */
 	@Override
@@ -126,8 +126,8 @@ public class CentroServiceImpl implements ICentroService {
 	}
 
 	/** 
-	 * Devuelve lista con todos los datosfecha (pruebas)
-	 * de todos los centros por identificadores de región
+	 * Devuelve lista de todos los centros con datosfecha (pruebas)
+	 * de los pertenecientes a un conjunto de identificadores de región
 	 * @param regionesId lista de identificadores de región
 	 * @return 
 	 */

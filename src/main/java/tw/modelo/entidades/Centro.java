@@ -73,7 +73,7 @@ public class Centro implements Serializable {
 
 	
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return  id
 	 */
 	public Long getId() {
@@ -81,7 +81,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -89,7 +89,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Nombre del centro
+	 * Devuelve el Nombre del centro
 	 * @return denominacion
 	 */
 	public String getDenominacion() {
@@ -97,7 +97,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Nombre del centro
+	 * Establece el Nombre del centro
 	 * @param denominacion
 	 */
 	public void setDenominacion(String denominacion) {
@@ -105,7 +105,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Pacientes del centro
+	 * Devuelve El numero Pacientes del centro
 	 * @return pacientes
 	 */
 	public Long getPacientes() {
@@ -113,7 +113,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Pacientes del centro
+	 * Establece El numero Pacientes del centro
 	 * @param pacientes
 	 */
 	public void setPacientes(Long pacientes) {
@@ -121,7 +121,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Región a la que está asociada el centro
+	 * Devuelve La Región a la que está asociada el centro
 	 * @return region
 	 */
 	public Region getRegion() {
@@ -129,7 +129,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Región a la que está asociada el centro
+	 * Establece La Región a la que está asociada el centro
 	 * @param region 
 	 */
 	public void setRegion(Region region) {
@@ -137,7 +137,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Tipo de centro (Hospital/Centro de salud/...)
+	 * Devuelve el Tipo de centro (Hospital/Centro de salud/...)
 	 * @return tipocentro
 	 */
 	public AuxOpciones getTipocentro() {
@@ -145,7 +145,7 @@ public class Centro implements Serializable {
 	}
 
 	/**
-	 * Tipo de centro (Hospital/Centro de salud/...)
+	 * Establece el Tipo de centro (Hospital/Centro de salud/...)
 	 * @param tipocentro
 	 */
 	public void setTipocentro(AuxOpciones tipocentro) {
@@ -171,7 +171,7 @@ public class Centro implements Serializable {
 
 
 	/**
-	 * añadir lista de pruebas (no usado)
+	 * Establece la lista de pruebas (no usado)
 	 * @param datosfecha 
 	 */
 	public void setDatosfecha(List<DatosFecha> datosfecha) {

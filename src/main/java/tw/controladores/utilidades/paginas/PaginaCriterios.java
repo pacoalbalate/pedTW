@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 /**
  * Control de los filtros en los listados a la hora de presentarlos 
  * por pantalla.
- * También de la ordenación.
+ * También se encarga de los criterios de la ordenación.
  *
  */
 public class PaginaCriterios  implements Serializable  {
@@ -43,6 +43,7 @@ public class PaginaCriterios  implements Serializable  {
 	private String orderBy;
 	private String filtro;
 	private String pagActual;
+	private String xGrafica;
 
 	
 	/**
@@ -59,11 +60,12 @@ public class PaginaCriterios  implements Serializable  {
 		this.filtroDateDesde = filterDateDesde;
 		this.filtroDateHasta = filterDateHasta;
 		this.pagActual = "";
+		this.xGrafica = "";
 	}
 	
 	/**
 	 * Constructor parametrizado, 
-	 * modificando criterios fijos
+	 * modificando criterios por defecto
 	 */
 	public PaginaCriterios(Map<String, Object> parametros) {
 		this();
@@ -72,7 +74,8 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * Devuelve el número de página
+	 * Devuelve el número de página actual
+	 * 
 	 * @return 
 	 */
 	public Integer getPageNo() {
@@ -81,6 +84,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Tamaño de la página
+	 * 
 	 * @return pageSize
 	 */
 	public Integer getPageSize() {
@@ -88,6 +92,7 @@ public class PaginaCriterios  implements Serializable  {
 	}
 	/**
 	 * Devuelve el campo por el que está ordenado el listado
+	 * 
 	 * @return  sortBy
 	 */
 	public String getSortBy() {
@@ -95,6 +100,7 @@ public class PaginaCriterios  implements Serializable  {
 	}
 	/**
 	 * Devuelve el criterio de ordenación
+	 * 
 	 * @return orderBy
 	 */
 	public String getOrderBy() {
@@ -102,16 +108,26 @@ public class PaginaCriterios  implements Serializable  {
 	}
 	/**
 	 * Devuelve el criterio por el que se filtra
+	 * 
 	 * @return filtro
 	 */
 	public String getFiltro() {
 		return filtro;
 	}
+	/**
+	 * Devuelve el tipo de dato X de la grafica
+	 * 
+	 * @return xGrafica
+	 */
+	public String getXGrafica() {
+		return xGrafica;
+	}
 
 	/**
-	 * Devuelve el tipo de ordenación
+	 * Comprueba si criterio de ordenación actual es ascendente
 	 * true si es ascendente 
 	 * false si es descendente
+	 * 
 	 * @return orderBy
 	 */
 	public boolean isAsc() {
@@ -119,9 +135,10 @@ public class PaginaCriterios  implements Serializable  {
 	}
 
 	/**
-	 * Inicialización por defecto de parámetros de ordenación y filtado
+	 * Modificación conjunta de los criterios de ordenación y filtado 
+	 * con los parametros indicados
 	 * 
-	 * @param lista de campos
+	 * @param mapa con los criterios a modificar
 	 */
 	public void setParametros(Map<String, Object> params) {
 		//this.orderBy = "ASC";
@@ -151,7 +168,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Devuelve el filtro por centros activo
-	 * @return 
+	 * 
+	 * @return lista de los Id actualmente mostrados
 	 */
 	public List<Long> getFiltroIdsCentro() {
 		return filtroIdsCentro;
@@ -159,7 +177,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Activa el filtro por centros
-	 * @param filtroIdsCentro 
+	 * 
+	 * @param filtroIdsCentro Lista de Ids de los centros
 	 */
 	public void setFiltroIdsCentro(List<Long> filtroIdsCentro) {
 		this.filtroIdsCentro = filtroIdsCentro;
@@ -167,8 +186,9 @@ public class PaginaCriterios  implements Serializable  {
 
 
 	/**
-	 * Devuelve el filtro por Region
-	 * @return 
+	 * Devuelve el filtro por Region actualmente activo
+	 * 
+	 * @return lista de los Id actualmente mostrados
 	 */
 	public List<Long> getFiltroIdsRegion() {
 		return filtroIdsRegion;
@@ -176,7 +196,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Activa el filtrado por regiones
-	 * @param filtroIdsRegion 
+	 * 
+	 * @param filtroIdsRegion Lista de Ids de las regiones
 	 */
 	public void setFiltroIdsRegion(List<Long> filtroIdsRegion) {
 		this.filtroIdsRegion = filtroIdsRegion;
@@ -184,6 +205,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Devuelve la pagina actual 
+	 * 
 	 * @return 
 	 */
 	public String getPagActual() {
@@ -192,15 +214,26 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Actualiza cual es la pagina a mostrar
+	 * 
 	 * @param 
 	 */
 	public void setPagActual(String pagActual) {
 		this.pagActual = pagActual;
 	}
 
+	/**
+	 * Actualiza cual es el tipo de dato X de la grafica
+	 * 
+	 * @param
+	 */
+	public void setXGrafica(String xGrafica) {
+		this.xGrafica = xGrafica;
+	}
+
 
 	/**
-	 * Devuelve los nombres de las columnas
+	 * Devuelve los nombres de las columnas del listado
+	 * 
 	 * @return 
 	 */
 	public List<String> getNombreColCampos() {
@@ -210,6 +243,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Actualiza los nombres de las columnas del listado
+	 * 
 	 * @param nombreColCampos 
 	 */
 	public void setNombreColCampos(List<String> nombreColCampos) {
@@ -219,6 +253,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Devuelve los nombres de campos de BBDD que se están mostrando
+	 * 
 	 * @return 
 	 */
 	public List<String> getNombreBddCampos() {
@@ -228,6 +263,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Actualiza los nombres de los campos de BBDD que se muestran en el listado
+	 * 
 	 * @param nombreBddCampos 
 	 */
 	public void setNombreBddCampos(List<String> nombreBddCampos) {
@@ -237,7 +273,8 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Devuelve el nombre de campo de base de datos que 
-	 * corresponde a una columna pr el nombre de columna
+	 * corresponde a una columna por el nombre de columna
+	 * 
 	 * @param nombreColCampo 
 	 * @return nombreBddCampo
 	 */
@@ -248,6 +285,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Devuelve el nombre de columna del listado que corresponde 
 	 * a un campo de la bbdd del listado
+	 * 
 	 * @param nombreBddCampo 
 	 * @return nombreColCampo
 	 */
@@ -258,6 +296,7 @@ public class PaginaCriterios  implements Serializable  {
 	
 	/**
 	 * Devuelve los datos de perfil por los que se ha filtrado
+	 * 
 	 * @return filtroIdsDato
 	 */
 	public List<String> getFiltroIdsDato() {
@@ -267,6 +306,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Activa el filtrado por los diferentes datos del perfil posibles
+	 * 
 	 * @param filtroIdsDato 
 	 */
 	public void setFiltroIdsDato(List<String> filtroIdsDato) {
@@ -276,6 +316,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Devuelve la fecha desde por la que se filtra
 	 * en formato String
+	 * 
 	 * @return filtroDateDesdeString
 	 *
 	 */
@@ -287,6 +328,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 *  Devuelve la fecha desde por la que se filtra
 	 * en formato Date
+	 * 
 	 * @return the filtroDateDesde
 	 *
 	 */
@@ -305,6 +347,7 @@ public class PaginaCriterios  implements Serializable  {
 	
 	/**
 	 * Activa el filtrado por fecha desde
+	 * 
 	 * @param filtroDateDesde 
 	 */
 	public void setFiltroDateDesde(String filtroDateDesde) {
@@ -315,6 +358,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Devuelve la fecha hasta por la que se filtra
 	 * en formato String
+	 * 
 	 * @return filtroDateHastaString
 	 *
 	 */
@@ -326,6 +370,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Devuelve la fecha hasta por la que se filtra
 	 * en formato Date
+	 * 
 	 * @return  filtroDateHasta
 	 *
 	 */
@@ -343,6 +388,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 *  Activa el filtrado por fecha hasta
+	 *  
 	 * @param filtroDateHasta
 	 */
 	public void setFiltroDateHasta(String filtroDateHasta) {
@@ -353,6 +399,7 @@ public class PaginaCriterios  implements Serializable  {
 
 	/**
 	 * Devuelve true si esta activo el filtro por fechas
+	 * 
 	 * @return isFiltroFechaIsActive
 	 */
 	public boolean isFiltroFechaActivo() {
@@ -367,12 +414,37 @@ public class PaginaCriterios  implements Serializable  {
 	}
 	
 
+	
+	/**
+	 * Devuelve la fecha desde por la que se 
+	 * inicia el filtro de fecha en formato String
+	 * 
+	 * @return inicioDateDesdeString
+	 *
+	 */
+	public String getInicioDateDesdeString() {
+		return filterDateDesde;
+	}
+
+	
+	/**
+	 * Devuelve la fecha hasta por la que se 
+	 * inicia el filtro de fecha en formato String
+	 * 
+	 * @return inicioDateHastaString
+	 *
+	 */
+	public String getInicioDateHastaString() {
+		return filterDateHasta;
+	}
+
 
 	/**
-	 * Devuelve true si el filtro por datos del perfil está activo
-	 * @return isFiltroIdsIsActive
+	 * Devuelve true si el filtrado de los datos está activado por algun criterio
+	 * 
+	 * @return isFiltroIsActive
 	 */
-	public boolean isFiltroIdActivo() {
+	public boolean isFiltroIsActivo() {
 
 		boolean resultado = false;
 		

@@ -174,7 +174,7 @@ public class DatosPerfilServiceImpl implements IDatosPerfilService {
 	}
 	
 	/**
-	 * Busca Perfiles por Regiones, Centros (DatosFecha), fechas y criterios de selección,
+	 * Busca Perfiles por Regiones, Centros, fechas y criterios de selección,
 	 * devolviéndolos en el objeto paginable según el parámetro
 	 * @param pageable El objeto paginable
 	 * @param regiones lista de regiones

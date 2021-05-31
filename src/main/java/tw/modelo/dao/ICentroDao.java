@@ -24,18 +24,48 @@ import tw.modelo.entidades.Centro;
 public interface ICentroDao extends JpaRepository<Centro, Long> {
 	
 	
+/**
+ * Devuelve los centros en un objeto paginable para
+ * presentar por pantalla según criterios de seleccion
+ * @param pageable el objeto página
+ * @param keyword Criterios de selección
+ * @return 
+ */
 @Query ("SELECT c FROM Centro c LEFT JOIN c.tipocentro tc WHERE CONCAT(c.denominacion, ' ', c.pacientes, ' ', tc.opcion) LIKE %?1%") 
 public Page <Centro> findAllWithKeyword( Pageable pageable,  String  keyword);  
 
+/**
+ * Devuelve los centros en un objeto paginable para
+ * presentar por pantalla por conjunto de identificadores y criterios de selección
+ * @param pageable el objeto página
+ * @param centrosId lista de identificadores
+ * @param keyword criterios de selección
+ * @return 
+ */
 @Query ("SELECT c FROM Centro c LEFT JOIN c.tipocentro tc WHERE c.id IN ?1 AND CONCAT(c.denominacion, ' ', c.pacientes, ' ', tc.opcion) LIKE %?2%") 
 public Page <Centro> findByIdInWithKeyword( Pageable pageable,  List<Long> centrosId,  String  keyword);  
 
+/** 
+ * Devuelve lista de centros con datosfecha (pruebas) asociadas
+ * de todos los centros y sus pruebas
+ * @return 
+ */
 @Query ("SELECT DISTINCT c FROM Centro c JOIN c.region r JOIN c.datosfecha df") 
 public List<Centro> findAllJoinDatos();  
 
+/** 
+ * Devuelve lista de todos los centros con datosfecha (pruebas)
+ * de los pertenecientes a un conjunto de identificadores de región
+ * @param regionesId lista de identificadores de región
+ * @return 
+ */
 @Query ("SELECT DISTINCT c FROM Centro c JOIN c.region r JOIN c.datosfecha df WHERE r.id IN ?1") 
 public List<Centro> findAllJoinDatosInRegionesId(List<Long> regionesId);  
 
+/**
+ * Método que devuelve los centros sin asociar a region
+ * @return
+ */
 public List <Centro> findByRegion_idIsNullOrderByDenominacionAsc();  
 
 ////@Query ("SELECT r FROM Region r WHERE CONCAT(r.denominacion, ' ', r.habitantes) LIKE %:Keyword%") 

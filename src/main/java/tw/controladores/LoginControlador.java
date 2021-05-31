@@ -17,7 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tw.modelo.entidades.Usuario;
 import tw.modelo.servicios.IUsuarioService;
 /**
- * Clase del controlador para el Login
+ * Clase del controlador para la identificación del usuario  y cambio de contraseña
  */
 
 
@@ -39,12 +39,13 @@ public class LoginControlador {
 
 	/**
 	 * Método principal de acceso y desconexión de un usuario
+	 * 
 	 * @param error
 	 * @param logout
 	 * @param principal
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("/login")
 	public String acceso_desconexion(@RequestParam(value = "error", required = false) String error,
@@ -72,7 +73,8 @@ public class LoginControlador {
 	/**
 	 * Cambio de contraseña
 	 * solicitud
-	 * @return
+	 * 
+	 * @return página de la vista
 	 */
 	@RequestMapping({"/login/change"})
 	public String solicitud_cambio_clave() {
@@ -82,13 +84,14 @@ public class LoginControlador {
 	/**
 	 * Cambio de contraseña
 	 * Validación y modificación de la contraseña
+	 * 
 	 * @param password_old
 	 * @param password_new1
 	 * @param password_new2
 	 * @param modelo
 	 * @param principal
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("/login/change")
 	public String cambio_clave(@RequestParam(value = "password_old", required = true) String password_old,

@@ -58,7 +58,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Devuelve el Identificador
 	 * @return id
 	 */
 	public Long getId() {
@@ -66,7 +66,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Identificador
+	 * Establece el Identificador
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -74,7 +74,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Nombre de la region
+	 * Devuelve el Nombre de la region
 	 * @return denominacion
 	 */
 	public String getDenominacion() {
@@ -82,7 +82,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Nombre de la region
+	 * Establece el Nombre de la region
 	 * @param denominacion
 	 */
 	public void setDenominacion(String denominacion) {
@@ -90,7 +90,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Nunmero de habitantes de la region
+	 * Devuelve el Nunmero de habitantes de la region
 	 * @return habitantes
 	 */
 	public Long getHabitantes() {
@@ -98,7 +98,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Nunmero de habitantes de la region
+	 * Establece el Nunmero de habitantes de la region
 	 * @param habitantes 
 	 */
 	public void setHabitantes(Long habitantes) {
@@ -106,7 +106,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Lista de centros asociados a la region
+	 * Devuelve la Lista de centros asociados a la region
 	 * @return centros
 	 */
 	public List<Centro> getCentros() {
@@ -114,7 +114,7 @@ public class Region implements Serializable {
 	}
 
 	/**
-	 * Lista de centros asociados a la region
+	 * Establece la Lista de centros asociados a la region
 	 * @param centros 
 	 */
 	public void setCentros(List<Centro> centros) {

@@ -2,6 +2,7 @@ package tw.modelo.servicios.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -126,7 +127,7 @@ public class EstadisticasService implements IEstadisticasService {
 	
 	/**
 	 * Devuelve en un String el json resultado de los datos para presentar
-	 * por pantallael grafico que se le solicita segun el tipo y grupo indicados
+	 * por pantalla los graficos que se le solicita segun el tipo y grupo indicados
 	 * @return   
 	 */
 	@Override
@@ -137,7 +138,7 @@ public class EstadisticasService implements IEstadisticasService {
 		List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
 
 		for (Entry<String, Long> datosPerfil : getGrupoAndTotal(lista, tipo, grupo).entrySet()) {
-			map = new HashMap<Object, Object>();
+			map = new LinkedHashMap<Object, Object>();
 			map.put("label", datosPerfil.getKey());
 			map.put("y", datosPerfil.getValue());
 			list.add(map);
@@ -148,8 +149,15 @@ public class EstadisticasService implements IEstadisticasService {
 		return dataPoints;
 	}
 	
+	
+	
+	/**
+	 * Agrupa y totaliza los datos para presentar por pantalla los graficos
+	 * que se le solicita segun el tipo y grupo indicados
+	 * @return   
+	 */
 	private Map<String,Long> getGrupoAndTotal(List<DatosPerfil> lista, String tipo, String grupo){
-		Map<String,Long> grupos= new HashMap<String, Long>();
+		Map<String,Long> grupos= new LinkedHashMap<String, Long>();
 		
 		for (DatosPerfil datosPerfil : lista) {
 			String denominacion="";

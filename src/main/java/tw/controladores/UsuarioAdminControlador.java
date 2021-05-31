@@ -46,8 +46,9 @@ import tw.modelo.servicios.IUsuarioService;
 /**
  * Clase del controlador
  * Encargada de la gestión de usuarios por perfiles:
- * 		Gestor --> Región y Centro
- *      Región --> Centro
+ * 		Gestor --> 0 Todas las Regiones y Centros
+ *      Región --> Región->(Varios Centros)
+ *      Centro --> Centro
  */
 @Controller 
 @SessionAttributes({"usuario", "criterios"})
@@ -73,9 +74,9 @@ public class UsuarioAdminControlador {
 	BCryptPasswordEncoder passwordEncoder;
 
 	/**
-	 * Búsqueda de los centros a los que el usuario tiene acceso
+	 * Busca el centro o región para el que el usuario tiene permisos
 	 * 
-	 * @return
+	 * @return página de la vista con los datos a los que tiene acceso
 	 */
 	@GetMapping("usuario/")
 	public String busca_centro() {
@@ -89,14 +90,15 @@ public class UsuarioAdminControlador {
 	}
 
 	/**
-	 * Listado de los usuarios
+	 * Presenta los usuarios existentes para su mantenimiento y edición
+	 * con filtrado, paginación y ordenación
 	 * 
 	 * @param params
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param modelo
 	 * @param request
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("usuario/{regId}/admin/list")
 	public String listado(@RequestParam Map<String, Object> params, 
@@ -154,10 +156,10 @@ public class UsuarioAdminControlador {
 	/** 
 	 * Creación de nuevo usuario
 	 * 
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("usuario/{regId}/admin/new")
 	public String formulario_new(
@@ -186,12 +188,12 @@ public class UsuarioAdminControlador {
 	/**
 	 * Modificación de datos de usuario
 	 * 
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param Id
 	 * @param modelo
 	 * @param request
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("usuario/{regId}/admin/edit/{userId}/")
 	public String formulario_edita(
@@ -276,11 +278,11 @@ public class UsuarioAdminControlador {
 	 * @param usuario
 	 * @param resultado
 	 * @param tipo_rol
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param modelo
 	 * @param request
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping({"usuario/{regId}/admin/save"})
 	public String guarda(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult resultado,
@@ -418,11 +420,11 @@ public class UsuarioAdminControlador {
 	 * Asociación de un rol a un usuario
 	 * 
 	 * @param userRol
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param Id
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("usuario/{regId}/admin/edit/{userId}/asocrol")
 	public String asocia_rol(
@@ -454,14 +456,14 @@ public class UsuarioAdminControlador {
 
 
 	/**
-	 * Asociación de un centro en concreto a un usuario de perfil centro
+	 * Asociación de un centro o región en concreto a un usuario de perfil centro o región
 	 * 
 	 * @param centroId
-	 * @param regId
+	 * @param regId Id región permitida
 	 * @param Id
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("usuario/{regId}/admin/edit/{userId}/asoc")
 	public String asocia_centro(
@@ -498,7 +500,7 @@ public class UsuarioAdminControlador {
 	 * @param Id
 	 * @param regId
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("usuario/{regId}/admin/del")
 	public String borra(@RequestParam("regId") Long Id,
@@ -534,8 +536,9 @@ public class UsuarioAdminControlador {
 	   
 	   
 	/**
-	 * Autenticación del rol del usuario
-	 * @return indiceRol
+	 * Comprueba la autenticación del usuario
+	 * 
+	 * @return El indice del centro o región autorizadas en su rol
 	 */
 	public Long getIdInRole(String... permitidos) {
 		

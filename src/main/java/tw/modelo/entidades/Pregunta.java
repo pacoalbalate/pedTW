@@ -62,7 +62,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Identificador de pregunta
+	 * Devuelve el Identificador de pregunta
 	 * @return id
 	 */
 	public Long getId() {
@@ -70,7 +70,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Identificador de pregunta
+	 * Establece el Identificador de pregunta
 	 * @param id 
 	 */
 	public void setId(Long id) {
@@ -78,7 +78,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Pregunta (descripción)
+	 * Devuelve la Pregunta (descripción)
 	 * @return denominacion
 	 */
 	public String getDenominacion() {
@@ -86,7 +86,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Pregunta (descripción)
+	 * Establece la Pregunta (descripción)
 	 * @param denominacion 
 	 */
 	public void setDenominacion(String denominacion) {
@@ -94,7 +94,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Tipo de la pregunta
+	 * Devuelve el Tipo de la pregunta
 	 * @return tipopregunta
 	 */
 	public AuxOpciones getTipopregunta() {
@@ -102,7 +102,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Tipo de la pregunta
+	 * Establece el Tipo de la pregunta
 	 * @param tipopregunta 
 	 */
 	public void setTipopregunta(AuxOpciones tipopregunta) {
@@ -110,7 +110,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Respuestas asociadas a la pregunta
+	 * Devuelve las Respuestas asociadas a la pregunta
 	 * @return datos
 	 */
 	public List<Dato> getDatos() {
@@ -118,7 +118,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Respuestas asociadas a la pregunta
+	 * Establece las Respuestas asociadas a la pregunta
 	 * @param datos 
 	 */
 	public void setDatos(List<Dato> datos) {
@@ -126,7 +126,7 @@ public class Pregunta implements Serializable {
 	}
 
 	/**
-	 * Respuesta asociada a la pregunta
+	 * Añade una Respuesta asociada a la pregunta
 	 * @param dato 
 	 */
 	public void addDato(Dato dato) {

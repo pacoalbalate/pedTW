@@ -5,15 +5,105 @@
 <head>
 
 <%@ include file="../comunes/cabecera.jsp"%> 
-<%
-String grafDataPru= (String)request.getAttribute("datosGraficaPruebas");
-String grafDataPos= (String)request.getAttribute("datosGraficaPositivos");
-String grafDataPor= (String)request.getAttribute("datosGraficaPorcentaje");
-%>
+
 
 <script type="text/javascript">
+
+function copiaPorcentaje(chart, chart2){
+	var dps = [];
+	var dps2 = [];
+
+	dps  = chart.options.data[2].dataPoints;
+	dps2 = chart2.options.data[0].dataPoints;
+
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
+		dps2[i] = {label: chart2.data[0].dataPoints[i].label , y: chart.data[2].dataPoints[i].y};
+	}
+	
+		chart2.options.data[0].dataPoints = dps2; 
+		chart2.render();
+}
+
+
+function creaPorcentaje(chart){
+	var dps = [];
+	var yValue, yTotal = 0, yPercent = 0;
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
+		yValue1 = chart.data[0].dataPoints[i].y;
+		yValue2 = chart.data[1].dataPoints[i].y;
+		yPercent = Math.round(((yValue2 * 100) / yValue1)*100)/100;
+		dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent });
+	}
+	chart.addTo("data", {type:"line", name:"Porcentaje", axisYType: "secondary", 
+		yValueFormatString: "0.##\"%\"", indexLabel: "{y}", markerBorderColor: "white",
+		markerBorderThickness: 2, indexLabelFontColor: "#C24642", dataPoints: dps});
+	chart.axisY2[0].set("maximum", 105, false )
+}
+
+
+function creaOrden(chart){
+	var yValue, yTotal = 0, yPercent = 0;
+	
+		for(var x = 0; x < chart.data[0].dataPoints.length; x++) {
+		for(var i = 0; i < chart.data[0].dataPoints.length-x-1; i++) {
+            if(chart.data[0].dataPoints[i].y < chart.data[0].dataPoints[i+1].y){
+                var tmp = chart.data[0].dataPoints[i+1].y;
+                chart.data[0].dataPoints[i+1].y = chart.data[0].dataPoints[i].y;
+                chart.data[0].dataPoints[i].y = tmp;
+                var tmp2 = chart.data[0].dataPoints[i+1].label;
+                chart.data[0].dataPoints[i+1].label = chart.data[0].dataPoints[i].label;
+                chart.data[0].dataPoints[i].label = tmp2;
+            }
+	
+		}
+	}
+}
+
+
+function creaPareto(chart){
+	var dps = [];
+	var yValue, yTotal = 0, yPercent = 0;
+	
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++)
+		yTotal += chart.data[0].dataPoints[i].y;
+
+	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
+		yValue = chart.data[0].dataPoints[i].y;
+		yPercent += (yValue / yTotal * 100);
+		dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent });
+	}
+	chart.addTo("data", {type:"line", axisYType: "secondary", yValueFormatString: "0.##\"%\"",
+	name:"% Acumulado", markerBorderColor: "white", markerBorderThickness: 2, indexLabel: "{y}", dataPoints: dps});
+	chart.axisY[0].set("maximum", yTotal, false);
+	chart.axisY2[0].set("maximum", 105, false );
+	chart.axisY2[0].set("interval", 25 );
+}
+
+
+function updateChart() {
+	var boilerColor, deltaY, yVal;
+	var dps = chart.options.data[0].dataPoints;
+	for (var i = 0; i < dps.length; i++) {
+		deltaY = Math.round(2 + Math.random() *(-2-2));
+		yVal = deltaY + dps[i].y > 0 ? dps[i].y + deltaY : 0;
+		
+		boilerColor = yVal > 200 ? "#FF2500" : yVal >= 170 ? "#FF6000" : yVal < 170 ? "#6B8E23 " : null;
+		
+		dps[i] = {label: "Boiler "+(i+1) , y: yVal, color: boilerColor};
+		
+	}
+	chart.options.data[0].dataPoints = dps; 
+	chart.render();
+};
+
+</script>
+
+<script type="text/javascript">
+
 window.onload = function() { 
-    var chart = new CanvasJS.Chart("grafPositivosDePruebas", {
+
+    var chartPos = new CanvasJS.Chart("grafPositivosDePruebas", {
+	exportEnabled: true,
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
@@ -34,7 +124,7 @@ window.onload = function() {
 		}
 	},	
 	axisY2: {
-		title: "Porcentaje",
+		title: "% Positivos en Pruebas",
 		suffix: "%",
 		gridThickness: 0,
 		lineColor: "#C0504E",
@@ -49,42 +139,27 @@ window.onload = function() {
 	{
 		type: "column",
 		indexLabel: "{y}",
-		name: "Pruebas",
+		name: "Num. Pruebas",
 		showInLegend: true,
-		dataPoints: <% out.print(grafDataPru);%>
+		dataPoints: ${datosGraficaPruebas}
 	},
 	{
 		type: "area",
-		name: "Positivos",
+		name: "Num. Positivos",
 		markerBorderColor: "white",
 		markerBorderThickness: 2,
 		showInLegend: true,		
 		indexLabel: "{y}",
-		dataPoints: <% out.print(grafDataPos);%>
+		dataPoints: ${datosGraficaPositivos}
 	}]
 }   );
-chart.render(); 
-creaPorcentaje();
-
-function creaPorcentaje(){
-	var dps = [];
-	var yValue, yTotal = 0, yPercent = 0;
-
-	for(var i = 0; i < chart.data[0].dataPoints.length; i++) {
-		yValue1 = chart.data[0].dataPoints[i].y;
-		yValue2 = chart.data[1].dataPoints[i].y;
-		yPercent = ((yValue2 * 100) / yValue1);
-		dps.push({label: chart.data[0].dataPoints[i].label, y: yPercent });
-	}
-	chart.addTo("data", {type:"line", name:"Porcentaje", axisYType: "secondary", 
-		yValueFormatString: "0.##\"%\"", indexLabel: "{y}", markerBorderColor: "white",
-		markerBorderThickness: 2, indexLabelFontColor: "#C24642", dataPoints: dps});
-	chart.axisY2[0].set("maximum", 105, false )
-}
+chartPos.render(); 
+creaPorcentaje(chartPos);
 
 
 
     var chart2 = new CanvasJS.Chart("grafPruebasYPositivos", {
+	exportEnabled: true,
 	animationEnabled: true,
 	theme: "light2", // "light1", "dark1", "dark2"
 	title: {
@@ -116,26 +191,215 @@ function creaPorcentaje(){
 	{
 		type: "column",
 		indexLabel: "{y}",
-		name: "Pruebas",
+		name: "Num. Pruebas",
 		showInLegend: true,
-		dataPoints: <% out.print(grafDataPru);%>
+		dataPoints: ${datosGraficaPruebas}
 	},
 	{
 		type: "column",
-		name: "Positivos",
+		name: "Num. Positivos",
 		axisYType: "secondary",
 		showInLegend: true,		
 		indexLabel: "{y}",
-		dataPoints: <% out.print(grafDataPos);%>
+		dataPoints: ${datosGraficaPositivos}
 	}]
 }   );
 chart2.render(); 
 
 
-function creaGraficos(){
-};
+var chartPPorc2 = new CanvasJS.Chart("grafPiePruebas", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Pruebas por ${datospor}."
+	},
+	data: [{
+		type: "pie",
+		startAngle: 25,
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		dataPoints: ${datosGraficaPruebas}
+	}]
+});
+chartPPorc2.render();
+
+var chartPPorc3 = new CanvasJS.Chart("grafPiePositivos", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Positivos por ${datospor}."
+	},
+	data: [{
+		type: "pie",
+		startAngle: 25,
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y} (#percent%)",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		dataPoints: ${datosGraficaPositivos}
+	}]
+});
+chartPPorc3.render();
+
+var chartPPorc = new CanvasJS.Chart("grafPiePorcentajes", {
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	exportEnabled: true,
+	animationEnabled: true,
+	title: {
+		text: "Porcentaje de Positivos por ${datospor}."
+	},
+	data: [{
+		type: "pie",
+		startAngle: 25,
+		indexLabel: "{label} - #percent%",
+		toolTipContent: "<b>{label}:</b> {y}% (#percent%)",
+		showInLegend: "true",
+		legendText: "{label}",
+		indexLabelFontSize: 16,
+		dataPoints: ${datosGraficaPruebas}
+	}]
+});
+chartPPorc.render();
+copiaPorcentaje(chartPos, chartPPorc)
 
 
+var chart3 = new CanvasJS.Chart("grafParetoPruebas", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	title: {
+		text: "Pareto de Pruebas Realizadas por ${datospor}."
+	},
+	subtitles: [{
+		text: "",
+		fontSize: 16
+	}],
+	axisY: {
+		title: "Pruebas",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		gridThickness: 0
+	},
+	axisY2: {
+		title: "Porcentaje",
+		suffix: "%",
+		gridThickness: 0,
+		lineColor: "#C0504E",
+		tickColor: "#C0504E",
+		labelFontColor: "#C0504E"
+	},	
+	toolTip: {
+		shared: true
+	},
+	data: [{
+		type: "column",
+		indexLabel: "{y}",
+		name: "Num. Pruebas",
+		showInLegend: true,
+		dataPoints: ${datosGraficaPruebas}
+	}]
+});
+chart3.render();
+creaOrden(chart3);
+creaPareto(chart3);
+
+
+var chart4 = new CanvasJS.Chart("grafParetoPositivos", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	title: {
+		text: "Pareto de Positivos por ${datospor}."
+	},
+	subtitles: [{
+		text: "",
+		fontSize: 16
+	}],
+	axisY: {
+		title: "Positivos",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		gridThickness: 0
+	},
+	axisY2: {
+		title: "Porcentaje",
+		suffix: "%",
+		gridThickness: 0,
+		lineColor: "#C0504E",
+		tickColor: "#C0504E",
+		labelFontColor: "#C0504E"
+	},	
+	toolTip: {
+		shared: true
+	},
+	
+	data: [{
+		type: "column",
+		indexLabel: "{y}",
+		name: "Num. Positivos",
+		showInLegend: true,
+		dataPoints: ${datosGraficaPositivos}
+	}]
+});
+chart4.render();
+creaOrden(chart4);
+creaPareto(chart4);
+
+var chartParPor = new CanvasJS.Chart("grafParetoPorcentajes", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2", // "light1", "dark1", "dark2"
+	title: {
+		text: "Pareto de Porcentaje de Positivos por ${datospor}."
+	},
+	subtitles: [{
+		text: "",
+		fontSize: 16
+	}],
+	axisY: {
+		title: "Positivos en Pruebas",
+		suffix: "%",
+		lineColor: "#4F81BC",
+		tickColor: "#4F81BC",
+		labelFontColor: "#4F81BC",
+		gridThickness: 0
+	},
+	axisY2: {
+		title: "Porcentaje",
+		suffix: "%",
+		gridThickness: 0,
+		lineColor: "#C0504E",
+		tickColor: "#C0504E",
+		labelFontColor: "#C0504E"
+	},	
+	toolTip: {
+		shared: true
+	},
+	
+	data: [{
+		type: "column",
+		indexLabel: "{y}%",
+		name: "Positivos en Pruebas",
+		showInLegend: true,
+		dataPoints: ${datosGraficaPruebas}
+	}]
+});
+chartParPor.render();
+copiaPorcentaje(chartPos, chartParPor)
+creaOrden(chartParPor);
+creaPareto(chartParPor);
+
+
+$("#btn-grafPareto").click();
+$("#btn-grafCircular").click();
 
 }
 </script>
@@ -143,7 +407,7 @@ function creaGraficos(){
 </head>
 <body>
 
-<c:import url="../comunes/menu.jsp"></c:import>
+<c:import url="../comunes/menu.jsp"></c:import> 
 
 
 	<div class="container-xl">
@@ -156,8 +420,8 @@ function creaGraficos(){
 				</jsp:include>
 
 <div class="container">
-  <button type="button" class="btn ${criterios.filtroIdActivo ? 'btn-danger' : 'btn-info'}" data-toggle="collapse" data-target="#divfiltros">Filtros ${criterios.filtroIdActivo ? 'Activados ' : 'Desactivados '}</button>
-  <div id="divfiltros" class="collapse ${criterios.filtroIdActivo ? 'show' : ''}">
+  <button type="button" class="btn ${criterios.filtroIsActivo ? 'btn-danger' : 'btn-info'}" data-toggle="collapse" data-target="#divfiltros">Filtros ${criterios.filtroIsActivo ? 'Activados ' : 'Desactivados '}</button>
+  <div id="divfiltros" class="collapse ${criterios.filtroIsActivo ? 'show' : ''}">
 
 				<sec:authorize access="hasRole('ROLE_GESTOR')">  
 				<div>
@@ -173,7 +437,7 @@ function creaGraficos(){
 												regiones...</div>
 										</c:if> <select name="regionesfiltrar" id="regionesfiltrar"  class="form-control" multiple="multiple">
 											<c:forEach var="cto" items="${regionesselfiltro}">
-												<option value="${cto.id}"
+ 												<option value="${cto.id}"
 													Label="Región ${cto.id} ${cto.denominacion} habitantes ${cto.habitantes}"
 													${criterios.getFiltroIdsRegion().contains(cto.id) ? 'selected' : ''} />
 											</c:forEach>
@@ -243,12 +507,12 @@ $(".habilit").on('click',function() {
     var d1 = (new Date).getFullYear()+"-01-01";
     var d2 = (new Date).getFullYear()+"-12-31";
 
-    if ($dat1.val()=='2000-01-01') {
+    if (($dat1.val()=='${criterios.inicioDateDesdeString}') && ($dat2.val()=='${criterios.inicioDateHastaString}')) {
         $dat1.val(d1);
         $dat2.val(d2);
     } else {
-        $dat1.val('2000-01-01');
-        $dat2.val('2999-12-31');
+        $dat1.val('${criterios.inicioDateDesdeString}');
+        $dat2.val('${criterios.inicioDateHastaString}');
         $("#boton-fecha").click();
     }
 });
@@ -284,25 +548,25 @@ $(".habilit").on('click',function() {
 
 <hr>
 <div class="container">
-  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Graficos </button>
-  <div id="divgraficos" class="collapse " onclick="javascript:my_function();">
+  <button type="button" id="btn-graficos" class="btn btn-info" data-toggle="collapse" data-target="#divgraficos">Gráficos </button>
+  <div id="divgraficos" class="collapse show" >
 
 				<div>
 					<table class="table table-striped table-hover ">
 						<tbody>
-							<form:form action="${pageContext.request.contextPath}/${criterios.pagActual}/filter/dato" method="POST"  >
+							<form:form action="${pageContext.request.contextPath}/${criterios.pagActual}/grafx" method="POST"  >
 
 								<tr>
 									<th></th>
 									<th><label class="col col-form-label">Seleccione los datos del grafico que desea mostrar:</label></th>
-									<th><c:if test="${centrosselfiltro.isEmpty()}">
+									<th><c:if test="${xgrafica.isEmpty()}">
 											<div class="alert alert-info my-4">No existen
 												datos...</div>
-										</c:if> <select name="datosfiltrar" id="datosfiltrar"  class="form-control" >
+										</c:if> <select name="datosgrafx" id="datosgrafx"  class="form-control" >
 											<c:forEach var="cto" items="${xgrafica}">
 												<option value="${cto}"
 													Label="${cto}"
-													${criterios.getFiltroIdsDato().contains(cto) ? 'selected' : ''} />
+													${criterios.getXGrafica()==cto ? 'selected' : ''} />
 											</c:forEach>
 									</select></th>
 									<th><button class="btn btn-outline-success" type="submit">Seleccionar</button></th>
@@ -330,6 +594,31 @@ $(".habilit").on('click',function() {
 				<br/>
 				<div id="grafPruebasYPositivos" style="height: 370px; width: 100%;"></div>
 				<br/>
+
+<div class="container">
+  <button type="button" id="btn-grafCircular" class="btn btn-info" data-toggle="collapse" data-target="#divgrafCircular">Gráficos Circulares </button>
+  <div id="divgrafCircular" class="collapse show" >
+
+				<div id="grafPiePruebas" style="height: 370px; width: 100%;"></div>
+				<br/>
+				<div id="grafPiePositivos" style="height: 370px; width: 100%;"></div>
+				<br/>
+				<div id="grafPiePorcentajes" style="height: 370px; width: 100%;"></div>
+				<br/>
+	</div>
+</div>				
+				<br/>
+<div class="container">
+  <button type="button" id="btn-grafPareto" class="btn btn-info" data-toggle="collapse" data-target="#divgrafPareto">Gráficos de Pareto </button>
+  <div id="divgrafPareto" class="collapse show" >
+				<div id="grafParetoPruebas" style="height: 370px; width: 100%;"></div>
+				<br/>
+				<div id="grafParetoPositivos" style="height: 370px; width: 100%;"></div>
+				<br/>
+				<div id="grafParetoPorcentajes" style="height: 370px; width: 100%;"></div>
+				<br/>
+	</div>
+</div>				
 			</div>
 		</div>
 	</div>
@@ -363,7 +652,6 @@ $(".habilit").on('click',function() {
 									<fmt:formatDate type = "date" value="${date}" pattern="yyyy-MM-dd" /></td>
 								</c:if>
 								<c:if test="${d.pregunta.tipopregunta.opcionestabla !=''}">
-								<% /*	<td><c:out value="${srvaux.findById(d.dato).opcion}"></c:out></td> */ %>
 										<td><c:out value="${d.dato}"></c:out></td> 
 								</c:if>
 						</c:forEach>

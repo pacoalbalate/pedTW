@@ -33,9 +33,9 @@ import tw.modelo.entidades.AuxOpciones;
 import tw.modelo.servicios.IAuxOpcionesService;
 import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IDatosPerfilService;
-import tw.modelo.servicios.IEstadisticasService;
 /**
  * Clase controladora para la administración de los centros
+ * por parte del gestor
  */
 @Controller 
 @SessionAttributes({"centro", "criterios"})
@@ -51,15 +51,15 @@ public class CentroAdminControlador {
 	@Autowired
 	private IDatosPerfilService datosperfilService;
 	
-	@Autowired
-	private IEstadisticasService estadisticasService;
-	
+
 	/**
-	 * Presenta los centros existentes
+	 * Presenta los centros existentes para su mantenimiento y edición
+	 * con filtrado, paginación y ordenación
+	 * 
 	 * @param params 
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/centro/list")
 	public String listado(@RequestParam Map<String, Object> params, 
@@ -98,8 +98,9 @@ public class CentroAdminControlador {
 	
 	/**
 	 * Alta de centros
+	 * 
 	 * @param modelo
-	 * @return
+	 * @return página de la vista
 	 */
 	@GetMapping("admin/centro/new")
 	public String formulario_new(Model modelo) {
@@ -115,13 +116,14 @@ public class CentroAdminControlador {
 	
 	/** 
 	 * Edición de centros
+	 * 
 	 * @param Id
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
-	@GetMapping("admin/centro/edit/{regId}/")
-	public String formulario_edita(@PathVariable("regId") Long Id,
+	@GetMapping("admin/centro/edit/{ctoId}/")
+	public String formulario_edita(@PathVariable("ctoId") Long Id,
 				Model modelo, RedirectAttributes flash) {
 		Centro centro = (Centro) centroService.findById(Id);
 		if (centro == null) {
@@ -140,12 +142,13 @@ public class CentroAdminControlador {
 	}
 	
 	/**
-	 * Método que grnba el centro modificado o nuevo
+	 * Método que graba el centro modificado o nuevo
+	 * 
 	 * @param centro
 	 * @param resultado
 	 * @param modelo
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping({"admin/centro/save"})
 	public String guarda(@Valid @ModelAttribute("centro") Centro centro, BindingResult resultado, 
@@ -177,7 +180,7 @@ public class CentroAdminControlador {
 	 * 
 	 * @param Id
 	 * @param flash
-	 * @return
+	 * @return página de la vista
 	 */
 	@PostMapping("admin/centro/del")
 	public String borra(@RequestParam("regId") Long Id,
@@ -190,26 +193,6 @@ public class CentroAdminControlador {
 			flash.addFlashAttribute("error", "El centro no éxiste en la base de datos");
 		}
 		return "redirect:/admin/centro/list";
-	}
-	
-	/**
-	 * Obtiene los datos de un centro en forma de gráficos
-	 * 
-	 * @param modelo
-	 * @param flash
-	 * @return
-	 */
-	@GetMapping("admin/grafica/datos")
-	public String obtenerGraficas(Model modelo, RedirectAttributes flash) {
-		
-		String diagramaBarras=estadisticasService.obtenerDiagramaBarrasPorCentroyTotalPositivos();
-		String diagramaSectores=estadisticasService.obtenerDiagramaSectoresPorRegionyCentros();
-		
-		modelo.addAttribute("diagramaBarras", diagramaBarras);
-		modelo.addAttribute("diagramaSectores", diagramaSectores);
-
-
-		return "/grafica/list";
 	}
 	
 }

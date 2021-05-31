@@ -80,7 +80,7 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	}
 
 	/**
-	 * Devuelve todos los usuarios según criterios de selección 
+	 * Devuelve todos los usuarios según criterios de filtrado para el listado
 	 * en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
@@ -95,7 +95,7 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	
 
 	/** 
-	 * Busca un usuario por el nombre
+	 * Busca un usuario por el nombre completo
 	 * @param nombreusuario Nombre del usuario a buscar
 	 * @return Usuario
 	 */
@@ -107,7 +107,8 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 
 
 	/**
-	 * Busca usuarios de un list de centros con criterios de selección
+	 * Busca usuarios de un list de centros con criterios de filtrado del listado en las regiones
+	 * asignados a una lista de centros determinados
 	 * y los devuelve en un opbjeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
@@ -125,8 +126,8 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	
 	/**
 	 * Devuelve los detalles de un usuario (Nombre, password y si está o no activo) 
-	 * siempre que el usaurio existe y tenga algún rolo asignado
-	 * Se utiliza par autenticación de usuarios
+	 * siempre que el usuario existe y tenga algún rol asignado
+	 * Necesario para autenticación de usuarios en un Objeto User
 	 * @param username Nombre del usuario
 	 * @return Detalles de usuario (Nombre, Password, Activo)	
 	 */
