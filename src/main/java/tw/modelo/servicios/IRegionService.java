@@ -46,7 +46,7 @@ public interface IRegionService {
 
 	/**
 	 * Obtiene todas las regiones y las devuelve en un List
-	 * @return List<Region>
+	 * @return List <Region>
 	 * 
 	 */
 	List<Region> findAll();
@@ -54,7 +54,7 @@ public interface IRegionService {
 	/**
 	 * Obtiene todas las regiones y las devuelve en un objeto de paginación
 	 * @param pageable
-	 * @return PAge<Region>
+	 * @return Page <Region>
 	 * 
 	 */
 	Page<Region> findAll(Pageable pageable);
@@ -64,14 +64,14 @@ public interface IRegionService {
 	 * pasados por parámetro y las devuelve en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
-	 * @return Page<Region>
+	 * @return Page <Region>
 	 * 
 	 */
 	Page<Region> findAllWithKeyword(Pageable pageable, String keyword);
 
 	/**
 	 * Devuelve las regiones ya asociadas a las Pruebas y sus Pruebas (datosfecha)
-	 * @return List<Region>
+	 * @return List <Region>
 	 */
 	List<Region> findAllJoinDatos();
 

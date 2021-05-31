@@ -93,10 +93,10 @@ public class CentroDatosControlador {
 	 * Presenta los datos de pruebas existentes para su mantenimiento y edición
 	 * con filtrado, paginación y ordenación
 	 * 
-	 * @param centroId
 	 * @param params
 	 * @param modelo
 	 * @param flash
+	 * @param ctoId
 	 * @return página de la vista
 	 */
 	@GetMapping("centro/{ctoId}/datos/list")
@@ -141,7 +141,7 @@ public class CentroDatosControlador {
 	/**
 	 * Da de alta nuevo grupo de pruebas 
 	 * 
-	 * @param centroId
+	 * @param ctoId
 	 * @param modelo
 	 * @return página de la vista
 	 */
@@ -170,7 +170,7 @@ public class CentroDatosControlador {
 	 * Crea el formulario para el mantenimiento
 	 * de perfiles de una prueba existente
 	 * 
-	 * @param centroId
+	 * @param ctoId
 	 * @param Id
 	 * @param perfilId
 	 * @param modelo
@@ -231,7 +231,7 @@ public class CentroDatosControlador {
 	 * 
 	 * @param datosfecha prueba modificada
 	 * @param resultado
-	 * @param centroId
+	 * @param ctoId
 	 * @param modelo
 	 * @param flash
 	 * @return página de la vista
@@ -286,8 +286,8 @@ public class CentroDatosControlador {
 	 * 
 	 * @param datosperfil
 	 * @param resultado
-	 * @param centroId
-	 * @param Id
+	 * @param ctoId
+	 * @param regId
 	 * @param params
 	 * @param modelo
 	 * @param flash
@@ -370,7 +370,7 @@ public class CentroDatosControlador {
 	 * Borra una prueba con sus perfiles
 	 * 
 	 * @param Id
-	 * @param centroId
+	 * @param ctoId
 	 * @param flash
 	 * @return página de la vista
 	 */
@@ -393,8 +393,8 @@ public class CentroDatosControlador {
 	/**
 	 * Borra un perfil 
 	 * 
-	 * @param centroId
-	 * @param pruebaId
+	 * @param ctoId
+	 * @param dfId
 	 * @param Id
 	 * @param flash
 	 * @return página de la vista

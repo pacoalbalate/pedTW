@@ -44,7 +44,7 @@ public interface IUsuarioService {
 	/**
 	 * Devuelve todos los usuarios en un objeto de paginación
 	 * @param pageable
-	 * @return Page<Usuario>
+	 * @return Page <Usuario>
 	 * 
 	 */
 	Page<Usuario> findAll(Pageable pageable);
@@ -54,7 +54,7 @@ public interface IUsuarioService {
 	 * en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
-	 * @return Page<Usuario> 
+	 * @return Page <Usuario> 
 	 */
 	Page<Usuario> findAllWithKeyword(Pageable pageable, String keyword);
 
@@ -72,7 +72,7 @@ public interface IUsuarioService {
 	 * @param pageable
 	 * @param keyword Criterios de selección
 	 * @param centros List de los centros
-	 * @return Page<Usuario>
+	 * @return Page <Usuario>
 	 */
 	Page<Usuario> findAllWithKeywordIN(Pageable pageable, String keyword, List<Long> centros);
 	
