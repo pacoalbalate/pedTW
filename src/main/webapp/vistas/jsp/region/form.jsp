@@ -73,16 +73,19 @@
 <div class="alert alert-info my-4">No existen centros sin asociar...</div>
 </c:if>
 
-
+<c:if test="${!centroslibres.isEmpty()}">
           <select name="centro" id="centro" class="form-control">
 <c:forEach var="cto" items="${centroslibres}">
               <option value="${cto.id}" Label="Centro ${cto.id} ${cto.denominacion} ${cto.tipocentro.opcion} Pacientes ${cto.pacientes}"/>
 </c:forEach>
           </select>
+</c:if>
       </td>
 <td></td>
 <td>
+<c:if test="${!centroslibres.isEmpty()}">
 <input type="submit" value="Asociar" class="btn btn-primary"/>
+</c:if>
 </td>
 </tr>
 
