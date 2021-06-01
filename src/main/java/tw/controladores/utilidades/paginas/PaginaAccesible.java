@@ -33,7 +33,7 @@ public class PaginaAccesible {
 	/**
 	 * Numera la pagina
 	 * 
-	 * @param numero 
+	 * @param numeroPagina 
 	 */
 	public void setNumero(int numeroPagina) {
 		this.numeroPagina = numeroPagina;

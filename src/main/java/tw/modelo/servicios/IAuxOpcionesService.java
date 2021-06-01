@@ -18,7 +18,7 @@ import tw.modelo.entidades.AuxOpciones;
 public interface IAuxOpcionesService {
 	/**
 	 * Busca por Id de opción
-	 * @param el id
+	 * @param id
 	 * @return DAO Opciones
 	 * 
 	 */
@@ -27,7 +27,7 @@ public interface IAuxOpcionesService {
 	/**
 	 * Busca por Id de opción
 	 * sobrecarga del metodo en formato String
-	 * @param el id
+	 * @param id
 	 * @return DAO Opciones
 	 * 
 	 */

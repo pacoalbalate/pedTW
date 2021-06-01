@@ -71,7 +71,7 @@ public class RegionServiceImpl implements IRegionService {
 
 	/**
 	 * Obtiene todas las regiones y las devuelve en un List
-	 * @return List<Region>
+	 * @return List <Region>
 	 * 
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class RegionServiceImpl implements IRegionService {
 	/**
 	 * Obtiene todas las regiones y las devuelve en un objeto de paginación
 	 * @param pageable
-	 * @return PAge<Region>
+	 * @return Page <Region>
 	 * 
 	 */
 	@Override
@@ -99,7 +99,7 @@ public class RegionServiceImpl implements IRegionService {
 	 * pasados por parámetro y las devuelve en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
-	 * @return Page<Region>
+	 * @return Page <Region>
 	 * 
 	 */
 	@Override
@@ -111,7 +111,7 @@ public class RegionServiceImpl implements IRegionService {
 
 	/**
 	 * Devuelve las regiones ya asociadas a las Pruebas y sus Pruebas (datosfecha)
-	 * @return List<Region>
+	 * @return List <Region>
 	 */
 	@Override
 	@Transactional(readOnly = true)

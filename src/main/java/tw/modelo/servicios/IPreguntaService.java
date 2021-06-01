@@ -49,7 +49,7 @@ public interface IPreguntaService {
 	/**
 	 * Devuelve todas las preguntas en un objeto de paginación
 	 * @param pageable 
-	 * @return Page<Pregunta>
+	 * @return Page <Pregunta>
 	 */
 	Page<Pregunta> findAll(Pageable pageable);
 
@@ -58,7 +58,7 @@ public interface IPreguntaService {
 	 * por criterios de selección
 	 * @param pageable
 	 * @param keyword Criterios de Selección
-	 * @return Page<Pregunta>
+	 * @return Page <Pregunta>
 	 */
 	Page<Pregunta> findAllWithKeyword(Pageable pageable, String keyword);
 	

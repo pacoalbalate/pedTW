@@ -120,7 +120,7 @@ public interface IDatosPerfilDao extends JpaRepository<DatosPerfil, Long> {
 	 * devolviéndolos en el objeto paginable según el parámetro
 	 * @param pageable El objeto paginable
 	 * @param regiones lista de regiones
-	 * @param centros lista de centros
+	 * @param datos lista de datos
 	 * @param keyword criterios de selección
 	 * @param desde Fecha desde
 	 * @param hasta Fecha hasta

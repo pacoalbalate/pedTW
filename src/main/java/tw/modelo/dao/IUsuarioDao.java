@@ -32,7 +32,7 @@ public interface IUsuarioDao extends JpaRepository<Usuario, Long>{
 	 * @param pageable
 	 * @param keyword Criterios de selección
 	 * @param centros List de los centros
-	 * @return Page<Usuario>
+	 * @return Page <Usuario>
 	 */
 	@Query ("SELECT DISTINCT u FROM Usuario u JOIN u.roles r WHERE CONCAT(u.nombreusuario) LIKE %?1% AND r.rol = 'ROLE_CENTRO' AND r.centro_region IN ?2") 
 	public Page <Usuario> findAllWithKeywordIN( Pageable pageable,  String  keyword, List<Long> centros);  
@@ -42,7 +42,7 @@ public interface IUsuarioDao extends JpaRepository<Usuario, Long>{
 	 * en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
-	 * @return Page<Usuario> 
+	 * @return Page <Usuario> 
 	 */
 	@Query ("SELECT u FROM Usuario u WHERE CONCAT(u.nombreusuario) LIKE %?1%") 
 	public Page <Usuario> findAllWithKeyword( Pageable pageable,  String  keyword);  

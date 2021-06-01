@@ -36,7 +36,7 @@ public Region findByIdWithCentros(Long id);
  * pasados por parámetro y las devuelve en un objeto de paginación
  * @param pageable
  * @param keyword Criterios de selección
- * @return Page<Region>
+ * @return Page <Region>
  * 
  */
 @Query ("SELECT DISTINCT r FROM Region r LEFT JOIN r.centros c WHERE CONCAT(r.denominacion, ' ', r.habitantes) LIKE %?1%") 
@@ -44,7 +44,7 @@ public Page <Region> findAllWithKeyword( Pageable pageable,  String  keyword);
 
 /**
  * Devuelve las regiones ya asociadas a las Pruebas y sus Pruebas (datosfecha)
- * @return List<Region>
+ * @return List <Region>
  */
 @Query ("SELECT DISTINCT r FROM Region r JOIN r.centros c JOIN c.datosfecha df") 
 public List<Region> findAllJoinDatos();  

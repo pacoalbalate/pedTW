@@ -69,7 +69,7 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	/**
 	 * Devuelve todos los usuarios en un objeto de paginación
 	 * @param pageable
-	 * @return Page<Usuario>
+	 * @return Page <Usuario>
 	 * 
 	 */
 	@Override
@@ -84,7 +84,7 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	 * en un objeto de paginación
 	 * @param pageable
 	 * @param keyword Criterios de selección
-	 * @return Page<Usuario> 
+	 * @return Page <Usuario> 
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -113,7 +113,7 @@ public class UsuarioServiceImpl implements IUsuarioService, UserDetailsService {
 	 * @param pageable
 	 * @param keyword Criterios de selección
 	 * @param centros List de los centros
-	 * @return Page<Usuario>
+	 * @return Page <Usuario>
 	 */
 	@Override
 	@Transactional(readOnly=true)

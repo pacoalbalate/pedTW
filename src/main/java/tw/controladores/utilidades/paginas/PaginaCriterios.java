@@ -138,7 +138,7 @@ public class PaginaCriterios  implements Serializable  {
 	 * Modificación conjunta de los criterios de ordenación y filtado 
 	 * con los parametros indicados
 	 * 
-	 * @param mapa con los criterios a modificar
+	 * @param params con los criterios a modificar
 	 */
 	public void setParametros(Map<String, Object> params) {
 		//this.orderBy = "ASC";
@@ -215,7 +215,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Actualiza cual es la pagina a mostrar
 	 * 
-	 * @param 
+	 * @param  pagActual
 	 */
 	public void setPagActual(String pagActual) {
 		this.pagActual = pagActual;
@@ -224,7 +224,7 @@ public class PaginaCriterios  implements Serializable  {
 	/**
 	 * Actualiza cual es el tipo de dato X de la grafica
 	 * 
-	 * @param
+	 * @param xGrafica
 	 */
 	public void setXGrafica(String xGrafica) {
 		this.xGrafica = xGrafica;

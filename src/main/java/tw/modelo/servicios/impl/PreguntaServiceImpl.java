@@ -72,7 +72,7 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	/**
 	 * Devuelve todas las preguntas en un objeto de paginación
 	 * @param pageable 
-	 * @return Page<Pregunta>
+	 * @return Page <Pregunta>
 	 */
 	@Override
 	@Transactional(readOnly = true)
@@ -86,7 +86,7 @@ public class PreguntaServiceImpl implements IPreguntaService {
 	 * por criterios de selección
 	 * @param pageable
 	 * @param keyword Criterios de Selección
-	 * @return Page<Pregunta>
+	 * @return Page <Pregunta>
 	 */
 	@Override
 	@Transactional(readOnly = true)
