@@ -71,7 +71,7 @@
       <td>
 <c:if test="${centroslibres.isEmpty()}">
 <div class="alert alert-info my-4">No existen centros sin asociar...</div>
-</c:if>
+</c:if> 
 
 <c:if test="${!centroslibres.isEmpty()}">
           <select name="centro" id="centro" class="form-control">
