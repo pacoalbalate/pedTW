@@ -50,7 +50,7 @@ import tw.modelo.servicios.IRegionService;
 import tw.modelo.servicios.IRolService;
 /**
  * Clase controladora. Encargada de generar los listados de perfiles, 
- * exportación, consulta de datos y graficas
+ * exportación, consulta de datos y gráficas
  */
 @Controller 
 @SessionAttributes({"criterios"})

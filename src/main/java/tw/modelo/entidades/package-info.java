@@ -1,6 +1,6 @@
 /**
  * DTO
- * Objetos de trnasferencia de datos
+ * Objetos de transferencia de datos
  * 
  */
 package tw.modelo.entidades;

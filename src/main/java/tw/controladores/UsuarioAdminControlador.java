@@ -46,7 +46,7 @@ import tw.modelo.servicios.IUsuarioService;
 /**
  * Clase del controlador
  * Encargada de la gestión de usuarios por perfiles:
- * 		Gestor --> 0 Todas las Regiones y Centros
+ * 		Gestor --> Todas las Regiones y Centros
  *      Región --> Región->(Varios Centros)
  *      Centro --> Centro
  */

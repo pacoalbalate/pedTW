@@ -35,7 +35,8 @@ import tw.modelo.servicios.ICentroService;
 import tw.modelo.servicios.IDatosPerfilService;
 /**
  * Clase controladora para la administración de los centros
- * por parte del gestor
+ * por parte del gestor o el gestor nacional.
+ * Permite la gestión (CRUD) de los centros
  */
 @Controller 
 @SessionAttributes({"centro", "criterios"})
