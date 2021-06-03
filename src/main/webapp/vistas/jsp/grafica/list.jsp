@@ -69,7 +69,7 @@ chart1.render();
 
 				<jsp:include page='../comunes/barra_titulo.jsp'></jsp:include>
 				<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-				<br/>
+				<br />
 				<div id="chartContainer1" style="height: 370px; width: 100%;"></div>
 			</div>
 		</div>
@@ -78,7 +78,8 @@ chart1.render();
 	<%@ include file="../comunes/grid//vborrar_modal.jsp"%>
 	<%@ include file="../comunes/pie.jsp"%>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/canvas/canvasjs.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/canvas/canvasjs.min.js"></script>
 
 </body>
 </html>

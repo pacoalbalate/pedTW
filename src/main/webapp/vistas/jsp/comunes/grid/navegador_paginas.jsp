@@ -1,8 +1,9 @@
-<%@ include file="../../comunes/includes.jsp" %>
+<%@ include file="../../comunes/includes.jsp"%>
 <nav>
 	<div class="clearfix">
 		<div class="hint-text">
-			Mostrando <b>${pagina.paginaActual}</b> de <b>${pagina.totalPaginas}</b> páginas
+			Mostrando <b>${pagina.paginaActual}</b> de <b>${pagina.totalPaginas}</b>
+			páginas
 		</div>
 		<ul class="pagination">
 			<li
@@ -10,7 +11,8 @@
 				<c:if test="${pagina.page.first}">
 					<a class="page-link"><i class="fa fa-angle-double-left"></i></a>
 				</c:if> <c:if test="${not pagina.page.first}">
-					<a class="page-link" href="${pageContext.request.contextPath}/${pagina.url}?pageNo=0"><i
+					<a class="page-link"
+						href="${pageContext.request.contextPath}/${pagina.url}?pageNo=0"><i
 						class="fa fa-angle-double-left"></i></a>
 				</c:if>
 			</li>
