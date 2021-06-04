@@ -131,7 +131,7 @@ public class CentroDatosControlador {
 		Page<DatosFecha> datosfechas = datosfechaService.findAllWithKeyword(pageable, criterios.getFiltro(), ctoId);
 		PagNavegador<DatosFecha> pageSelect = new PagNavegador<>(Pag_actual, datosfechas);
 
-		modelo.addAttribute("titulo", "Gestión de <b>Datos por Fecha</b>");
+		modelo.addAttribute("titulo", "Gestión de <b>Pruebas por Fecha</b>");
 		modelo.addAttribute("criterios", criterios);
 		modelo.addAttribute("pagina", pageSelect);
 
@@ -158,7 +158,7 @@ public class CentroDatosControlador {
 		List<AuxOpciones> tipopruebas = auxopcionesService.findByTipoOrderById("OPC_TIPO_PRUEBA");
 		List<Pregunta> preguntas = preguntaService.findAll();
 
-		modelo.addAttribute("titulo", "Formulario de <b>Edición de DatosFecha</b>");
+		modelo.addAttribute("titulo", "Formulario de <b>Edición de la Prueba</b>");
 		modelo.addAttribute("datosfecha", datosfecha);
 		modelo.addAttribute("tipopruebas", tipopruebas);
 		modelo.addAttribute("preguntas", preguntas);
@@ -215,7 +215,7 @@ public class CentroDatosControlador {
 			}
 		}
 
-		modelo.addAttribute("titulo", "Formulario de <b>Edición de Datos por Fecha</b>");
+		modelo.addAttribute("titulo", "Formulario de <b>Edición de la Prueba</b>");
 		modelo.addAttribute("datosfecha", datosfecha);
 		modelo.addAttribute("tipopruebas", tipopruebas);
 		modelo.addAttribute("preguntas", preguntas);
@@ -258,7 +258,7 @@ public class CentroDatosControlador {
 			List<AuxOpciones> opcionesdatos = auxopcionesService.findByTipoContainingOrderById("OPC_");
 			List<Pregunta> preguntas = preguntaService.findAll();
 
-			modelo.put("titulo", "Formulario de <b>Edición de Datos por Fecha</b>");
+			modelo.put("titulo", "Formulario de <b>Edición de la Prueba</b>");
 			modelo.put("datosfecha", datosfecha);
 			modelo.put("tipopruebas", tipopruebas);
 			modelo.put("preguntas", preguntas);
@@ -349,7 +349,7 @@ public class CentroDatosControlador {
 			modelo.put("datosperfil", datosperfil);
 			modelo.put("datosfecha", datosfecha);
 			
-			modelo.put("titulo", "Formulario de <b>Edición de Datos por Fecha</b>");
+			modelo.put("titulo", "Formulario de <b>Edición de la Prueba</b>");
 			modelo.put("tipopruebas", tipopruebas);
 			modelo.put("preguntas", preguntas);
 			modelo.put("opcionesdatos", opcionesdatos);
