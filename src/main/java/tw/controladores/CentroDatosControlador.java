@@ -133,7 +133,7 @@ public class CentroDatosControlador {
 
 		modelo.addAttribute("titulo", "Gestión de <b>Pruebas por Fecha</b>");
 		modelo.addAttribute("criterios", criterios);
-		modelo.addAttribute("pagina", pageSelect);
+		modelo.addAttribute("pagina", pageSelect); 
 
 		return "datos/list";
 	}
