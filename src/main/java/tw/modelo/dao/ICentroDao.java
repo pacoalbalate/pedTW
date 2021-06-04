@@ -62,6 +62,15 @@ public List<Centro> findAllJoinDatos();
 @Query ("SELECT DISTINCT c FROM Centro c JOIN c.region r JOIN c.datosfecha df WHERE r.id IN ?1") 
 public List<Centro> findAllJoinDatosInRegionesId(List<Long> regionesId);  
 
+/** 
+ * Devuelve lista de todos los centros
+ * de los pertenecientes a un conjunto de identificadores de región
+ * @param regionesId lista de identificadores de región
+ * @return 
+ */
+@Query ("SELECT DISTINCT c FROM Centro c JOIN c.region r WHERE r.id IN ?1") 
+public List<Centro> findAllInRegionesId(List<Long> regionesId);  
+
 /**
  * Método que devuelve los centros sin asociar a region
  * @return

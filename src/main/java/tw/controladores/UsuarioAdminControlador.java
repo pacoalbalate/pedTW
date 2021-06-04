@@ -137,7 +137,7 @@ public class UsuarioAdminControlador {
 		} else if (request.isUserInRole("ROLE_REGION")) {
 			List<Long> regionesIn = new ArrayList<Long>();
 			regionesIn.add(regId);
-			List<Centro> centrosIn = centroService.findAllJoinDatosInRegionesId(regionesIn);
+			List<Centro> centrosIn = centroService.findAllInRegionesId(regionesIn);
 			List<Long> centroIdIn = new ArrayList<Long>();
 			for (Centro centro : centrosIn) {
 				centroIdIn.add(centro.getId());
@@ -244,7 +244,7 @@ public class UsuarioAdminControlador {
 			} else if (request.isUserInRole("ROLE_REGION")) {
 				List<Long> regionesIn = new ArrayList<Long>();
 				regionesIn.add(regId);
-				centros = centroService.findAllJoinDatosInRegionesId(regionesIn);
+				centros = centroService.findAllInRegionesId(regionesIn);
 				//COMPROBAMOS QUE EL USUARIO AL QUE ACCEDE LA REGION ES DE SU REGION
 				if(ctoreg_rol>0) {
 					boolean acceso_nok = true;
@@ -327,7 +327,7 @@ public class UsuarioAdminControlador {
 						//Si es Region ponemos el primero de sus centros para que el usuario le aparezca despues como suyo
 						List<Long> regionesIn = new ArrayList<Long>();
 						regionesIn.add(regId);
-						centros = centroService.findAllJoinDatosInRegionesId(regionesIn);
+						centros = centroService.findAllInRegionesId(regionesIn);
 						if (centros!=null) rol.setCentro_region(centros.get(0).getId());
 					}
 				}
@@ -354,7 +354,7 @@ public class UsuarioAdminControlador {
 					} else if (request.isUserInRole("ROLE_REGION")) {
 						List<Long> regionesIn = new ArrayList<Long>();
 						regionesIn.add(regId);
-						centros = centroService.findAllJoinDatosInRegionesId(regionesIn);
+						centros = centroService.findAllInRegionesId(regionesIn);
 					}
 				}
 				modelo.put("ctoreg_nombre", ctoreg_nombre);
@@ -402,7 +402,7 @@ public class UsuarioAdminControlador {
 					//Si es Region ponemos el primero de sus centros para que el usuario le aparezca despues como suyo
 					List<Long> regionesIn = new ArrayList<Long>();
 					regionesIn.add(regId);
-					centros = centroService.findAllJoinDatosInRegionesId(regionesIn);
+					centros = centroService.findAllInRegionesId(regionesIn);
 					if (centros!=null) rol.setCentro_region(centros.get(0).getId());
 				}
 			}

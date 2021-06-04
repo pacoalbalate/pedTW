@@ -137,6 +137,19 @@ public class CentroServiceImpl implements ICentroService {
 		// TODO Auto-generated method stub
 		return centroDao.findAllJoinDatosInRegionesId(regionesId);
 	}
+
+	/** 
+	 * Devuelve lista de todos los centros 
+	 * de los pertenecientes a un conjunto de identificadores de región
+	 * @param regionesId lista de identificadores de región
+	 * @return 
+	 */
+	@Override
+	@Transactional(readOnly = true)
+	public List<Centro> findAllInRegionesId(List<Long> regionesId) {
+		// TODO Auto-generated method stub
+		return centroDao.findAllInRegionesId(regionesId);
+	}
 	
 	/**
 	 * Método que devuelve los centros sin asociar a region

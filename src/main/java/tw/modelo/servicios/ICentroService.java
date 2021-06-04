@@ -85,6 +85,14 @@ public interface ICentroService {
 	 */
 	List<Centro> findAllJoinDatosInRegionesId(List<Long> regionesId);
 
+	/** 
+	 * Devuelve lista de todos los centros 
+	 * de los pertenecientes a un conjunto de identificadores de región
+	 * @param regionesId lista de identificadores de región
+	 * @return 
+	 */
+	List<Centro> findAllInRegionesId(List<Long> regionesId);
+
 	/**
 	 * Método que devuelve los centros sin asociar a region
 	 * @return
